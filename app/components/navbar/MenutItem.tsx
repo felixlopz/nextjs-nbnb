@@ -10,11 +10,13 @@ export const MenutItem: React.FC<MenuItemProps> = ({ onClick, label }) => {
     <div
       onClick={onClick}
       className="
+        cursor-pointer 
         px-4 
         py-3 
-        font-semibold 
+        font-semibold
         transition
-        hover:bg-neutral-100"
+        hover:bg-neutral-100
+        "
     >
       {label}
     </div>
