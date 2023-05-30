@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
+import Button from '../Button';
 
 interface ModalProps {
   isOpen: boolean;
@@ -11,9 +12,9 @@ interface ModalProps {
   body?: React.ReactElement;
   footer?: React.ReactElement;
   actionLabel: string;
-  disbaled?: boolean;
+  disabled?: boolean;
   secondaryAction?: () => void;
-  secondaryLabel?: string;
+  secondaryActionLabel?: string;
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -24,9 +25,9 @@ export const Modal: React.FC<ModalProps> = ({
   body,
   footer,
   actionLabel,
-  disbaled,
+  disabled,
   secondaryAction,
-  secondaryLabel,
+  secondaryActionLabel,
 }) => {
   const [showModal, setShowModal] = useState(isOpen);
 
@@ -35,25 +36,25 @@ export const Modal: React.FC<ModalProps> = ({
   }, [isOpen]);
 
   const handleClose = useCallback(() => {
-    if (disbaled === true) return;
+    if (disabled === true) return;
 
     setShowModal(false);
     setTimeout(() => {
       onClose();
     }, 300);
-  }, [disbaled, onClose]);
+  }, [disabled, onClose]);
 
   const handleSubmit = useCallback(() => {
-    if (disbaled === true) return;
+    if (disabled === true) return;
 
     onSubmit();
-  }, [disbaled, onSubmit]);
+  }, [disabled, onSubmit]);
 
   const handleSecondaryAction = useCallback(() => {
-    if (disbaled === true || secondaryAction == null) return;
+    if (disabled === true || secondaryAction == null) return;
 
     secondaryAction();
-  }, [disbaled, secondaryAction]);
+  }, [disabled, secondaryAction]);
 
   if (isOpen === false) return null;
 
@@ -136,6 +137,36 @@ export const Modal: React.FC<ModalProps> = ({
                 >
                   <IoMdClose size={18} />
                 </button>
+                <div className="text-lg font-semibold">{title}</div>
+              </div>
+              {/*BODY*/}
+              <div className="relative flex-auto p-6">{body}</div>
+              {/*FOOTER*/}
+              <div className="flex flex-col gap-2 p-6">
+                <div
+                  className="
+                    flex 
+                    w-full 
+                    flex-row 
+                    items-center 
+                    gap-4
+                  "
+                >
+                  {secondaryAction && secondaryActionLabel && (
+                    <Button
+                      disabled={disabled}
+                      label={secondaryActionLabel}
+                      onClick={handleSecondaryAction}
+                      outline
+                    />
+                  )}
+                  <Button
+                    disabled={disabled}
+                    label={actionLabel}
+                    onClick={handleSubmit}
+                  />
+                </div>
+                {footer}
               </div>
             </div>
           </div>

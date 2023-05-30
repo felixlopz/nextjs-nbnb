@@ -1,0 +1,1 @@
+-[] change the functions for simple functions instead of useCallback

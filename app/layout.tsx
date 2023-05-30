@@ -1,8 +1,9 @@
 import '../styles/globals.css';
 
-import Modal from '../components/modal/Modal';
 import Navbar from '../components/navbar/Navbar';
 import { Inter } from 'next/font/google';
+import RegisterModel from '@/components/modal/RegisterModel';
+import { Toaster } from 'react-hot-toast';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,7 +20,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Modal isOpen />
+        <Toaster />
+        <RegisterModel />
         <Navbar />
         {children}
       </body>
