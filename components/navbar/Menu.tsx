@@ -8,18 +8,18 @@ import useRegisterModal from '@/hooks/useRegisterModal';
 import useLoginModal from '@/hooks/useLoginModal';
 import { User } from '@prisma/client';
 import { signOut } from 'next-auth/react';
-import { getCurrentUser } from '@/actions/getCurrentUser';
 import useCurrentUser from '@/hooks/useCurrentUser';
 
-interface UserProps {
+interface MenuProps {
   currentUser?: User | null;
 }
 
-export const Menu = () => {
+export const Menu: React.FC<MenuProps> = (props) => {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const currentUser = useCurrentUser();
+  // const { currentUser } = useCurrentUser();
+  const { currentUser } = props;
 
   const toggleMenuOpen = useCallback(() => {
     setIsMenuOpen((value) => !value);

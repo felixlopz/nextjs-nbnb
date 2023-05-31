@@ -5,3 +5,6 @@
 
 -[] close the menu on log in
 -[] implement better error handling minudev tutorial
+-[] improve login forms
+-[] clear forms when not showing modal
+-[] bebug getServerSession to be used with useCurrentUser Hook

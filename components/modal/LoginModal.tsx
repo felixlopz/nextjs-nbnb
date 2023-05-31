@@ -10,7 +10,6 @@ import Modal from './Modal';
 import Heading from '../Heading';
 import Input from '../Inputs/Input';
 import { toast } from 'react-hot-toast';
-import Button from '../Button';
 import { useRouter } from 'next/navigation';
 import { AuthProviders } from '../AuthProviders';
 

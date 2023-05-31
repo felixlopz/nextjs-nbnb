@@ -7,6 +7,8 @@ import bcrypt from 'bcrypt';
 
 import prisma from '@/libs/prismadb';
 
+// TODO: separate the authorize function
+
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [

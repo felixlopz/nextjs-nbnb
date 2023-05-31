@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google';
 import RegisterModal from '@/components/modal/RegisterModal';
 import LoginModal from '@/components/modal/LoginModal';
 import { Toaster } from 'react-hot-toast';
+import { getCurrentUser } from '@/actions/getCurrentUser';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -13,18 +14,20 @@ export const metadata = {
   description: 'Aribnb clone',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const currentUser = await getCurrentUser();
+
   return (
     <html lang="en">
       <body className={inter.className}>
         <Toaster />
         <RegisterModal />
         <LoginModal />
-        <Navbar />
+        <Navbar currentUser={currentUser} />
         {children}
       </body>
     </html>
