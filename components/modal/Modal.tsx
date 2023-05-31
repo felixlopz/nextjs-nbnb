@@ -127,7 +127,7 @@ export const Modal: React.FC<ModalProps> = ({
                 <button
                   className="
                     absolute
-                    left-9 
+                    left-4
                     border-0
                     p-1
                     transition
