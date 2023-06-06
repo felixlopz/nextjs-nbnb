@@ -1,3 +1,5 @@
+'use server';
+
 import { getServerSession } from 'next-auth/next';
 
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
@@ -26,7 +28,7 @@ export async function getCurrentUser() {
 
     return currentUser;
   } catch (error: any) {
-    console.log(error);
+    // console.log(error);
     return null;
   }
 }
