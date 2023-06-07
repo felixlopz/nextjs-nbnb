@@ -9,3 +9,5 @@
 -[] clear forms when not showing modal
 -[] bebug getServerSession to be used with useCurrentUser Hook
 -[] close navbar menu when we click in other parts of the page
+-[] toggle login/signup forms
+-[] look into add google maps

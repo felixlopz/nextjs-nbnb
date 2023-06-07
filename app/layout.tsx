@@ -6,11 +6,12 @@ import RegisterModal from '@/components/modal/RegisterModal';
 import LoginModal from '@/components/modal/LoginModal';
 import { Toaster } from 'react-hot-toast';
 import { getCurrentUser } from '@/actions/getCurrentUser';
+import RentModal from '@/components/modal/RentModal';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'NBNB',
+  title: 'Nextbnb',
   description: 'Aribnb clone',
 };
 
@@ -27,6 +28,7 @@ export default async function RootLayout({
         <Toaster />
         <RegisterModal />
         <LoginModal />
+        <RentModal />
         <Navbar currentUser={currentUser} />
         {children}
       </body>

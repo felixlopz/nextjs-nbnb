@@ -8,6 +8,7 @@ import useRegisterModal from '@/hooks/useRegisterModal';
 import useLoginModal from '@/hooks/useLoginModal';
 import { User } from '@prisma/client';
 import { signOut } from 'next-auth/react';
+import useRentModal from '@/hooks/useRentModal';
 
 interface MenuProps {
   currentUser?: User | null;
@@ -16,6 +17,7 @@ interface MenuProps {
 export const Menu: React.FC<MenuProps> = (props) => {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
+  const rentModal = useRentModal();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const { currentUser } = props;
@@ -24,10 +26,19 @@ export const Menu: React.FC<MenuProps> = (props) => {
     setIsMenuOpen((value) => !value);
   }, []);
 
+  const onRent = useCallback(() => {
+    if (currentUser == null) {
+      return loginModal.onOpen();
+    }
+
+    rentModal.onOpen();
+  }, [currentUser, loginModal]);
+
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
         <div
+          onClick={onRent}
           className="
           hidden
           cursor-pointer
@@ -41,7 +52,7 @@ export const Menu: React.FC<MenuProps> = (props) => {
           md:block
         "
         >
-          Airbnb your home
+          Nextbnb your home
         </div>
         <div
           onClick={toggleMenuOpen}
@@ -87,7 +98,12 @@ export const Menu: React.FC<MenuProps> = (props) => {
                 <MenutItem onClick={() => {}} label="My favorites" />
                 <MenutItem onClick={() => {}} label="My reservations" />
                 <MenutItem onClick={() => {}} label="My properties" />
-                <MenutItem onClick={() => {}} label="Airbnb my home" />
+                <MenutItem
+                  onClick={() => {
+                    rentModal.onOpen();
+                  }}
+                  label="Nextbnb my home"
+                />
                 <hr></hr>
                 <MenutItem
                   onClick={() => {

@@ -13,7 +13,7 @@ export const Logo = () => {
   return (
     <Image
       src={'/images/logo.png'}
-      alt="NBNB logo"
+      alt="Nextbnb logo"
       className="hidden cursor-pointer md:block"
       width={100}
       height={100}
