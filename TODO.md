@@ -11,3 +11,6 @@
 -[] close navbar menu when we click in other parts of the page
 -[] toggle login/signup forms
 -[] look into add google maps
+-[] make modals close when clicked outside the modal
+-[] fix shaking effect when icrementing counters in rentmodal
+-[] fix signin's logins database registrations when auth providers are used
