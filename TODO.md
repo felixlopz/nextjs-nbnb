@@ -14,3 +14,14 @@
 -[] make modals close when clicked outside the modal
 -[] fix shaking effect when icrementing counters in rentmodal
 -[] fix signin's logins database registrations when auth providers are used
+-[] Change image upload
+
+- [ ] Be able to upload multiple images
+- [ ] Not to use cloudinary widget
+- [ ] Good flow of
+      -[] when going back to description the title gets the text from price
+      -[] price input look funky (bad)
+      -[] add suspense loading states
+
+-[] change Inputs folder to inputs
+-[] look if we can extrac the api call for the favorites feature
