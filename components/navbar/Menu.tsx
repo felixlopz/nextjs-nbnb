@@ -9,9 +9,10 @@ import useLoginModal from '@/hooks/useLoginModal';
 import { User } from '@prisma/client';
 import { signOut } from 'next-auth/react';
 import useRentModal from '@/hooks/useRentModal';
+import { SafeUser } from '@/types';
 
 interface MenuProps {
-  currentUser?: User | null;
+  currentUser?: SafeUser | null;
 }
 
 export const Menu: React.FC<MenuProps> = (props) => {

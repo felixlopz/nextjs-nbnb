@@ -6,6 +6,7 @@ import { toast } from 'react-hot-toast';
 import { SafeUser } from '@/types';
 
 import useLoginModal from './useLoginModal';
+import { User } from '@prisma/client';
 
 interface IUseFavorite {
   listingId: string;

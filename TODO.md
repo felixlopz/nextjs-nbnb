@@ -25,3 +25,4 @@
 
 -[] change Inputs folder to inputs
 -[] look if we can extrac the api call for the favorites feature
+-[] remove everything about safe users, is not longer necessary

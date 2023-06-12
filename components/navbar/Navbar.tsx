@@ -4,9 +4,10 @@ import SearchBar from './SearchBar';
 import Menu from './Menu';
 import { User } from '@prisma/client';
 import Categories from './Categories';
+import { SafeUser } from '@/types';
 
 interface NavbarProps {
-  currentUser?: User | null;
+  currentUser?: SafeUser | null;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
