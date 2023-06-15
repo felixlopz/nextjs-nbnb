@@ -9,7 +9,7 @@ import { SafeReservation, SafeUser } from '@/types';
 
 import Heading from '@/components/Heading';
 import Container from '@/components/Container';
-import ListingCard from '@/components/listings/ListingCard';
+import ListingCard from '@/components/listing/ListingCard';
 
 interface TripsClientProps {
   reservations: SafeReservation[];
