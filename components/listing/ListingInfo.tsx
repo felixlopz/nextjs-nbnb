@@ -7,7 +7,6 @@ import useCountries from '@/hooks/useCountries';
 
 import Avatar from '../Avatar';
 import ListingCategory from './ListingCategory';
-import { User } from '@prisma/client';
 import { SafeUser } from '@/types';
 
 const Map = dynamic(() => import('../Map'), {

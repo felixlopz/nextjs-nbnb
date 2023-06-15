@@ -5,7 +5,6 @@ import Image from 'next/image';
 import useCountries from '@/hooks/useCountries';
 import Heading from '../Heading';
 import HeartButton from '../HeartButton';
-import { User } from '@prisma/client';
 import { SafeUser } from '@/types';
 
 interface ListingHeadProps {

@@ -2,7 +2,6 @@ import Container from '../Container';
 import Logo from './Logo';
 import SearchBar from './SearchBar';
 import Menu from './Menu';
-import { User } from '@prisma/client';
 import Categories from './Categories';
 import { SafeUser } from '@/types';
 
