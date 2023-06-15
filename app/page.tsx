@@ -1,12 +1,16 @@
 import { getCurrentUser } from '@/actions/getCurrentUser';
-import getListings from '@/actions/getListings';
+import getListings, { IListingsParams } from '@/actions/getListings';
 import Container from '@/components/Container';
 import EmptyState from '@/components/EmptyState';
 import ListingCard from '@/components/listings/ListingCard';
-import { Listing } from '@prisma/client';
+import { SafeListing } from '@/types';
 
-export default async function Home() {
-  const listings = await getListings();
+interface HomeProps {
+  searchParams: IListingsParams;
+}
+
+export default async function Home({ searchParams }: HomeProps) {
+  const listings = await getListings(searchParams);
   const currentUser = await getCurrentUser();
 
   const isEmpty = listings.length === 0;
@@ -30,7 +34,7 @@ export default async function Home() {
           2xl:grid-cols-6
         "
       >
-        {listings.map((listing: Listing) => (
+        {listings.map((listing: SafeListing) => (
           <ListingCard
             key={listing.id}
             data={listing}

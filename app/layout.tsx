@@ -1,14 +1,15 @@
 import '../styles/globals.css';
 
 import Navbar from '../components/navbar/Navbar';
-import { Inter } from 'next/font/google';
+import { Nunito } from 'next/font/google';
 import RegisterModal from '@/components/modal/RegisterModal';
 import LoginModal from '@/components/modal/LoginModal';
 import { Toaster } from 'react-hot-toast';
 import { getCurrentUser } from '@/actions/getCurrentUser';
 import RentModal from '@/components/modal/RentModal';
+import SearchModal from '@/components/modal/SearchModal';
 
-const inter = Inter({ subsets: ['latin'] });
+const nunito = Nunito({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Nextbnb',
@@ -24,8 +25,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={nunito.className}>
         <Toaster />
+        <SearchModal />
         <RegisterModal />
         <LoginModal />
         <RentModal />
