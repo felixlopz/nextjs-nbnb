@@ -38,3 +38,4 @@
 -[] inlcude info about the guest in reservations
 -[] look into actual airbnb infrastructure
 -[] change from cloudinary to uploadthing
+-[] Implement basic tailwind theme

@@ -15,7 +15,6 @@ import { categories } from '@/components/navbar/Categories';
 import ListingHead from '@/components/listing/ListingHead';
 import ListingInfo from '@/components/listing/ListingInfo';
 import ListingReservation from '@/components/listing/ListingReservation';
-import { User } from '@prisma/client';
 
 const initialDateRange = {
   startDate: new Date(),
