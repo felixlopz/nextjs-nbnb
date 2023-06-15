@@ -5,7 +5,7 @@ import { Nunito } from 'next/font/google';
 import RegisterModal from '@/components/modal/RegisterModal';
 import LoginModal from '@/components/modal/LoginModal';
 import { Toaster } from 'react-hot-toast';
-import { getCurrentUser } from '@/actions/getCurrentUser';
+import getCurrentUser from '@/actions/getCurrentUser';
 import RentModal from '@/components/modal/RentModal';
 import SearchModal from '@/components/modal/SearchModal';
 
