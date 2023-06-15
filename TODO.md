@@ -1,6 +1,7 @@
 -[] change the functions for simple functions instead of useCallback
 
 -[] Add Loading state to register modal
+-[] swap between login forms
 -[] clear all the inputs
 
 -[] close the menu on log in
@@ -30,3 +31,10 @@
 -[] skeletons when loading
 -[] try to replicate searchbar from airbnb
 -[] remove the need of using pages folder
+-[] add recovery password logic
+-[] add settings page
+-[] add message after register
+-[] after going back to the propertie to reserve it again it does not update on trips
+-[] inlcude info about the guest in reservations
+-[] look into actual airbnb infrastructure
+-[] change from cloudinary to uploadthing
