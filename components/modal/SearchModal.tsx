@@ -10,9 +10,9 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import useSearchModal from '@/hooks/useSearchModal';
 
 import Modal from './Modal';
-import Calendar from '../Inputs/Calendar';
-import Counter from '../Inputs/Counter';
-import CountrySelect, { CountrySelectValue } from '../Inputs/CountrySelect';
+import Calendar from '../inputs/Calendar';
+import Counter from '../inputs/Counter';
+import CountrySelect, { CountrySelectValue } from '../inputs/CountrySelect';
 import Heading from '../Heading';
 
 enum STEPS {
