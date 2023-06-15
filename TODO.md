@@ -28,3 +28,5 @@
 -[] remove everything about safe users, is not longer necessary
 -[] Add loading bar
 -[] skeletons when loading
+-[] try to replicate searchbar from airbnb
+-[] remove the need of using pages folder
