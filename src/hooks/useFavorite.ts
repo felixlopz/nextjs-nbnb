@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useCallback, useMemo } from 'react';
 import { toast } from 'react-hot-toast';
 
-import { SafeUser } from '@/types';
+import { SafeUser } from '@/src/types';
 
 import useLoginModal from './useLoginModal';
 

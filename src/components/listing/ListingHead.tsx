@@ -2,10 +2,10 @@
 
 import Image from 'next/image';
 
-import useCountries from '@/hooks/useCountries';
+import useCountries from '@/src/hooks/useCountries';
 import Heading from '../Heading';
 import HeartButton from '../HeartButton';
-import { SafeUser } from '@/types';
+import { SafeUser } from '@/src/types';
 
 interface ListingHeadProps {
   title: string;

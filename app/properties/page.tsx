@@ -1,7 +1,7 @@
-import EmptyState from '@/components/EmptyState';
+import EmptyState from '@/src/components/EmptyState';
 
-import getCurrentUser from '@/actions/getCurrentUser';
-import getListings from '@/actions/getListings';
+import getCurrentUser from '@/src/actions/getCurrentUser';
+import getListings from '@/src/actions/getListings';
 
 import PropertiesClient from './PropertiesClient';
 

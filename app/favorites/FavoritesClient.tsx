@@ -1,8 +1,8 @@
-import { SafeListing, SafeUser } from '@/types';
+import { SafeListing, SafeUser } from '@/src/types';
 
-import Heading from '@/components/Heading';
-import Container from '@/components/Container';
-import ListingCard from '@/components/listing/ListingCard';
+import Heading from '@/src/components/Heading';
+import Container from '@/src/components/Container';
+import ListingCard from '@/src/components/listing/ListingCard';
 
 interface FavoritesClientProps {
   listings: SafeListing[];

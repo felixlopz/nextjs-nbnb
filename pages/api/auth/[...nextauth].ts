@@ -5,7 +5,7 @@ import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcrypt';
 
-import prisma from '@/libs/prismadb';
+import prisma from '@/src/libs/prismadb';
 
 // TODO: separate the authorize function
 

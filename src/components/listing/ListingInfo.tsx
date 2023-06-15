@@ -3,11 +3,11 @@
 import dynamic from 'next/dynamic';
 import { IconType } from 'react-icons';
 
-import useCountries from '@/hooks/useCountries';
+import useCountries from '@/src/hooks/useCountries';
 
 import Avatar from '../Avatar';
 import ListingCategory from './ListingCategory';
-import { SafeUser } from '@/types';
+import { SafeUser } from '@/src/types';
 
 const Map = dynamic(() => import('../Map'), {
   ssr: false,

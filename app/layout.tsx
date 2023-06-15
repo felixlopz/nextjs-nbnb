@@ -1,13 +1,13 @@
-import '../styles/globals.css';
+import '../src/styles/globals.css';
 
-import Navbar from '../components/navbar/Navbar';
+import Navbar from '../src/components/navbar/Navbar';
 import { Nunito } from 'next/font/google';
-import RegisterModal from '@/components/modal/RegisterModal';
-import LoginModal from '@/components/modal/LoginModal';
+import RegisterModal from '@/src/components/modal/RegisterModal';
+import LoginModal from '@/src/components/modal/LoginModal';
 import { Toaster } from 'react-hot-toast';
-import getCurrentUser from '@/actions/getCurrentUser';
-import RentModal from '@/components/modal/RentModal';
-import SearchModal from '@/components/modal/SearchModal';
+import getCurrentUser from '@/src/actions/getCurrentUser';
+import RentModal from '@/src/components/modal/RentModal';
+import SearchModal from '@/src/components/modal/SearchModal';
 
 const nunito = Nunito({ subsets: ['latin'] });
 

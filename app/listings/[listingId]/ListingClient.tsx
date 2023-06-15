@@ -7,14 +7,14 @@ import { Range } from 'react-date-range';
 import { useRouter } from 'next/navigation';
 import { differenceInDays, eachDayOfInterval } from 'date-fns';
 
-import useLoginModal from '@/hooks/useLoginModal';
-import { SafeListing, SafeReservation, SafeUser } from '@/types';
+import useLoginModal from '@/src/hooks/useLoginModal';
+import { SafeListing, SafeReservation, SafeUser } from '@/src/types';
 
-import Container from '@/components/Container';
-import { categories } from '@/components/navbar/Categories';
-import ListingHead from '@/components/listing/ListingHead';
-import ListingInfo from '@/components/listing/ListingInfo';
-import ListingReservation from '@/components/listing/ListingReservation';
+import Container from '@/src/components/Container';
+import { categories } from '@/src/components/navbar/Categories';
+import ListingHead from '@/src/components/listing/ListingHead';
+import ListingInfo from '@/src/components/listing/ListingInfo';
+import ListingReservation from '@/src/components/listing/ListingReservation';
 
 const initialDateRange = {
   startDate: new Date(),

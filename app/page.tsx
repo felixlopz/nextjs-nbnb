@@ -1,9 +1,9 @@
-import getCurrentUser from '@/actions/getCurrentUser';
-import getListings, { IListingsParams } from '@/actions/getListings';
-import Container from '@/components/Container';
-import EmptyState from '@/components/EmptyState';
-import ListingCard from '@/components/listing/ListingCard';
-import { SafeListing } from '@/types';
+import getCurrentUser from '@/src/actions/getCurrentUser';
+import getListings, { IListingsParams } from '@/src/actions/getListings';
+import Container from '@/src/components/Container';
+import EmptyState from '@/src/components/EmptyState';
+import ListingCard from '@/src/components/listing/ListingCard';
+import { SafeListing } from '@/src/types';
 
 interface HomeProps {
   searchParams: IListingsParams;

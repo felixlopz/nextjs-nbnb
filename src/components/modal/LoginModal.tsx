@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
-import useLoginModal from '@/hooks/useLoginModal';
+import useLoginModal from '@/src/hooks/useLoginModal';
 import Modal from './Modal';
 import Heading from '../Heading';
 import Input from '../inputs/Input';

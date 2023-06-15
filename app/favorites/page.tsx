@@ -1,7 +1,7 @@
-import EmptyState from '@/components/EmptyState';
+import EmptyState from '@/src/components/EmptyState';
 
-import getCurrentUser from '@/actions/getCurrentUser';
-import getFavoriteListings from '@/actions/getFavoriteListing';
+import getCurrentUser from '@/src/actions/getCurrentUser';
+import getFavoriteListings from '@/src/actions/getFavoriteListing';
 
 import FavoritesClient from './FavoritesClient';
 
