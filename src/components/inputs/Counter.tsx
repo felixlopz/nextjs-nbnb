@@ -39,14 +39,13 @@ const Counter: React.FC<CounterProps> = ({
           onClick={onReduce}
           className="
             flex
-            h-10
-            w-10
             cursor-pointer
             items-center
             justify-center
             rounded-full
             border-[1px]
             border-neutral-400
+            p-1.5
             text-neutral-600
             transition
             hover:opacity-80
@@ -56,7 +55,7 @@ const Counter: React.FC<CounterProps> = ({
         </div>
         <div
           className="
-            text-xl 
+            text-base 
             font-light 
             text-neutral-600
           "
@@ -67,14 +66,13 @@ const Counter: React.FC<CounterProps> = ({
           onClick={onAdd}
           className="
             flex
-            h-10
-            w-10
             cursor-pointer
             items-center
             justify-center
             rounded-full
             border-[1px]
             border-neutral-400
+            p-1.5
             text-neutral-600
             transition
             hover:opacity-80
