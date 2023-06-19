@@ -2,7 +2,6 @@
 
 import useLoginModal from '@/src/hooks/useLoginModal';
 import MenuButton from './MenuButton';
-import MenuItem from './MenuItem';
 import useRegisterModal from '@/src/hooks/useRegisterModal';
 
 const UnAuthorizedMenu = () => {

@@ -51,8 +51,7 @@ const Menu: FC<MenuProps> = ({ currentUser }) => {
       {isMenuOpen && (
         <div
           onClick={toggleMenuOpen}
-          style={{ width: 200, top: '100%', marginTop: '10px' }}
-          className="absolute right-0 top-full mt-2.5 overflow-hidden rounded-xl bg-white text-sm shadow-md"
+          className="absolute right-0 top-full mt-2.5 w-48 overflow-hidden rounded-xl bg-white text-sm shadow-md"
         >
           {currentUser != null ? <AuthorizedMenu /> : <UnAuthorizedMenu />}
         </div>
