@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 import Button from '../Button';
+import { useClickAway } from '@/src/hooks/useClickAway';
 
 interface ModalProps {
   isOpen: boolean;
@@ -30,6 +31,10 @@ export const Modal: React.FC<ModalProps> = ({
   secondaryActionLabel,
 }) => {
   const [showModal, setShowModal] = useState(isOpen);
+
+  const ref = useClickAway(() => {
+    handleClose();
+  });
 
   useEffect(() => {
     setShowModal(isOpen);
@@ -75,6 +80,7 @@ export const Modal: React.FC<ModalProps> = ({
         focus:outline-none"
       >
         <div
+          ref={ref}
           className="
             relative 
             mx-auto
