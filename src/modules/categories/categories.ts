@@ -1,7 +1,3 @@
-'use client';
-
-import Container from '../Container';
-
 import { TbBeach, TbMountain, TbPool } from 'react-icons/tb';
 import {
   GiBarn,
@@ -18,8 +14,6 @@ import { BsSnow } from 'react-icons/bs';
 import { IoDiamond } from 'react-icons/io5';
 import { MdOutlineVilla } from 'react-icons/md';
 import { IconType } from 'react-icons';
-import CategorySelector from '../CategorySelector';
-import { usePathname, useSearchParams } from 'next/navigation';
 
 export interface CategoryProps {
   label: string;
@@ -105,27 +99,4 @@ export const categories: Array<CategoryProps> = [
   },
 ];
 
-export const Categories = () => {
-  const pathname = usePathname();
-  const isMainPage = pathname === '/';
-
-  if (isMainPage === false) {
-    return null;
-  }
-
-  return (
-    <Container>
-      <div className="flex flex-row items-center justify-between overflow-hidden pt-4">
-        {categories.map((category) => (
-          <CategorySelector
-            key={category.label}
-            icon={category.icon}
-            label={category.label}
-          />
-        ))}
-      </div>
-    </Container>
-  );
-};
-
-export default Categories;
+export default categories;

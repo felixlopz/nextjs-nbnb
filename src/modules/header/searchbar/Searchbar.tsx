@@ -8,7 +8,7 @@ import { differenceInDays } from 'date-fns';
 import useSearchModal from '@/src/hooks/useSearchModal';
 import useCountries from '@/src/hooks/useCountries';
 
-const Search = () => {
+const Searchbar = () => {
   const searchModal = useSearchModal();
   const params = useSearchParams();
   const { getByValue } = useCountries();
@@ -125,4 +125,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default Searchbar;

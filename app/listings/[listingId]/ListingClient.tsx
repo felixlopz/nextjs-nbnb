@@ -11,7 +11,7 @@ import useLoginModal from '@/src/hooks/useLoginModal';
 import { SafeListing, SafeReservation, SafeUser } from '@/src/types';
 
 import Container from '@/src/components/Container';
-import { categories } from '@/src/components/navbar/Categories';
+import { categories } from '@/src/modules/categories/categories';
 import ListingHead from '@/src/components/listing/ListingHead';
 import ListingInfo from '@/src/components/listing/ListingInfo';
 import ListingReservation from '@/src/components/listing/ListingReservation';
@@ -120,7 +120,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
               mt-6 
               grid 
               grid-cols-1 
-              md:grid-cols-7 
+              md:grid-cols-4 
               md:gap-10
             "
           >
