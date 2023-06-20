@@ -2,8 +2,8 @@
 
 import Container from '@/src/modules/common/Container';
 import { usePathname } from 'next/navigation';
+import CategorySelector from '@/src/modules/categories/CategorySelector';
 import categories from '@/src/modules/categories/categories';
-import CategorySelector from '@/src/components/CategorySelector';
 
 const Categories = () => {
   const pathname = usePathname();
