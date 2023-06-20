@@ -4,7 +4,7 @@ import Avatar from '@/src/modules/common/Avatar';
 import { FC, useCallback, useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import AuthorizedMenu from '@/src/modules/header/menu/AuthorizedMenu';
-import UnAuthorizedMenu from '@/src/modules/header/menu/AuthorizedMenu';
+import UnAuthorizedMenu from '@/src/modules/header/menu/UnAuthorizedMenu';
 import { useClickAway } from '@/src/hooks/useClickAway';
 import { SafeUser } from '@/src/types';
 
@@ -53,7 +53,7 @@ const Menu: FC<MenuProps> = ({ currentUser }) => {
           onClick={toggleMenuOpen}
           className="absolute right-0 top-full mt-2.5 w-48 overflow-hidden rounded-xl bg-white text-sm shadow-md"
         >
-          {currentUser != null ? <AuthorizedMenu /> : <UnAuthorizedMenu />}
+          {currentUser == null ? <UnAuthorizedMenu /> : <AuthorizedMenu />}
         </div>
       )}
     </div>
