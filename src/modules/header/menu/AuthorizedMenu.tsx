@@ -3,8 +3,8 @@
 import React from 'react';
 import useRentModal from '@/src/hooks/useRentModal';
 import { signOut } from 'next-auth/react';
-import MenuButton from './MenuButton';
-import MenuLink from './MenuLink';
+import MenuButton from '@/src/modules/header/menu/MenuButton';
+import MenuLink from '@/src/modules/header/menu/MenuLink';
 
 interface AuthorizedMenuProps {}
 

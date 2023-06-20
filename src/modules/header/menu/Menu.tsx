@@ -3,8 +3,8 @@
 import Avatar from '@/src/modules/common/Avatar';
 import { FC, useCallback, useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
-import AuthorizedMenu from './AuthorizedMenu';
-import UnAuthorizedMenu from './UnAuthorizedMenu';
+import AuthorizedMenu from '@/src/modules/header/menu/AuthorizedMenu';
+import UnAuthorizedMenu from '@/src/modules/header/menu/AuthorizedMenu';
 import { useClickAway } from '@/src/hooks/useClickAway';
 import { SafeUser } from '@/src/types';
 

@@ -13,7 +13,6 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ onClick, label }) => {
       className="
       cursor-pointer
       list-none 
-      bg-pink-500 
       px-4
       py-3
       text-left

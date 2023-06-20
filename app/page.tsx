@@ -1,8 +1,8 @@
 import getCurrentUser from '@/src/actions/getCurrentUser';
 import getListings, { IListingsParams } from '@/src/actions/getListings';
-import Container from '@/src/components/Container';
-import EmptyState from '@/src/components/EmptyState';
-import ListingCard from '@/src/components/listing/ListingCard';
+import Container from '@/src/modules/common/Container';
+import EmptyState from '@/src/modules/common/EmptyState';
+import ListingCard from '@/src/modules/listing/ListingCard';
 import { SafeListing } from '@/src/types';
 
 interface HomeProps {

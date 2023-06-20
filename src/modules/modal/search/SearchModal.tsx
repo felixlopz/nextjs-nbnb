@@ -42,7 +42,7 @@ const SearchModal = () => {
 
   const Map = useMemo(
     () =>
-      dynamic(() => import('../Map'), {
+      dynamic(() => import('@/src/modules/common/Map'), {
         ssr: false,
       }),
     [location]

@@ -1,4 +1,4 @@
-import EmptyState from '@/src/components/EmptyState';
+import EmptyState from '@/src/modules/common/EmptyState';
 
 import getCurrentUser from '@/src/actions/getCurrentUser';
 import getFavoriteListings from '@/src/actions/getFavoriteListing';
