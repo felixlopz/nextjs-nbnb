@@ -11,7 +11,7 @@ import useLoginModal from '@/src/hooks/useLoginModal';
 import { SafeListing, SafeReservation, SafeUser } from '@/src/types';
 
 import Container from '@/src/modules/common/Container';
-import { categories } from '@/src/modules/categories/categories';
+import { categories } from '@/src/modules/category/categories';
 import ListingHead from '@/src/modules/listing/ListingHead';
 import ListingInfo from '@/src/modules/listing/ListingInfo';
 import ListingReservation from '@/src/modules/listing/ListingReservation';
