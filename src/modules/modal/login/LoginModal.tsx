@@ -2,9 +2,7 @@
 
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
-
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-
 import useLoginModal from '@/src/hooks/useLoginModal';
 import Modal from '@/src/modules/modal/Modal';
 import Heading from '@/src/modules/common/Heading';
@@ -12,16 +10,19 @@ import Input from '@/src/modules/common/inputs/Input';
 import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import AuthProviders from '@/src/modules/common/AuthProviders';
+import useRegisterModal from '@/src/hooks/useRegisterModal';
 
 const LoginModal = () => {
   const router = useRouter();
   const loginModal = useLoginModal();
+  const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FieldValues>({
     defaultValues: { email: '', password: '' },
   });
@@ -33,6 +34,7 @@ const LoginModal = () => {
       setIsLoading(false);
       if (callback?.ok) {
         toast.success('Logged In');
+        reset();
         router.refresh();
         loginModal.onClose();
       }
@@ -40,6 +42,11 @@ const LoginModal = () => {
         toast.error(callback.error);
       }
     });
+  };
+
+  const openRegisterModal = () => {
+    loginModal.onClose();
+    registerModal.onOpen();
   };
 
   const bodyContent = (
@@ -72,7 +79,10 @@ const LoginModal = () => {
       <div className="mt-4 text-center font-light text-neutral-500">
         <div className="flex flex-row items-center justify-center gap-2">
           <div>Don&apos;t have an account?</div>
-          <div className="cursor-pointer text-neutral-800 hover:underline">
+          <div
+            onClick={openRegisterModal}
+            className="cursor-pointer text-neutral-800 hover:underline"
+          >
             Register
           </div>
         </div>

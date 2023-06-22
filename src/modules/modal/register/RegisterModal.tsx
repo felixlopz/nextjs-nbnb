@@ -11,22 +11,24 @@ import Heading from '@/src/modules/common/Heading';
 import Input from '@/src/modules/common/inputs/Input';
 import { toast } from 'react-hot-toast';
 import AuthProviders from '@/src/modules/common/AuthProviders';
+import useLoginModal from '@/src/hooks/useLoginModal';
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FieldValues>({
     defaultValues: { name: '', email: '', password: '' },
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
-
     axios
       .post('/api/auth/register', data)
       .then((res) => {
@@ -37,7 +39,13 @@ const RegisterModal = () => {
       })
       .finally(() => {
         setIsLoading(false);
+        reset();
       });
+  };
+
+  const openLoginModal = () => {
+    registerModal.onClose();
+    loginModal.onOpen();
   };
 
   const bodyContent = (
@@ -78,7 +86,10 @@ const RegisterModal = () => {
       <div className="mt-4 text-center font-light text-neutral-500">
         <div className="flex flex-row items-center justify-center gap-2">
           <div>Already have an account?</div>
-          <div className="cursor-pointer text-neutral-800 hover:underline">
+          <div
+            onClick={openLoginModal}
+            className="cursor-pointer text-neutral-800 hover:underline"
+          >
             Log in
           </div>
         </div>

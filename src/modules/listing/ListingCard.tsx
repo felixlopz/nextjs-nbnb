@@ -116,7 +116,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
         </div>
         {onAction && actionLabel && (
           <Button disabled={disabled} size="sm" onClick={handleCancel}>
-            actionLabel
+            {actionLabel}
           </Button>
         )}
       </div>

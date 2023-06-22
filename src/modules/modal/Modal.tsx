@@ -172,6 +172,7 @@ export const Modal: React.FC<ModalProps> = ({
                   <Button
                     className="w-full"
                     disabled={disabled}
+                    isLoading={disabled}
                     onClick={handleSubmit}
                     size="lg"
                   >
