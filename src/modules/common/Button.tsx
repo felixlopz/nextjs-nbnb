@@ -7,7 +7,7 @@ import * as React from 'react';
 import { IconType } from 'react-icons';
 
 const buttonVariants = cva(
-  'active:scale-95 inline-flex items-center justify-center rounded-lg text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 rounded-lg transition hover:opacity-80 disabled:cursor-not-allowed disabled:pointer-events-none relative',
+  'inline-flex items-center justify-center rounded-lg text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 rounded-lg transition hover:opacity-80 disabled:cursor-not-allowed disabled:pointer-events-none relative',
   {
     variants: {
       variant: {

@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import { differenceInDays } from 'date-fns';
 
-import useSearchModal from '@/src/hooks/useSearchModal';
+import useSearchModal from '@/src/modules/modal/search/useSearchModal';
 import useCountries from '@/src/hooks/useCountries';
 
 const Searchbar = () => {

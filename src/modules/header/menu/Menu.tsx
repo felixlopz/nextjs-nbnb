@@ -5,7 +5,7 @@ import { FC, useCallback, useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import AuthorizedMenu from '@/src/modules/header/menu/AuthorizedMenu';
 import UnAuthorizedMenu from '@/src/modules/header/menu/UnAuthorizedMenu';
-import { useClickAway } from '@/src/hooks/useClickAway';
+import { useOnClickOutside } from '@/src/hooks/useOnClickOutside';
 import { SafeUser } from '@/src/types';
 
 interface MenuProps {
@@ -15,7 +15,7 @@ interface MenuProps {
 const Menu: FC<MenuProps> = ({ currentUser }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const ref = useClickAway(() => {
+  const ref = useOnClickOutside(() => {
     setIsMenuOpen(false);
   });
 
@@ -24,7 +24,10 @@ const Menu: FC<MenuProps> = ({ currentUser }) => {
   }, []);
 
   return (
-    <div className="relative hidden md:block" ref={ref}>
+    <div
+      className="relative hidden md:block"
+      ref={ref as React.RefObject<HTMLDivElement>}
+    >
       <div
         onClick={toggleMenuOpen}
         className="

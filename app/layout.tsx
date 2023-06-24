@@ -1,12 +1,9 @@
 import '../src/styles/globals.css';
 
 import { Nunito } from 'next/font/google';
-import RegisterModal from '@/src/modules/modal/register/RegisterModal';
-import LoginModal from '@/src/modules/modal/login/LoginModal';
 import { Toaster } from 'react-hot-toast';
-import RentModal from '@/src/modules/modal/rent/RentModal';
-import SearchModal from '@/src/modules/modal/search/SearchModal';
 import Header from '@/src/modules/header/Header';
+import ModalManager from '@/src/modules/modal/ModalManager';
 
 const nunito = Nunito({ subsets: ['latin'] });
 
@@ -24,10 +21,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={nunito.className}>
         <Toaster />
-        <SearchModal />
-        <RegisterModal />
-        <LoginModal />
-        <RentModal />
+        <ModalManager />
         <Header />
         {children}
       </body>

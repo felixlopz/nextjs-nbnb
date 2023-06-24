@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import useRentModal from '@/src/hooks/useRentModal';
+import useRentModal from '@/src/modules/modal/rent/useRentModal';
 import { signOut } from 'next-auth/react';
 import MenuButton from '@/src/modules/header/menu/MenuButton';
 import MenuLink from '@/src/modules/header/menu/MenuLink';

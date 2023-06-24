@@ -1,16 +1,13 @@
 'use client';
 
-import { signIn } from 'next-auth/react';
 import { useState } from 'react';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import useLoginModal from '@/src/hooks/useLoginModal';
+import useLoginModal from '@/src/modules/modal/login/useLoginModal';
 import Modal from '@/src/modules/modal/Modal';
-import Heading from '@/src/modules/common/Heading';
-import Input from '@/src/modules/common/inputs/Input';
-import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import AuthProviders from '@/src/modules/common/AuthProviders';
-import useRegisterModal from '@/src/hooks/useRegisterModal';
+import useRegisterModal from '@/src/modules/modal/register/useRegisterModal';
+
+import LoginForm from '../../forms/LoginForm';
 
 const LoginModal = () => {
   const router = useRouter();
@@ -18,58 +15,15 @@ const LoginModal = () => {
   const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<FieldValues>({
-    defaultValues: { email: '', password: '' },
-  });
-
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    setIsLoading(true);
-
-    signIn('credentials', { ...data, redirect: false }).then((callback) => {
-      setIsLoading(false);
-      if (callback?.ok) {
-        toast.success('Logged In');
-        reset();
-        router.refresh();
-        loginModal.onClose();
-      }
-      if (callback?.error) {
-        toast.error(callback.error);
-      }
-    });
-  };
-
   const openRegisterModal = () => {
     loginModal.onClose();
     registerModal.onOpen();
   };
 
   const bodyContent = (
-    <form className="flex flex-col gap-4">
-      <Heading title="Welcome back" subtitle="Login to your account" />
-      <Input
-        id="email"
-        label="Email"
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-        required
-      />
-      <Input
-        id="password"
-        label="Password"
-        type="password"
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-        required
-      />
-    </form>
+    <>
+      <LoginForm></LoginForm>
+    </>
   );
 
   const footerContent = (
@@ -93,11 +47,9 @@ const LoginModal = () => {
   return (
     <Modal
       title="Login"
-      actionLabel="Continue"
       disabled={isLoading}
       isOpen={loginModal.isOpen}
       onClose={loginModal.onClose}
-      onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
       footer={footerContent}
     />

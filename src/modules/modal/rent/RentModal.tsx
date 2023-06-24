@@ -2,7 +2,7 @@
 
 import React, { useMemo, useState } from 'react';
 import Modal from '@/src/modules/modal/Modal';
-import useRentModal from '@/src/hooks/useRentModal';
+import useRentModal from '@/src/modules/modal/rent/useRentModal';
 import Heading from '@/src/modules/common/Heading';
 import categories from '@/src/modules/category/categories';
 import CategoryInput from '@/src/modules/category/CategoryInput';

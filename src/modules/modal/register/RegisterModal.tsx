@@ -5,13 +5,13 @@ import { useState } from 'react';
 
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
-import useRegisterModal from '@/src/hooks/useRegisterModal';
+import useRegisterModal from '@/src/modules/modal/register/useRegisterModal';
 import Modal from '@/src/modules/modal/Modal';
 import Heading from '@/src/modules/common/Heading';
 import Input from '@/src/modules/common/inputs/Input';
 import { toast } from 'react-hot-toast';
 import AuthProviders from '@/src/modules/common/AuthProviders';
-import useLoginModal from '@/src/hooks/useLoginModal';
+import useLoginModal from '@/src/modules/modal/login/useLoginModal';
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
@@ -50,7 +50,7 @@ const RegisterModal = () => {
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <Heading title="Welcome to Nbnb" subtitle="Create an account!" />
+      <Heading title="Welcome to Nextbnb" subtitle="Create an account!" />
       <Input
         id="email"
         label="Email"

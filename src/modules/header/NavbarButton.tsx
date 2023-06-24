@@ -1,7 +1,7 @@
 'use client';
 
-import useLoginModal from '@/src/hooks/useLoginModal';
-import useRentModal from '@/src/hooks/useRentModal';
+import useLoginModal from '@/src/modules/modal/login/useLoginModal';
+import useRentModal from '@/src/modules/modal/rent/useRentModal';
 import { SafeUser } from '@/src/types';
 import { useCallback, useEffect, useState } from 'react';
 

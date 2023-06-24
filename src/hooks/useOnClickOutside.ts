@@ -1,14 +1,14 @@
 import { useEffect, useRef } from 'react';
 
-export function useClickAway(cb: (evt: MouseEvent | TouchEvent) => void) {
-  const ref = useRef<any>(null);
-  const refCb = useRef(cb);
+export function useOnClickOutside(handler: (evt: Event) => void) {
+  const ref = useRef<HTMLElement>(null);
+  const handleReference = useRef(handler);
 
   useEffect(() => {
-    const handler = (e: any) => {
-      const element: HTMLElement | null = ref.current;
-      if (element != null && element.contains(e.target) === false) {
-        refCb.current(e);
+    const handler = (e: Event) => {
+      const element = ref.current;
+      if (element != null && element.contains(e.target as Node) === false) {
+        handleReference.current(e);
       }
     };
 
