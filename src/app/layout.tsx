@@ -1,4 +1,4 @@
-import '../src/styles/globals.css';
+import '../styles/globals.css';
 
 import { Nunito } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';

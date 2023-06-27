@@ -2,7 +2,7 @@
 
 import { getServerSession } from 'next-auth/next';
 
-import { authOptions } from '@/pages/api/auth/[...nextauth]';
+import { authOptions } from '@/src/pages/api/auth/[...nextauth]';
 
 import prisma from '@/src/libs/prismadb';
 
