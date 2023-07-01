@@ -1,24 +1,26 @@
 import { FC, useEffect, useState } from 'react';
 import Heading from '@/src/modules/common/Heading';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import FormInputWithFloatingLabel from './components/FormInputWithFloatingLabel';
+import { useForm } from 'react-hook-form';
+import FormInputWithFloatingLabel from '@/src/modules/forms/components/FormInputWithFloatingLabel';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import useLoginModal from '../modal/login/useLoginModal';
+import useLoginModal from '@/src/modules/modal/login/useLoginModal';
 import { toast } from 'react-hot-toast';
-import Button from '../common/Button';
+import Button from '@/src/modules/common/Button';
 
 export type LoginFormFields = {
   email: string;
   password: string;
 };
 
-interface LoginFormProps {}
+interface LoginFormProps {
+  submitWithModal?: boolean;
+}
 
-const LoginForm: FC<LoginFormProps> = ({}) => {
+const LoginForm: FC<LoginFormProps> = ({ submitWithModal }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
   const loginModal = useLoginModal();
+  const router = useRouter();
 
   const {
     register,
@@ -35,17 +37,26 @@ const LoginForm: FC<LoginFormProps> = ({}) => {
     };
   }, []);
 
+  const handleLoading = (loading: boolean) => {
+    setIsLoading(loading);
+    if (submitWithModal === true) {
+      loginModal.setIsLoading(loading);
+    }
+  };
+
   const onSubmit = handleSubmit((data) => {
-    setIsLoading(true);
+    handleLoading(true);
     signIn('credentials', { ...data, redirect: false }).then((callback) => {
       setIsLoading(false);
       if (callback?.ok) {
         toast.success('Logged In');
         reset();
         router.refresh();
+        handleLoading(false);
         loginModal.onClose();
       }
       if (callback?.error) {
+        handleLoading(false);
         toast.error(callback.error);
       }
     });
@@ -62,10 +73,7 @@ const LoginForm: FC<LoginFormProps> = ({}) => {
         disabled={isLoading}
         register={register}
         rules={{
-          minLength: {
-            value: 5,
-            message: 'Too short, 5 characters minimum',
-          },
+          required: 'Email is required',
         }}
         errors={errors}
       />
@@ -85,7 +93,7 @@ const LoginForm: FC<LoginFormProps> = ({}) => {
         }}
         errors={errors}
       />
-      <Button type="submit" className="w-full" size="lg">
+      <Button type="submit" className="w-full" size="lg" isLoading={isLoading}>
         Log in
       </Button>
     </form>

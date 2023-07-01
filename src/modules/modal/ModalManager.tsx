@@ -10,8 +10,8 @@ const ModalManager: FC<ModalManagerProps> = () => {
   return (
     <>
       <LoginModal />
-      {/* <RegisterModal />
-      <RentModal />
+      <RegisterModal />
+      {/* <RentModal />
       <SearchModal /> */}
     </>
   );
