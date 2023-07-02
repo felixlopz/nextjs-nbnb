@@ -11,7 +11,6 @@ const UnAuthorizedMenu = () => {
     <ul className="flex flex-col">
       <MenuButton
         onClick={() => {
-          console.log('Enters here');
           loginModal.onOpen();
         }}
         label="Login"

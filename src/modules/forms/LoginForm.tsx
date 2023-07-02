@@ -1,31 +1,29 @@
-import { FC, useEffect, useState } from 'react';
+'use client';
+
+import { FC, useEffect } from 'react';
 import Heading from '@/src/modules/common/Heading';
 import { useForm } from 'react-hook-form';
 import FormInputWithFloatingLabel from '@/src/modules/forms/components/FormInputWithFloatingLabel';
 import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import useLoginModal from '@/src/modules/modal/login/useLoginModal';
-import { toast } from 'react-hot-toast';
 import Button from '@/src/modules/common/Button';
+import { SubmitFormProps } from './FormTypes';
 
 export type LoginFormFields = {
   email: string;
   password: string;
 };
 
-interface LoginFormProps {
-  submitWithModal?: boolean;
-}
+type LoginFormProps = SubmitFormProps & {};
 
-const LoginForm: FC<LoginFormProps> = ({ submitWithModal }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const loginModal = useLoginModal();
-  const router = useRouter();
-
+const LoginForm: FC<LoginFormProps> = ({
+  onSubmitStarted = () => {},
+  onSubmitFail = () => {},
+  onSubmitSuccess = () => {},
+}) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     reset,
   } = useForm<LoginFormFields>({
     defaultValues: { email: '', password: '' },
@@ -37,29 +35,25 @@ const LoginForm: FC<LoginFormProps> = ({ submitWithModal }) => {
     };
   }, []);
 
-  const handleLoading = (loading: boolean) => {
-    setIsLoading(loading);
-    if (submitWithModal === true) {
-      loginModal.setIsLoading(loading);
-    }
-  };
+  const onSubmit = handleSubmit(async (data) => {
+    onSubmitStarted();
+    try {
+      const response = await signIn('credentials', {
+        ...data,
+        redirect: false,
+      });
 
-  const onSubmit = handleSubmit((data) => {
-    handleLoading(true);
-    signIn('credentials', { ...data, redirect: false }).then((callback) => {
-      setIsLoading(false);
-      if (callback?.ok) {
-        toast.success('Logged In');
-        reset();
-        router.refresh();
-        handleLoading(false);
-        loginModal.onClose();
+      if (response == null) {
+        throw new Error('Something went wrong');
       }
-      if (callback?.error) {
-        handleLoading(false);
-        toast.error(callback.error);
+      const { error } = response;
+      if (error != null) {
+        throw new Error(error);
       }
-    });
+      onSubmitSuccess();
+    } catch (error: any) {
+      onSubmitFail(error.message);
+    }
   });
 
   return (
@@ -70,7 +64,7 @@ const LoginForm: FC<LoginFormProps> = ({ submitWithModal }) => {
         name="email"
         label="Email"
         type="email"
-        disabled={isLoading}
+        disabled={isSubmitting}
         register={register}
         rules={{
           required: 'Email is required',
@@ -82,7 +76,7 @@ const LoginForm: FC<LoginFormProps> = ({ submitWithModal }) => {
         name="password"
         label="Password"
         type="password"
-        disabled={isLoading}
+        disabled={isSubmitting}
         register={register}
         rules={{
           required: 'Password is required',
@@ -93,7 +87,12 @@ const LoginForm: FC<LoginFormProps> = ({ submitWithModal }) => {
         }}
         errors={errors}
       />
-      <Button type="submit" className="w-full" size="lg" isLoading={isLoading}>
+      <Button
+        type="submit"
+        className="w-full"
+        size="lg"
+        isLoading={isSubmitting}
+      >
         Log in
       </Button>
     </form>

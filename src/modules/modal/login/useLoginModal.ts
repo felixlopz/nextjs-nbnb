@@ -1,12 +1,7 @@
 import { create } from 'zustand';
+import { ModalStore } from '../ModalTypes';
 
-interface LoginModalStore {
-  isOpen: boolean;
-  isLoading: boolean;
-  setIsLoading: (isLoading: boolean) => void;
-  onOpen: () => void;
-  onClose: () => void;
-}
+type LoginModalStore = ModalStore & {};
 
 const useLoginModal = create<LoginModalStore>((set) => ({
   isOpen: false,

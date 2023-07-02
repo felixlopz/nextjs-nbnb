@@ -5,7 +5,7 @@ import FormInputWithFloatingLabel from '@/src/modules/forms/components/FormInput
 import { toast } from 'react-hot-toast';
 import Button from '@/src/modules/common/Button';
 import axios from 'axios';
-import useRegisterModal from '@/src/modules/modal/register/useRegisterModal';
+import { SubmitFormProps } from './FormTypes';
 
 export type RegisterFormFields = {
   email: string;
@@ -13,14 +13,13 @@ export type RegisterFormFields = {
   password: string;
 };
 
-interface RegisterFormProps {
-  submitWithModal?: boolean;
-}
+type RegisterFormProps = SubmitFormProps & {};
 
-const RegisterForm: FC<RegisterFormProps> = ({ submitWithModal }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const registerModal = useRegisterModal();
-
+const RegisterForm: FC<RegisterFormProps> = ({
+  onSubmitStarted = () => {},
+  onSubmitFail = () => {},
+  onSubmitSuccess = () => {},
+}) => {
   useEffect(() => {
     return () => {
       reset();
@@ -30,34 +29,20 @@ const RegisterForm: FC<RegisterFormProps> = ({ submitWithModal }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     reset,
   } = useForm<RegisterFormFields>({
     defaultValues: { email: '', name: '', password: '' },
   });
 
-  const handleLoading = (loading: boolean) => {
-    setIsLoading(loading);
-    if (submitWithModal === true) {
-      registerModal.setIsLoading(loading);
+  const onSubmit = handleSubmit(async (data) => {
+    onSubmitStarted();
+    try {
+      await axios.post('/api/auth/register', data);
+      onSubmitSuccess();
+    } catch (error: any) {
+      onSubmitFail(error.message);
     }
-  };
-
-  const onSubmit = handleSubmit((data) => {
-    handleLoading(true);
-    axios
-      .post('/api/auth/register', data)
-      .then((res) => {
-        toast.success('Successful registration');
-        registerModal.onClose();
-      })
-      .catch((error) => {
-        toast.error('Something went wrong :(');
-      })
-      .finally(() => {
-        handleLoading(false);
-        reset();
-      });
   });
 
   return (
@@ -68,7 +53,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ submitWithModal }) => {
         name="email"
         label="Email"
         type="email"
-        disabled={isLoading}
+        disabled={isSubmitting}
         register={register}
         rules={{
           required: 'Email is required.',
@@ -83,7 +68,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ submitWithModal }) => {
         id="register-name"
         name="name"
         label="Name"
-        disabled={isLoading}
+        disabled={isSubmitting}
         register={register}
         rules={{
           required: 'Name is required.',
@@ -95,7 +80,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ submitWithModal }) => {
         name="password"
         label="Password"
         type="password"
-        disabled={isLoading}
+        disabled={isSubmitting}
         register={register}
         rules={{
           required: 'Password is required',
@@ -106,7 +91,12 @@ const RegisterForm: FC<RegisterFormProps> = ({ submitWithModal }) => {
         }}
         errors={errors}
       />
-      <Button type="submit" className="w-full" size="lg" isLoading={isLoading}>
+      <Button
+        type="submit"
+        className="w-full"
+        size="lg"
+        isLoading={isSubmitting}
+      >
         Register
       </Button>
     </form>

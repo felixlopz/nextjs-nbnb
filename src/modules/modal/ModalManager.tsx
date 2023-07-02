@@ -11,8 +11,8 @@ const ModalManager: FC<ModalManagerProps> = () => {
     <>
       <LoginModal />
       <RegisterModal />
-      {/* <RentModal />
-      <SearchModal /> */}
+      <RentModal />
+      {/* <SearchModal /> */}
     </>
   );
 };

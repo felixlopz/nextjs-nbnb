@@ -6,8 +6,11 @@ import AuthProviders from '@/src/modules/common/AuthProviders';
 import useRegisterModal from '@/src/modules/modal/register/useRegisterModal';
 
 import LoginForm from '@/src/modules/forms/LoginForm';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 const LoginModal = () => {
+  const router = useRouter();
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
 
@@ -34,13 +37,35 @@ const LoginModal = () => {
     </div>
   );
 
+  const onSubmitStarted = () => {
+    loginModal.setIsLoading(true);
+  };
+
+  const onSubmitSuccess = () => {
+    loginModal.setIsLoading(false);
+    toast.success('Logged In!');
+    router.refresh();
+    loginModal.onClose();
+  };
+
+  const onSubmitFail = (error?: string) => {
+    loginModal.setIsLoading(false);
+    toast.error(error || 'Something went wrong!');
+  };
+
   return (
     <Modal
       title="Login"
       disabled={loginModal.isLoading}
       isOpen={loginModal.isOpen}
       onClose={loginModal.onClose}
-      body={<LoginForm submitWithModal={true} />}
+      body={
+        <LoginForm
+          onSubmitStarted={onSubmitStarted}
+          onSubmitSuccess={onSubmitSuccess}
+          onSubmitFail={(error?: string) => onSubmitFail(error)}
+        />
+      }
       footer={footerContent}
     />
   );

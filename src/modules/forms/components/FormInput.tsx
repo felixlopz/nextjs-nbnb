@@ -8,6 +8,7 @@ import {
   UseFormRegister,
   FieldValues,
   Path,
+  FieldErrors,
 } from 'react-hook-form';
 import FormErrorMessage from './FormErrorMessage';
 import { cn } from '@/src/libs/utils';
@@ -17,7 +18,7 @@ export type FormInputProps<TFormValues extends FieldValues> = {
   name: Path<TFormValues>;
   register?: UseFormRegister<TFormValues>;
   rules?: RegisterOptions;
-  errors?: Partial<DeepMap<TFormValues, FieldError>>;
+  errors?: FieldErrors<TFormValues>;
 } & Omit<NewInputProps, 'name'>;
 
 export const FormInput = <TFormValues extends FieldValues>({

@@ -16,15 +16,14 @@ export const CategoryInput: React.FC<CategoryInputProps> = ({
   selected,
 }) => {
   return (
-    <div
+    <button
       onClick={() => onClick(label)}
       className={`
       flex
+      w-full
       cursor-pointer
       flex-col
-      gap-3
-      rounded-xl
-      border-2
+      gap-3 rounded-xl border-2
       p-4
       transition
       hover:border-black
@@ -33,7 +32,7 @@ export const CategoryInput: React.FC<CategoryInputProps> = ({
     >
       <Icon size={30} />
       <div className="font-semibold">{label}</div>
-    </div>
+    </button>
   );
 };
 
