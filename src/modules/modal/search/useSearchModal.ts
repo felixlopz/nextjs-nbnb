@@ -1,13 +1,12 @@
 import { create } from 'zustand';
+import { ModalStore } from '../ModalTypes';
 
-interface SearchModalStore {
-  isOpen: boolean;
-  onOpen: () => void;
-  onClose: () => void;
-}
+type SearchModalStore = ModalStore & {};
 
 const useSearchModal = create<SearchModalStore>((set) => ({
   isOpen: false,
+  isLoading: false,
+  setIsLoading: (isLoading) => set({ isLoading }),
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),
 }));

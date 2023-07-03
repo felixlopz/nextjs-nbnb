@@ -9,10 +9,11 @@ import RentFormInfo from './RentFormInfo';
 import RentFormImage from './RentFormImage';
 import RentFormDescription from './RentFormDescription';
 import RentFormPrice from './RentFormPrice';
-import Button from '../../common/Button';
 import axios from 'axios';
-import toast from 'react-hot-toast';
 import { SubmitFormProps } from '../FormTypes';
+import MultiStepForm, {
+  convertEnumToNumberArray,
+} from '../components/MultiStepForm';
 
 export enum RentModalFormSteps {
   Category = 0,
@@ -22,7 +23,6 @@ export enum RentModalFormSteps {
   Description = 4,
   Price = 5,
 }
-
 export type RentFormFields = {
   category: string;
   location: Location;
@@ -82,10 +82,6 @@ export const RentForm: FC<RentFormProps> = ({
   const imageSrc = watch('imageSrc');
 
   const onSubmit: SubmitHandler<RentFormFields> = async (data) => {
-    if (currentFormStep !== RentModalFormSteps.Price) {
-      return onNextFormStep();
-    }
-
     onSubmitStarted();
     try {
       await axios.post('/api/listings', data);
@@ -103,30 +99,18 @@ export const RentForm: FC<RentFormProps> = ({
     });
   };
 
-  const onNextFormStep = () => {
-    if (currentFormStep === RentModalFormSteps.Price) {
-      return;
-    }
-    setCurrentFormStep((value) => value + 1);
-  };
-
-  const onPreviousFormStep = () => {
-    if (currentFormStep === RentModalFormSteps.Category) {
-      return;
-    }
-    setCurrentFormStep((value) => value - 1);
-  };
-
-  const submitLabel = useMemo(() => {
-    if (currentFormStep === RentModalFormSteps.Price) {
-      return 'Create';
-    }
-
-    return 'Next';
-  }, [currentFormStep]);
-
   return (
-    <div>
+    <MultiStepForm
+      step={currentFormStep}
+      totalSteps={convertEnumToNumberArray(RentModalFormSteps)}
+      updateStep={(step) => {
+        setCurrentFormStep(step);
+      }}
+      onSubmit={() => {
+        handleSubmit(onSubmit);
+      }}
+      isSubmitting={isSubmitting}
+    >
       {currentFormStep === RentModalFormSteps.Category ? (
         <RentFormCategorySelector
           category={category}
@@ -158,28 +142,7 @@ export const RentForm: FC<RentFormProps> = ({
       {currentFormStep === RentModalFormSteps.Price ? (
         <RentFormPrice register={register} errors={errors} />
       ) : null}
-      <div className="mt-12 flex items-center gap-x-4">
-        <Button
-          disabled={
-            currentFormStep === RentModalFormSteps.Category || isSubmitting
-          }
-          className="w-full"
-          size="lg"
-          variant="outline"
-          onClick={onPreviousFormStep}
-        >
-          Back
-        </Button>
-        <Button
-          className="w-full"
-          size="lg"
-          onClick={handleSubmit(onSubmit)}
-          isLoading={isSubmitting}
-        >
-          {submitLabel}
-        </Button>
-      </div>
-    </div>
+    </MultiStepForm>
   );
 };
 
