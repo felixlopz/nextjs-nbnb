@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import FormControl from '@/src/modules/forms/components/FormControl';
 import { signIn } from 'next-auth/react';
 import Button from '@/src/modules/common/Button';
-import { SubmitFormProps } from './FormTypes';
+import { SubmitFormProps } from '../types';
 
 export type LoginFormFields = {
   email: string;
@@ -33,7 +33,7 @@ const LoginForm: FC<LoginFormProps> = ({
     return () => {
       reset();
     };
-  }, []);
+  }, [reset]);
 
   const onSubmit = handleSubmit(async (data) => {
     onSubmitStarted();

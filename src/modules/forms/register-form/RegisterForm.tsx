@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import FormControl from '@/src/modules/forms/components/FormControl';
 import Button from '@/src/modules/common/Button';
 import axios from 'axios';
-import { SubmitFormProps } from './FormTypes';
+import { SubmitFormProps } from '../types';
 
 export type RegisterFormFields = {
   email: string;
@@ -19,12 +19,6 @@ const RegisterForm: FC<RegisterFormProps> = ({
   onSubmitFail = () => {},
   onSubmitSuccess = () => {},
 }) => {
-  useEffect(() => {
-    return () => {
-      reset();
-    };
-  }, []);
-
   const {
     register,
     handleSubmit,
@@ -33,6 +27,12 @@ const RegisterForm: FC<RegisterFormProps> = ({
   } = useForm<RegisterFormFields>({
     defaultValues: { email: '', name: '', password: '' },
   });
+
+  useEffect(() => {
+    return () => {
+      reset();
+    };
+  }, [reset]);
 
   const onSubmit = handleSubmit(async (data) => {
     onSubmitStarted();

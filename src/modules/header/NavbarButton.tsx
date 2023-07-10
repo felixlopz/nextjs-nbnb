@@ -20,7 +20,7 @@ const NavbarButton: React.FC<NavbarButtonProps> = ({ currentUser }) => {
     }
 
     rentModal.onOpen();
-  }, [currentUser]);
+  }, [currentUser, loginModal, rentModal]);
 
   return (
     <button

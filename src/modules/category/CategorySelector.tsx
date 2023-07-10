@@ -55,7 +55,11 @@ export const CategorySelector: React.FC<CategorySelectorProps> = (props) => {
       updateSelectedCategoryQueryFromSearchParams(params);
 
     updateRouterWithCategoryQuery(updatedCategoryQuery);
-  }, [label, params, router]);
+  }, [
+    params,
+    updateSelectedCategoryQueryFromSearchParams,
+    updateRouterWithCategoryQuery,
+  ]);
 
   const selected = isCurrentCategorySelectedInParams();
 

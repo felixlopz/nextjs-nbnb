@@ -34,19 +34,19 @@ export const MultiStepForm: FC<MultiStepFormProps> = ({
     [step, totalSteps]
   );
 
-  const onNextFormStep = () => {
+  const onNextFormStep = useCallback(() => {
     if (isLastStep) {
       return;
     }
     updateStep(step + 1);
-  };
+  }, [isLastStep, step, updateStep]);
 
-  const onPreviousFormStep = () => {
+  const onPreviousFormStep = useCallback(() => {
     if (isFirstStep) {
       return;
     }
     updateStep(step - 1);
-  };
+  }, [isFirstStep, step, updateStep]);
 
   const goNextOrSubmitAction = useCallback(() => {
     if (isLastStep) {
@@ -54,14 +54,14 @@ export const MultiStepForm: FC<MultiStepFormProps> = ({
     } else {
       onNextFormStep();
     }
-  }, [step]);
+  }, [isLastStep, onSubmit, onNextFormStep]);
 
   const submitLabel = useMemo(() => {
     if (isLastStep) {
       return actionLabel;
     }
     return 'Next';
-  }, [step]);
+  }, [isLastStep, actionLabel]);
 
   return (
     <form

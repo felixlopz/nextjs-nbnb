@@ -5,7 +5,7 @@ import Modal from '@/src/modules/modal/Modal';
 import AuthProviders from '@/src/modules/common/AuthProviders';
 import useRegisterModal from '@/src/modules/modal/register/useRegisterModal';
 
-import LoginForm from '@/src/modules/forms/LoginForm';
+import LoginForm from '@/src/modules/forms/login-form/LoginForm';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 

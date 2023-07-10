@@ -1,6 +1,6 @@
-import { DeepMap, FieldError, FieldErrors, FieldValues } from 'react-hook-form';
+import { DeepMap, FieldError, FieldValues } from 'react-hook-form';
 
-const useFormErrors = (
+export const getFormErrors = (
   name: string,
   errors?: Partial<DeepMap<FieldValues, FieldError>>
 ) => {
@@ -9,5 +9,3 @@ const useFormErrors = (
   const errorMessage = error?.message;
   return { hasError, errorMessage };
 };
-
-export default useFormErrors;

@@ -12,7 +12,7 @@ import {
 } from 'react-hook-form';
 import FormErrorMessage from './FormErrorMessage';
 import { cn } from '@/src/libs/utils';
-import useFormErrors from '../useFormErrors';
+import getFormErrors from '../getFormErrors';
 
 export type FormInputProps<TFormValues extends FieldValues> = {
   name: Path<TFormValues>;
@@ -30,7 +30,7 @@ export const FormInput = <TFormValues extends FieldValues>({
   errors,
   ...props
 }: FormInputProps<TFormValues>): JSX.Element => {
-  const { hasError, errorMessage } = useFormErrors(name, errors);
+  const { hasError, errorMessage } = getFormErrors(name, errors);
 
   return (
     <div className={cn(['', className])} aria-live="polite">

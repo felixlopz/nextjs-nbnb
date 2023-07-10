@@ -10,14 +10,14 @@ import {
 import ListingLocation from '@/src/modules/forms/listing-form-sections/ListingLocation';
 import ListingCapacities from '@/src/modules/forms/listing-form-sections/ListingCapacities';
 import axios from 'axios';
-import { SubmitFormProps } from '../FormTypes';
+import { SubmitFormProps } from '../types';
 import MultiStepForm, {
   convertEnumToNumberArray,
 } from '../components/MultiStepForm';
 import { InferType, object, string, number, array } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import toast from 'react-hot-toast';
-import useFormErrors from '../useFormErrors';
+import { getFormErrors } from '@/src/modules/forms/utils';
 
 export enum SearchModalFormSteps {
   Location = 0,
@@ -54,13 +54,6 @@ export const RentForm: FC<RentFormProps> = ({
     SearchModalFormSteps.Location
   );
 
-  useEffect(() => {
-    return () => {
-      reset();
-      setCurrentFormStep(SearchModalFormSteps.Location);
-    };
-  }, []);
-
   const {
     handleSubmit,
     formState: { isSubmitting },
@@ -75,6 +68,13 @@ export const RentForm: FC<RentFormProps> = ({
     },
     resolver: yupResolver(searchFormFieldsValidationSchema),
   });
+
+  useEffect(() => {
+    return () => {
+      reset();
+      setCurrentFormStep(SearchModalFormSteps.Location);
+    };
+  }, [reset]);
 
   const location = watch('location');
   const guestCount = watch('guestCount');
@@ -146,7 +146,7 @@ export const RentForm: FC<RentFormProps> = ({
       if (firstErrorKey === 'location') {
         toast.error('Select a location');
       } else {
-        const { errorMessage } = useFormErrors(firstErrorKey, errors);
+        const { errorMessage } = getFormErrors(firstErrorKey, errors);
         toast.error(errorMessage);
       }
     }

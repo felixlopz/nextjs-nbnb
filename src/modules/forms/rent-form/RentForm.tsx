@@ -14,14 +14,14 @@ import ListingImage from '@/src/modules/forms/listing-form-sections/ListingImage
 import ListingTitleAndDescription from '@/src/modules/forms/listing-form-sections/ListingTitleAndDescription';
 import ListingPrice from '@/src/modules/forms/listing-form-sections/ListingPrice';
 import axios from 'axios';
-import { SubmitFormProps } from '../FormTypes';
+import { SubmitFormProps } from '../types';
 import MultiStepForm, {
   convertEnumToNumberArray,
 } from '../components/MultiStepForm';
 import { InferType, object, string, number, array } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import toast from 'react-hot-toast';
-import useFormErrors from '../useFormErrors';
+import { getFormErrors } from '@/src/modules/forms/utils';
 
 export enum RentModalFormSteps {
   Category = 0,
@@ -68,13 +68,6 @@ export const RentForm: FC<RentFormProps> = ({
     RentModalFormSteps.Category
   );
 
-  useEffect(() => {
-    return () => {
-      reset();
-      setCurrentFormStep(RentModalFormSteps.Category);
-    };
-  }, []);
-
   const {
     register,
     handleSubmit,
@@ -95,6 +88,13 @@ export const RentForm: FC<RentFormProps> = ({
     },
     resolver: yupResolver(rentFormFieldsValidationSchema),
   });
+
+  useEffect(() => {
+    return () => {
+      reset();
+      setCurrentFormStep(RentModalFormSteps.Category);
+    };
+  }, [reset]);
 
   const category = watch('category');
   const location = watch('location');
@@ -130,7 +130,7 @@ export const RentForm: FC<RentFormProps> = ({
       if (firstErrorKey === 'location') {
         toast.error('Select a location');
       } else {
-        const { errorMessage } = useFormErrors(firstErrorKey, errors);
+        const { errorMessage } = getFormErrors(firstErrorKey, errors);
         toast.error(errorMessage);
       }
     }
