@@ -1,8 +1,7 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import Heading from '@/src/modules/common/Heading';
 import { useForm } from 'react-hook-form';
-import FormInputWithFloatingLabel from '@/src/modules/forms/components/FormInputWithFloatingLabel';
-import { toast } from 'react-hot-toast';
+import FormControl from '@/src/modules/forms/components/FormControl';
 import Button from '@/src/modules/common/Button';
 import axios from 'axios';
 import { SubmitFormProps } from './FormTypes';
@@ -48,7 +47,7 @@ const RegisterForm: FC<RegisterFormProps> = ({
   return (
     <form className="flex flex-col gap-4" onSubmit={onSubmit}>
       <Heading title="Welcome to Nextbnb" subtitle="Create an account!" />
-      <FormInputWithFloatingLabel<RegisterFormFields>
+      <FormControl<RegisterFormFields>
         id="register-email"
         name="email"
         label="Email"
@@ -64,7 +63,7 @@ const RegisterForm: FC<RegisterFormProps> = ({
         }}
         errors={errors}
       />
-      <FormInputWithFloatingLabel<RegisterFormFields>
+      <FormControl<RegisterFormFields>
         id="register-name"
         name="name"
         label="Name"
@@ -75,7 +74,7 @@ const RegisterForm: FC<RegisterFormProps> = ({
         }}
         errors={errors}
       />
-      <FormInputWithFloatingLabel<RegisterFormFields>
+      <FormControl<RegisterFormFields>
         id="register-password"
         name="password"
         label="Password"

@@ -8,6 +8,7 @@ import {
   GiForestCamp,
   GiIsland,
   GiWindmill,
+  GiTreehouse,
 } from 'react-icons/gi';
 import { FaSkiing } from 'react-icons/fa';
 import { BsSnow } from 'react-icons/bs';
@@ -96,6 +97,11 @@ export const categories: Array<CategoryProps> = [
     label: 'Lux',
     icon: IoDiamond,
     description: 'This property is brand new and luxurious!',
+  },
+  {
+    label: 'Treehouse',
+    icon: GiTreehouse,
+    description: 'This property is in a tree!',
   },
 ];
 

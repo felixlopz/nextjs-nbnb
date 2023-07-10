@@ -44,10 +44,9 @@ export const MultiStepForm: FC<MultiStepFormProps> = ({
     updateStep(step - 1);
   };
 
-  const submitAction = useCallback(() => {
+  const goNextOrSubmitAction = useCallback(() => {
     if (isLastStep) {
       onSubmit();
-      return;
     } else {
       onNextFormStep();
     }
@@ -62,7 +61,11 @@ export const MultiStepForm: FC<MultiStepFormProps> = ({
   }, [step]);
 
   return (
-    <>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+      }}
+    >
       {children}
       <div className="mt-12 flex items-center gap-x-4">
         <Button
@@ -77,13 +80,14 @@ export const MultiStepForm: FC<MultiStepFormProps> = ({
         <Button
           className="w-full"
           size="lg"
-          onClick={submitAction}
           isLoading={isSubmitting}
+          onClick={goNextOrSubmitAction}
+          type="submit"
         >
           {submitLabel}
         </Button>
       </div>
-    </>
+    </form>
   );
 };
 

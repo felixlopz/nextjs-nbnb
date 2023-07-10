@@ -3,15 +3,15 @@ import { FormInputProps } from './FormInput';
 import { FieldValues } from 'react-hook-form';
 import useFormErrors from '../useFormErrors';
 import FormInputLabel from './FormInputLabel';
-import NewInput from '@/src/modules/common/inputs/NewInput';
+import NewInput from '@/src/modules/common/inputs/Input';
 import FormErrorMessage from './FormErrorMessage';
 
-type FormInputWithFloatingLabelProps<TFormValue extends FieldValues> = Omit<
+type FormControlProps<TFormValue extends FieldValues> = Omit<
   FormInputProps<TFormValue>,
   'placeholder'
 > & {};
 
-const FormInputWithFloatingLabel = <TFormValues extends FieldValues>({
+const FormControl = <TFormValues extends FieldValues>({
   name,
   label,
   className,
@@ -19,7 +19,7 @@ const FormInputWithFloatingLabel = <TFormValues extends FieldValues>({
   rules,
   errors,
   ...props
-}: FormInputWithFloatingLabelProps<TFormValues>): JSX.Element => {
+}: FormControlProps<TFormValues>): JSX.Element => {
   const { hasError, errorMessage } = useFormErrors(name, errors);
 
   return (
@@ -47,4 +47,4 @@ const FormInputWithFloatingLabel = <TFormValues extends FieldValues>({
   );
 };
 
-export default FormInputWithFloatingLabel;
+export default FormControl;

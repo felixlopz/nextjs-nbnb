@@ -1,4 +1,4 @@
-'use cllieng';
+'use client';
 
 import { IconType } from 'react-icons';
 

@@ -12,7 +12,7 @@ export type Location = {
 };
 
 interface CountrySelectProps {
-  value?: Location;
+  value: Location | null;
   onChange: (value: Location) => void;
 }
 
@@ -32,7 +32,7 @@ const CountrySelect: React.FC<CountrySelectProps> = ({ value, onChange }) => {
             <div className="flex flex-row items-center gap-3">
               <div>{option.flag}</div>
               <div>
-                {option.label},
+                {option.label != null ? `${option.label},` : ''}
                 <span className="ml-1 text-neutral-500">{option.region}</span>
               </div>
             </div>

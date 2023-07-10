@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
 import { RentFormFields } from './RentForm';
-import FormInputWithFloatingLabel from '@/src/modules/forms/components/FormInputWithFloatingLabel';
+import FormControl from '@/src/modules/forms/components/FormControl';
 import Heading from '@/src/modules/common/Heading';
 
 type RentFormPriceProps = {
@@ -16,7 +16,7 @@ export const RentFormPrice: FC<RentFormPriceProps> = ({ register, errors }) => {
         title="Now, set your price"
         subtitle="How much do you charge per night?"
       />
-      <FormInputWithFloatingLabel<RentFormFields>
+      <FormControl<RentFormFields>
         id="price"
         name="price"
         label="Price $"

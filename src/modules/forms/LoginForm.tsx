@@ -3,7 +3,7 @@
 import { FC, useEffect } from 'react';
 import Heading from '@/src/modules/common/Heading';
 import { useForm } from 'react-hook-form';
-import FormInputWithFloatingLabel from '@/src/modules/forms/components/FormInputWithFloatingLabel';
+import FormControl from '@/src/modules/forms/components/FormControl';
 import { signIn } from 'next-auth/react';
 import Button from '@/src/modules/common/Button';
 import { SubmitFormProps } from './FormTypes';
@@ -59,7 +59,7 @@ const LoginForm: FC<LoginFormProps> = ({
   return (
     <form className="flex flex-col gap-4" onSubmit={onSubmit}>
       <Heading title="Welcome back" subtitle="Login to your account" />
-      <FormInputWithFloatingLabel<LoginFormFields>
+      <FormControl<LoginFormFields>
         id="login-email"
         name="email"
         label="Email"
@@ -71,7 +71,7 @@ const LoginForm: FC<LoginFormProps> = ({
         }}
         errors={errors}
       />
-      <FormInputWithFloatingLabel<LoginFormFields>
+      <FormControl<LoginFormFields>
         id="login-password"
         name="password"
         label="Password"

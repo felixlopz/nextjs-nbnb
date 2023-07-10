@@ -7,11 +7,12 @@ interface FormErrorMessageProps {
   className?: string;
 }
 
-const FormErrorMessage: FC<FormErrorMessageProps> = ({ children }) => {
+const FormErrorMessage: FC<FormErrorMessageProps> = ({
+  children,
+  className,
+}) => {
   return (
-    <p
-      className={cn(['mt-1 block text-left text-sm text-red-500', classNames])}
-    >
+    <p className={cn(['mt-1 block text-left text-sm text-red-500', className])}>
       {children}
     </p>
   );

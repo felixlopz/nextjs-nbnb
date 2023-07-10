@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import Heading from '../../common/Heading';
-import ImageUpload from '../../common/inputs/ImageUpload';
+import Heading from '@/src/modules/common/Heading';
+import ImageUpload from '@/src/modules/common/inputs/ImageUpload';
 
 interface RentFormImageProps {
   imageSrc: string;

@@ -1,3 +1,5 @@
+'use client';
+
 import { FC, useMemo } from 'react';
 import Heading from '@/src/modules/common/Heading';
 import CountrySelect, {
@@ -6,7 +8,7 @@ import CountrySelect, {
 import dynamic from 'next/dynamic';
 
 interface RentFormLocationProps {
-  location: Location;
+  location: Location | null;
   setCustomValue: (id: string, value: any) => void;
 }
 
@@ -18,7 +20,6 @@ export const RentFormLocation: FC<RentFormLocationProps> = ({
     () => dynamic(() => import('@/src/modules/common/Map'), { ssr: false }),
     [location]
   );
-
   return (
     <div className="flex flex-col gap-8">
       <Heading

@@ -1,6 +1,6 @@
 'use client';
 
-import { NewInput, NewInputProps } from '@/src/modules/common/inputs/NewInput';
+import { Input, InputProps } from '@/src/modules/common/inputs/Input';
 import {
   DeepMap,
   FieldError,
@@ -19,7 +19,7 @@ export type FormInputProps<TFormValues extends FieldValues> = {
   register?: UseFormRegister<TFormValues>;
   rules?: RegisterOptions;
   errors?: FieldErrors<TFormValues>;
-} & Omit<NewInputProps, 'name'>;
+} & Omit<InputProps, 'name'>;
 
 export const FormInput = <TFormValues extends FieldValues>({
   name,
@@ -34,7 +34,7 @@ export const FormInput = <TFormValues extends FieldValues>({
 
   return (
     <div className={cn(['', className])} aria-live="polite">
-      <NewInput
+      <Input
         label={label}
         name={name}
         aria-invalid={hasError}

@@ -73,7 +73,9 @@ export const Modal: React.FC<ModalProps> = ({
               {/*BODY*/}
               <div className="relative flex-auto p-6">{body}</div>
               {/*FOOTER*/}
-              <div className="flex flex-col gap-2 p-6">{footer}</div>
+              {footer != null ? (
+                <div className="flex flex-col gap-2 p-6">{footer}</div>
+              ) : null}
             </div>
           </div>
         </div>

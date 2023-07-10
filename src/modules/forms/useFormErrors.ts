@@ -1,4 +1,4 @@
-import { DeepMap, FieldError, FieldValues } from 'react-hook-form';
+import { DeepMap, FieldError, FieldErrors, FieldValues } from 'react-hook-form';
 
 const useFormErrors = (
   name: string,
@@ -7,7 +7,6 @@ const useFormErrors = (
   const error = errors && errors[name];
   const hasError = error != null;
   const errorMessage = error?.message;
-
   return { hasError, errorMessage };
 };
 
