@@ -12,7 +12,7 @@ import {
 } from 'react-hook-form';
 import FormErrorMessage from './FormErrorMessage';
 import { cn } from '@/src/libs/utils';
-import getFormErrors from '../getFormErrors';
+import { getFormErrors } from '@/src/modules/forms/utils';
 
 export type FormInputProps<TFormValues extends FieldValues> = {
   name: Path<TFormValues>;

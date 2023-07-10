@@ -3,7 +3,7 @@
 import { cn } from '@/src/libs/utils';
 import { FormInputProps } from './FormInput';
 import { FieldValues } from 'react-hook-form';
-import getFormErrors from '../getFormErrors';
+import { getFormErrors } from '@/src/modules/forms/utils';
 import FormInputLabel from './FormInputLabel';
 import NewInput from '@/src/modules/common/inputs/Input';
 import FormErrorMessage from './FormErrorMessage';
