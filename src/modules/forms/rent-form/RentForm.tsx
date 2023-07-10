@@ -7,12 +7,12 @@ import {
   SubmitHandler,
   useForm,
 } from 'react-hook-form';
-import RentFormCategorySelector from '@/src/modules/forms/rent-form/RentFormCategorySelector';
-import RentFormLocation from '@/src/modules/forms/rent-form/RentFormLocation';
-import RentFormInfo from './RentFormInfo';
-import RentFormImage from './RentFormImage';
-import RentFormDescription from './RentFormDescription';
-import RentFormPrice from './RentFormPrice';
+import ListingCategorySelector from '@/src/modules/forms/listing-form-sections/ListingCategorySelector';
+import ListingLocation from '@/src/modules/forms/listing-form-sections/ListingLocation';
+import ListingCapacities from '@/src/modules/forms/listing-form-sections/ListingCapacities';
+import ListingImage from '@/src/modules/forms/listing-form-sections/ListingImage';
+import ListingTitleAndDescription from '@/src/modules/forms/listing-form-sections/ListingTitleAndDescription';
+import ListingPrice from '@/src/modules/forms/listing-form-sections/ListingPrice';
 import axios from 'axios';
 import { SubmitFormProps } from '../FormTypes';
 import MultiStepForm, {
@@ -20,7 +20,6 @@ import MultiStepForm, {
 } from '../components/MultiStepForm';
 import { InferType, object, string, number, array } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { watch } from 'fs';
 import toast from 'react-hot-toast';
 import useFormErrors from '../useFormErrors';
 
@@ -79,7 +78,7 @@ export const RentForm: FC<RentFormProps> = ({
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { isSubmitting },
     reset,
     setValue,
     watch,
@@ -146,20 +145,31 @@ export const RentForm: FC<RentFormProps> = ({
       }}
       onSubmit={handleSubmit(onSubmit, onInvalid)}
       isSubmitting={isSubmitting}
+      actionLabel="Create"
     >
       {currentFormStep === RentModalFormSteps.Category ? (
-        <RentFormCategorySelector
+        <ListingCategorySelector
           category={category}
           setCustomValue={setCustomValue}
         />
       ) : null}
 
       {currentFormStep === RentModalFormSteps.Location ? (
-        <RentFormLocation location={location} setCustomValue={setCustomValue} />
+        <ListingLocation
+          title="Where is your place located?"
+          subtitle="Help guests find you!"
+          location={location}
+          setCustomValue={setCustomValue}
+        />
       ) : null}
 
       {currentFormStep === RentModalFormSteps.Info ? (
-        <RentFormInfo
+        <ListingCapacities
+          title="Share some basics about your place"
+          subtitle="What amenitis do you have?"
+          roomTitle="How many rooms do you have?"
+          bathroomTitle="How many bathrooms do you have?"
+          guestTitle="How many guests do you allow?"
           bathroomCount={bathroomCount}
           guestCount={guestCount}
           roomCount={roomCount}
@@ -168,15 +178,15 @@ export const RentForm: FC<RentFormProps> = ({
       ) : null}
 
       {currentFormStep === RentModalFormSteps.Images ? (
-        <RentFormImage imageSrc={imageSrc} setCustomValue={setCustomValue} />
+        <ListingImage imageSrc={imageSrc} setCustomValue={setCustomValue} />
       ) : null}
 
       {currentFormStep === RentModalFormSteps.Description ? (
-        <RentFormDescription register={register} />
+        <ListingTitleAndDescription register={register} />
       ) : null}
 
       {currentFormStep === RentModalFormSteps.Price ? (
-        <RentFormPrice register={register} />
+        <ListingPrice register={register} />
       ) : null}
     </MultiStepForm>
   );

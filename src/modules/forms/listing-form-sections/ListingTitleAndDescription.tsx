@@ -1,18 +1,19 @@
+'use client';
+
 import { FC } from 'react';
 import Heading from '@/src/modules/common/Heading';
 import FormControl from '@/src/modules/forms/components/FormControl';
 import { RentFormFields } from '@/src/modules/forms/rent-form/RentForm';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
-interface RentFormDescriptionProps {
+interface ListingTitleAndDescriptionProps {
   register?: UseFormRegister<RentFormFields>;
   errors?: FieldErrors<RentFormFields>;
 }
 
-export const RentFormDescription: FC<RentFormDescriptionProps> = ({
-  register,
-  errors,
-}) => {
+export const ListingTitleAndDescription: FC<
+  ListingTitleAndDescriptionProps
+> = ({ register, errors }) => {
   return (
     <div className="flex flex-col gap-8">
       <Heading
@@ -48,4 +49,4 @@ export const RentFormDescription: FC<RentFormDescriptionProps> = ({
   );
 };
 
-export default RentFormDescription;
+export default ListingTitleAndDescription;

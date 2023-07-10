@@ -1,3 +1,5 @@
+'use client';
+
 import { cn } from '@/src/libs/utils';
 import { FormInputProps } from './FormInput';
 import { FieldValues } from 'react-hook-form';

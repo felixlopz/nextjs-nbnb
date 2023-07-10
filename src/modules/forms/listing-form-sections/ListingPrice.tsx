@@ -1,15 +1,17 @@
+'use client';
+
 import { FC } from 'react';
-import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
-import { RentFormFields } from './RentForm';
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { RentFormFields } from '../rent-form/RentForm';
 import FormControl from '@/src/modules/forms/components/FormControl';
 import Heading from '@/src/modules/common/Heading';
 
-type RentFormPriceProps = {
+type ListingPriceProps = {
   register?: UseFormRegister<RentFormFields>;
   errors?: FieldErrors<RentFormFields>;
 };
 
-export const RentFormPrice: FC<RentFormPriceProps> = ({ register, errors }) => {
+export const ListingPrice: FC<ListingPriceProps> = ({ register, errors }) => {
   return (
     <div className="flex flex-col gap-8">
       <Heading
@@ -29,4 +31,4 @@ export const RentFormPrice: FC<RentFormPriceProps> = ({ register, errors }) => {
   );
 };
 
-export default RentFormPrice;
+export default ListingPrice;

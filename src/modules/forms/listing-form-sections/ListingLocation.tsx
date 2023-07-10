@@ -7,12 +7,16 @@ import CountrySelect, {
 } from '@/src/modules/common/inputs/CountrySelect';
 import dynamic from 'next/dynamic';
 
-interface RentFormLocationProps {
+interface ListingLocationProps {
+  title: string;
+  subtitle?: string;
   location: Location | null;
   setCustomValue: (id: string, value: any) => void;
 }
 
-export const RentFormLocation: FC<RentFormLocationProps> = ({
+export const ListingLocation: FC<ListingLocationProps> = ({
+  title,
+  subtitle,
   location,
   setCustomValue,
 }) => {
@@ -22,10 +26,7 @@ export const RentFormLocation: FC<RentFormLocationProps> = ({
   );
   return (
     <div className="flex flex-col gap-8">
-      <Heading
-        title="Where is your place located?"
-        subtitle="Help guests find you!"
-      />
+      <Heading title={title} subtitle={subtitle} />
       <CountrySelect
         value={location}
         onChange={(value) => setCustomValue('location', value)}
@@ -35,4 +36,4 @@ export const RentFormLocation: FC<RentFormLocationProps> = ({
   );
 };
 
-export default RentFormLocation;
+export default ListingLocation;

@@ -1,13 +1,15 @@
+'use client';
+
 import { FC } from 'react';
 import Heading from '@/src/modules/common/Heading';
 import ImageUpload from '@/src/modules/common/inputs/ImageUpload';
 
-interface RentFormImageProps {
+interface ListingImageProps {
   imageSrc: string;
   setCustomValue: (id: string, value: any) => void;
 }
 
-export const RentFormImage: FC<RentFormImageProps> = ({
+export const ListingImage: FC<ListingImageProps> = ({
   imageSrc,
   setCustomValue,
 }) => {
@@ -25,4 +27,4 @@ export const RentFormImage: FC<RentFormImageProps> = ({
   );
 };
 
-export default RentFormImage;
+export default ListingImage;

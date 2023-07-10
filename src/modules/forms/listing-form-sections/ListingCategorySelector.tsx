@@ -5,12 +5,12 @@ import categories from '@/src/modules/category/categories';
 import Heading from '@/src/modules/common/Heading';
 import CategoryInput from '@/src/modules/category/CategoryInput';
 
-interface RentFormCategorySelectorProps {
+interface ListingCategorySelectorProps {
   category: string;
   setCustomValue: (id: string, value: any) => void;
 }
 
-export const RentFormCategorySelector: FC<RentFormCategorySelectorProps> = ({
+export const ListingCategorySelector: FC<ListingCategorySelectorProps> = ({
   category,
   setCustomValue,
 }) => {
@@ -48,4 +48,4 @@ export const RentFormCategorySelector: FC<RentFormCategorySelectorProps> = ({
   );
 };
 
-export default RentFormCategorySelector;
+export default ListingCategorySelector;

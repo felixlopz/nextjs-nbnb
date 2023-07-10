@@ -1,15 +1,27 @@
+'use client';
+
 import { FC } from 'react';
 import Heading from '@/src/modules/common/Heading';
 import Counter from '@/src/modules/common/inputs/Counter';
 
-interface RentFormInfoProps {
+interface ListingCapacitiesProps {
+  title: string;
+  subtitle?: string;
+  guestTitle: string;
+  roomTitle: string;
+  bathroomTitle: string;
   guestCount: number;
   roomCount: number;
   bathroomCount: number;
   setCustomValue: (id: string, value: any) => void;
 }
 
-export const RentFormInfo: FC<RentFormInfoProps> = ({
+export const ListingCapacities: FC<ListingCapacitiesProps> = ({
+  title,
+  subtitle,
+  guestTitle,
+  roomTitle,
+  bathroomTitle,
   guestCount,
   roomCount,
   bathroomCount,
@@ -17,13 +29,10 @@ export const RentFormInfo: FC<RentFormInfoProps> = ({
 }) => {
   return (
     <div className="flex flex-col gap-8">
-      <Heading
-        title="Share some basics about your place"
-        subtitle="What amenitis do you have?"
-      />
+      <Heading title={title} subtitle={subtitle} />
       <Counter
         title="Guests"
-        subtitle="How many guests do you allow?"
+        subtitle={guestTitle}
         value={guestCount}
         onChange={(value) => setCustomValue('guestCount', value)}
       />
@@ -32,17 +41,17 @@ export const RentFormInfo: FC<RentFormInfoProps> = ({
         onChange={(value) => setCustomValue('roomCount', value)}
         value={roomCount}
         title="Rooms"
-        subtitle="How many rooms do you have?"
+        subtitle={roomTitle}
       />
       <hr />
       <Counter
         onChange={(value) => setCustomValue('bathroomCount', value)}
         value={bathroomCount}
         title="Bathrooms"
-        subtitle="How many bathrooms do you have?"
+        subtitle={bathroomTitle}
       />
     </div>
   );
 };
 
-export default RentFormInfo;
+export default ListingCapacities;

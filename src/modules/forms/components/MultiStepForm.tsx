@@ -1,3 +1,5 @@
+'use client';
+
 import { FC, ReactNode, useCallback, useMemo } from 'react';
 import Button from '@/src/modules/common/Button';
 
@@ -14,6 +16,7 @@ interface MultiStepFormProps {
   totalSteps: Array<number>;
   updateStep: (step: number) => void;
   onSubmit: () => void;
+  actionLabel?: string;
 }
 
 export const MultiStepForm: FC<MultiStepFormProps> = ({
@@ -23,6 +26,7 @@ export const MultiStepForm: FC<MultiStepFormProps> = ({
   isSubmitting,
   onSubmit,
   updateStep,
+  actionLabel = 'Submit',
 }) => {
   const isFirstStep = useMemo(() => step === 0, [step]);
   const isLastStep = useMemo(
@@ -54,9 +58,8 @@ export const MultiStepForm: FC<MultiStepFormProps> = ({
 
   const submitLabel = useMemo(() => {
     if (isLastStep) {
-      return 'Create';
+      return actionLabel;
     }
-
     return 'Next';
   }, [step]);
 
