@@ -71,7 +71,6 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
           onSelect={(range, selectedDay) => {
             handleSelect(selectedDay, range);
           }}
-          onDayClick={() => {}}
           max={30}
           classNames={{
             caption_label: 'text-md font-medium text-left w-full',

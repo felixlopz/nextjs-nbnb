@@ -17,12 +17,12 @@ import { InferType, object, string, number, array, date } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import toast from 'react-hot-toast';
 import { getFormErrors } from '@/src/modules/forms/utils';
-import DateRangePicker from '@/src/modules/common/inputs/DateRangePicker';
-import Heading from '@/src/modules/common/Heading';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { formatISO } from 'date-fns';
 import qs from 'query-string';
 import { useListingSearchParams } from '@/src/hooks/useListingSearchParams';
+import ListingDateRange from '@/src/modules/forms/listing-form-sections/ListingDateRange';
+import { DateRange } from 'react-day-picker';
 
 export enum SearchModalFormSteps {
   Location = 0,
@@ -39,13 +39,13 @@ const searchFormFieldsValidationSchema = object({
       region: string().required('Select a location'),
       value: string().required('Select a location'),
     })
-    .nullable()
+    .optional()
     .required('Select a location.'),
   guestCount: number().positive().required(),
   roomCount: number().positive().required(),
   bathroomCount: number().positive().required(),
-  startDate: date().nullable().required('Select a start date.'),
-  endDate: date().nullable().required('Select an end date.'),
+  startDate: date().optional().required('Select a start date.'),
+  endDate: date().optional().required('Select an end date.'),
 });
 
 export type SearchFormFields = InferType<
@@ -81,6 +81,7 @@ export const SearchForm: FC<SearchFormProps> = ({
       endDate: listingSearchParams.endDate,
       location: listingSearchParams.location,
     },
+
     resolver: yupResolver(searchFormFieldsValidationSchema),
   });
 
@@ -97,12 +98,19 @@ export const SearchForm: FC<SearchFormProps> = ({
   const startDate = watch('startDate');
   const endDate = watch('endDate');
 
-  const updateStartDateAndEndDate = (startDate?: Date, endDate?: Date) => {
-    if (startDate != null) {
-      setValue('startDate', startDate);
+  const updateStartDateAndEndDate = (range?: DateRange) => {
+    if (range == null) {
+      // @ts-expect-error
+      setValue('startDate', undefined);
+      // @ts-expect-error
+      setValue('endDate', undefined);
+      return;
     }
-    if (endDate != null) {
-      setValue('endDate', endDate);
+    if (range.from != null) {
+      setValue('startDate', range.from);
+    }
+    if (range.to != null) {
+      setValue('endDate', range.to);
     }
   };
 
@@ -187,18 +195,10 @@ export const SearchForm: FC<SearchFormProps> = ({
       ) : null}
 
       {currentFormStep === SearchModalFormSteps.Date ? (
-        <div className="flex flex-col gap-8">
-          <Heading
-            title="When do you plan to go?"
-            subtitle="Make sure everyone is free!"
-          />
-          <div className="flex min-h-[425px] justify-center">
-            <DateRangePicker
-              defaultRange={{ from: startDate, to: endDate }}
-              updateStartDateAndEndDate={updateStartDateAndEndDate}
-            />
-          </div>
-        </div>
+        <ListingDateRange
+          range={{ from: startDate, to: endDate }}
+          onChangeDate={updateStartDateAndEndDate}
+        />
       ) : null}
 
       {currentFormStep === SearchModalFormSteps.Info ? (
