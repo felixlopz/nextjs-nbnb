@@ -1,8 +1,8 @@
 'use client';
 
-import useLoginModal from '@/src/modules/modal/login/useLoginModal';
-import useRentModal from '@/src/modules/modal/rent/useRentModal';
-import { SafeUser } from '@/src/types';
+import useLoginModal from '@/modules/modal/login/useLoginModal';
+import useRentModal from '@/modules/modal/rent/useRentModal';
+import { SafeUser } from '@/types';
 import { useCallback, useEffect, useState } from 'react';
 
 interface NavbarButtonProps {

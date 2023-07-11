@@ -1,6 +1,6 @@
 'use client';
 
-import { cn } from '@/src/libs/utils';
+import { cn } from '@/libs/utils';
 import { cva, VariantProps } from 'class-variance-authority';
 import { Loader2 } from 'lucide-react';
 import * as React from 'react';
@@ -12,10 +12,10 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'bg-rose-500 border-rose-500 text-white outline outline-1 outline-rose-500 focus:ring-rose-500',
+          'bg-gradient-to-r from-orange-700 to-orange-500 text-white focus:outline-none bg-size-200',
         outline:
           'outline outline-1 outline-neutral-400 bg-transparent hover:outline-black',
-        link: 'bg-transparent underline-offset-4 hover:underline text-rose-500',
+        link: 'bg-transparent underline-offset-4 hover:underline text-orange-500',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
       },
       size: {

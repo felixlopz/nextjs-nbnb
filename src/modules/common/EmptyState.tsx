@@ -1,8 +1,8 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import Heading from '@/src/modules/common/Heading';
-import Button from '@/src/modules/common/Button';
+import Heading from '@/modules/common/Heading';
+import Button from '@/modules/common/Button';
 
 interface EmptyStateProps {
   title?: string;

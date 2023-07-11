@@ -1,12 +1,12 @@
 'use client';
 
-import Avatar from '@/src/modules/common/Avatar';
+import Avatar from '@/modules/common/Avatar';
 import { FC, useCallback, useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
-import AuthorizedMenu from '@/src/modules/header/menu/AuthorizedMenu';
-import UnAuthorizedMenu from '@/src/modules/header/menu/UnAuthorizedMenu';
-import { useOnClickOutside } from '@/src/hooks/useOnClickOutside';
-import { SafeUser } from '@/src/types';
+import AuthorizedMenu from '@/modules/header/menu/AuthorizedMenu';
+import UnAuthorizedMenu from '@/modules/header/menu/UnAuthorizedMenu';
+import { useOnClickOutside } from '@/hooks/useOnClickOutside';
+import { SafeUser } from '@/types';
 
 interface MenuProps {
   currentUser: SafeUser | null;

@@ -1,7 +1,7 @@
-import EmptyState from '@/src/modules/common/EmptyState';
+import EmptyState from '@/modules/common/EmptyState';
 
-import getCurrentUser from '@/src/actions/getCurrentUser';
-import getReservations from '@/src/actions/getReservations';
+import getCurrentUser from '@/actions/getCurrentUser';
+import getReservations from '@/actions/getReservations';
 
 import ReservationsClient from './ReservationsClient';
 

@@ -1,8 +1,8 @@
 'use client';
 
-import useLoginModal from '@/src/modules/modal/login/useLoginModal';
+import useLoginModal from '@/modules/modal/login/useLoginModal';
 import MenuButton from './MenuButton';
-import useRegisterModal from '@/src/modules/modal/register/useRegisterModal';
+import useRegisterModal from '@/modules/modal/register/useRegisterModal';
 
 const UnAuthorizedMenu = () => {
   const loginModal = useLoginModal();

@@ -2,9 +2,9 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
-import Button from '@/src/modules/common/Button';
-import { useOnClickOutside } from '@/src/hooks/useOnClickOutside';
-import { cn } from '@/src/libs/utils';
+import Button from '@/modules/common/Button';
+import { useOnClickOutside } from '@/hooks/useOnClickOutside';
+import { cn } from '@/libs/utils';
 
 interface ModalProps {
   isOpen: boolean;

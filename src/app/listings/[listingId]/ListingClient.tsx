@@ -6,14 +6,14 @@ import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { addDays, differenceInDays, eachDayOfInterval } from 'date-fns';
 
-import useLoginModal from '@/src/modules/modal/login/useLoginModal';
-import { SafeListing, SafeReservation, SafeUser } from '@/src/types';
+import useLoginModal from '@/modules/modal/login/useLoginModal';
+import { SafeListing, SafeReservation, SafeUser } from '@/types';
 
-import Container from '@/src/modules/common/Container';
-import { categories } from '@/src/modules/category/categories';
-import ListingHead from '@/src/modules/listing/ListingHead';
-import ListingInfo from '@/src/modules/listing/ListingInfo';
-import ListingReservation from '@/src/modules/listing/ListingReservation';
+import Container from '@/modules/common/Container';
+import { categories } from '@/modules/category/categories';
+import ListingHead from '@/modules/listing/ListingHead';
+import ListingInfo from '@/modules/listing/ListingInfo';
+import ListingReservation from '@/modules/listing/ListingReservation';
 import { DateRange } from 'react-day-picker';
 
 const initialDateRange: DateRange = {

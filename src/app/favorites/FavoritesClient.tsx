@@ -1,8 +1,8 @@
-import { SafeListing, SafeUser } from '@/src/types';
+import { SafeListing, SafeUser } from '@/types';
 
-import Heading from '@/src/modules/common/Heading';
-import Container from '@/src/modules/common/Container';
-import ListingCard from '@/src/modules/listing/ListingCard';
+import Heading from '@/modules/common/Heading';
+import Container from '@/modules/common/Container';
+import ListingCard from '@/modules/listing/ListingCard';
 
 interface FavoritesClientProps {
   listings: SafeListing[];

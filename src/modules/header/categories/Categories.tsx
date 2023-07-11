@@ -1,9 +1,9 @@
 'use client';
 
-import Container from '@/src/modules/common/Container';
+import Container from '@/modules/common/Container';
 import { usePathname } from 'next/navigation';
-import CategorySelector from '@/src/modules/category/CategorySelector';
-import categories from '@/src/modules/category/categories';
+import CategorySelector from '@/modules/category/CategorySelector';
+import categories from '@/modules/category/categories';
 
 const Categories = () => {
   const pathname = usePathname();

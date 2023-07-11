@@ -1,6 +1,6 @@
-import Menu from '@/src/modules/header/menu/Menu';
-import getCurrentUser from '@/src/actions/getCurrentUser';
-import NavbarButton from '@/src/modules/header/NavbarButton';
+import Menu from '@/modules/header/menu/Menu';
+import getCurrentUser from '@/actions/getCurrentUser';
+import NavbarButton from '@/modules/header/NavbarButton';
 
 export default async function Navbar({}) {
   const currentUser = await getCurrentUser();

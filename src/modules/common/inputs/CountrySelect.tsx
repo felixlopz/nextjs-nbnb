@@ -1,6 +1,6 @@
 'use client';
 
-import useCountries from '@/src/hooks/useCountries';
+import useCountries from '@/hooks/useCountries';
 import Select from 'react-select';
 
 export type Location = {

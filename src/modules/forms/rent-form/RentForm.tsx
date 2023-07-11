@@ -7,12 +7,12 @@ import {
   SubmitHandler,
   useForm,
 } from 'react-hook-form';
-import ListingCategorySelector from '@/src/modules/forms/listing-form-sections/ListingCategorySelector';
-import ListingLocation from '@/src/modules/forms/listing-form-sections/ListingLocation';
-import ListingCapacities from '@/src/modules/forms/listing-form-sections/ListingCapacities';
-import ListingImage from '@/src/modules/forms/listing-form-sections/ListingImage';
-import ListingTitleAndDescription from '@/src/modules/forms/listing-form-sections/ListingTitleAndDescription';
-import ListingPrice from '@/src/modules/forms/listing-form-sections/ListingPrice';
+import ListingCategorySelector from '@/modules/forms/listing-form-sections/ListingCategorySelector';
+import ListingLocation from '@/modules/forms/listing-form-sections/ListingLocation';
+import ListingCapacities from '@/modules/forms/listing-form-sections/ListingCapacities';
+import ListingImage from '@/modules/forms/listing-form-sections/ListingImage';
+import ListingTitleAndDescription from '@/modules/forms/listing-form-sections/ListingTitleAndDescription';
+import ListingPrice from '@/modules/forms/listing-form-sections/ListingPrice';
 import axios from 'axios';
 import { SubmitFormProps } from '../types';
 import MultiStepForm, {
@@ -21,7 +21,7 @@ import MultiStepForm, {
 import { InferType, object, string, number, array } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import toast from 'react-hot-toast';
-import { getFormErrors } from '@/src/modules/forms/utils';
+import { getFormErrors } from '@/modules/forms/utils';
 
 export enum RentModalFormSteps {
   Category = 0,

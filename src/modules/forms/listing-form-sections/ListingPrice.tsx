@@ -3,8 +3,8 @@
 import { FC } from 'react';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
 import { RentFormFields } from '../rent-form/RentForm';
-import FormControl from '@/src/modules/forms/components/FormControl';
-import Heading from '@/src/modules/common/Heading';
+import FormControl from '@/modules/forms/components/FormControl';
+import Heading from '@/modules/common/Heading';
 
 type ListingPriceProps = {
   register?: UseFormRegister<RentFormFields>;

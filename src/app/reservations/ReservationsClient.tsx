@@ -5,10 +5,10 @@ import axios from 'axios';
 import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { SafeReservation, SafeUser } from '@/src/types';
-import Heading from '@/src/modules/common/Heading';
-import Container from '@/src/modules/common/Container';
-import ListingCard from '@/src/modules/listing/ListingCard';
+import { SafeReservation, SafeUser } from '@/types';
+import Heading from '@/modules/common/Heading';
+import Container from '@/modules/common/Container';
+import ListingCard from '@/modules/listing/ListingCard';
 
 interface ReservationsClientProps {
   reservations: SafeReservation[];

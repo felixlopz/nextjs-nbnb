@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { DayPicker } from 'react-day-picker';
-import { cn } from '@/src/libs/utils';
-import { buttonVariants } from '@/src/modules/common/Button';
+import { cn } from '@/libs/utils';
+import { buttonVariants } from '@/modules/common/Button';
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
@@ -39,7 +39,7 @@ function Calendar({
         ),
         day_selected:
           'bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground',
-        day_today: 'text-rose-500',
+        day_today: 'text-orange-500',
         day_outside: 'text-muted-foreground opacity-50',
         day_disabled: 'text-muted-foreground opacity-50',
         day_hidden: 'invisible',

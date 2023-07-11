@@ -2,8 +2,8 @@ import '../styles/globals.css';
 
 import { Nunito } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
-import Header from '@/src/modules/header/Header';
-import ModalManager from '@/src/modules/modal/ModalManager';
+import Header from '@/modules/header/Header';
+import ModalManager from '@/modules/modal/ModalManager';
 
 const nunito = Nunito({ subsets: ['latin'] });
 

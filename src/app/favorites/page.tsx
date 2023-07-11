@@ -1,7 +1,7 @@
-import EmptyState from '@/src/modules/common/EmptyState';
+import EmptyState from '@/modules/common/EmptyState';
 
-import getCurrentUser from '@/src/actions/getCurrentUser';
-import getFavoriteListings from '@/src/actions/getFavoriteListing';
+import getCurrentUser from '@/actions/getCurrentUser';
+import getFavoriteListings from '@/actions/getFavoriteListing';
 
 import FavoritesClient from './FavoritesClient';
 

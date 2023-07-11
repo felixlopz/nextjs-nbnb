@@ -1,11 +1,11 @@
 'use client';
 
 import { FC, useEffect } from 'react';
-import Heading from '@/src/modules/common/Heading';
+import Heading from '@/modules/common/Heading';
 import { useForm } from 'react-hook-form';
-import FormControl from '@/src/modules/forms/components/FormControl';
+import FormControl from '@/modules/forms/components/FormControl';
 import { signIn } from 'next-auth/react';
-import Button from '@/src/modules/common/Button';
+import Button from '@/modules/common/Button';
 import { SubmitFormProps } from '../types';
 
 export type LoginFormFields = {

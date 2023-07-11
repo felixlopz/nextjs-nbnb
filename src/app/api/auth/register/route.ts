@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import prisma from '@/src/libs/prismadb';
+import prisma from '@/libs/prismadb';
 import { NextResponse } from 'next/server';
 import { data } from 'autoprefixer';
 

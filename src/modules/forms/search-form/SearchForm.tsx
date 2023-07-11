@@ -7,21 +7,21 @@ import {
   SubmitHandler,
   useForm,
 } from 'react-hook-form';
-import ListingLocation from '@/src/modules/forms/listing-form-sections/ListingLocation';
-import ListingCapacities from '@/src/modules/forms/listing-form-sections/ListingCapacities';
+import ListingLocation from '@/modules/forms/listing-form-sections/ListingLocation';
+import ListingCapacities from '@/modules/forms/listing-form-sections/ListingCapacities';
 import { SubmitFormProps } from '../types';
 import MultiStepForm, {
   convertEnumToNumberArray,
-} from '@/src/modules/forms/components/MultiStepForm';
+} from '@/modules/forms/components/MultiStepForm';
 import { InferType, object, string, number, array, date } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import toast from 'react-hot-toast';
-import { getFormErrors } from '@/src/modules/forms/utils';
+import { getFormErrors } from '@/modules/forms/utils';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { formatISO } from 'date-fns';
 import qs from 'query-string';
-import { useListingSearchParams } from '@/src/hooks/useListingSearchParams';
-import ListingDateRange from '@/src/modules/forms/listing-form-sections/ListingDateRange';
+import { useListingSearchParams } from '@/hooks/useListingSearchParams';
+import ListingDateRange from '@/modules/forms/listing-form-sections/ListingDateRange';
 import { DateRange } from 'react-day-picker';
 
 export enum SearchModalFormSteps {

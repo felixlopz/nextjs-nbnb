@@ -1,9 +1,9 @@
 'use client';
 
 import { FC } from 'react';
-import Heading from '@/src/modules/common/Heading';
-import FormControl from '@/src/modules/forms/components/FormControl';
-import { RentFormFields } from '@/src/modules/forms/rent-form/RentForm';
+import Heading from '@/modules/common/Heading';
+import FormControl from '@/modules/forms/components/FormControl';
+import { RentFormFields } from '@/modules/forms/rent-form/RentForm';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
 interface ListingTitleAndDescriptionProps {

@@ -1,7 +1,7 @@
 'use client';
 
 import { FC, ReactNode, useCallback, useMemo } from 'react';
-import Button from '@/src/modules/common/Button';
+import Button from '@/modules/common/Button';
 
 export const convertEnumToNumberArray = (enumObject: any): Array<number> => {
   return Object.values(enumObject)

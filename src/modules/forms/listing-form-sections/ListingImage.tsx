@@ -1,8 +1,8 @@
 'use client';
 
 import { FC } from 'react';
-import Heading from '@/src/modules/common/Heading';
-import ImageUpload from '@/src/modules/common/inputs/ImageUpload';
+import Heading from '@/modules/common/Heading';
+import ImageUpload from '@/modules/common/inputs/ImageUpload';
 
 interface ListingImageProps {
   imageSrc: string;

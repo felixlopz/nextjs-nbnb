@@ -1,11 +1,11 @@
 'use client';
 
-import useLoginModal from '@/src/modules/modal/login/useLoginModal';
-import Modal from '@/src/modules/modal/Modal';
-import AuthProviders from '@/src/modules/common/AuthProviders';
-import useRegisterModal from '@/src/modules/modal/register/useRegisterModal';
+import useLoginModal from '@/modules/modal/login/useLoginModal';
+import Modal from '@/modules/modal/Modal';
+import AuthProviders from '@/modules/common/AuthProviders';
+import useRegisterModal from '@/modules/modal/register/useRegisterModal';
 
-import LoginForm from '@/src/modules/forms/login-form/LoginForm';
+import LoginForm from '@/modules/forms/login-form/LoginForm';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 

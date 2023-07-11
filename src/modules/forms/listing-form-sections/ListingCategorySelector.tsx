@@ -1,9 +1,9 @@
 'use client';
 
 import { FC } from 'react';
-import categories from '@/src/modules/category/categories';
-import Heading from '@/src/modules/common/Heading';
-import CategoryInput from '@/src/modules/category/CategoryInput';
+import categories from '@/modules/category/categories';
+import Heading from '@/modules/common/Heading';
+import CategoryInput from '@/modules/category/CategoryInput';
 
 interface ListingCategorySelectorProps {
   category: string;

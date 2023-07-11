@@ -1,7 +1,7 @@
 'use client';
 
-import Button from '@/src/modules/common/Button';
-import Calendar from '@/src/modules/common/inputs/Calendar';
+import Button from '@/modules/common/Button';
+import Calendar from '@/modules/common/inputs/Calendar';
 import { addYears, isSameDay } from 'date-fns';
 import { DateRange } from 'react-day-picker';
 

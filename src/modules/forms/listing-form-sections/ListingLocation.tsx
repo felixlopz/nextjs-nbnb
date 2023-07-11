@@ -1,10 +1,8 @@
 'use client';
 
 import { FC, useMemo } from 'react';
-import Heading from '@/src/modules/common/Heading';
-import CountrySelect, {
-  Location,
-} from '@/src/modules/common/inputs/CountrySelect';
+import Heading from '@/modules/common/Heading';
+import CountrySelect, { Location } from '@/modules/common/inputs/CountrySelect';
 import dynamic from 'next/dynamic';
 
 interface ListingLocationProps {
@@ -21,7 +19,7 @@ export const ListingLocation: FC<ListingLocationProps> = ({
   setCustomValue,
 }) => {
   const Map = useMemo(
-    () => dynamic(() => import('@/src/modules/common/Map'), { ssr: false }),
+    () => dynamic(() => import('@/modules/common/Map'), { ssr: false }),
     [location]
   );
   return (

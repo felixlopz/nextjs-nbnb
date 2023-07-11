@@ -1,7 +1,7 @@
-import getCurrentUser from '@/src/actions/getCurrentUser';
-import getListingById from '@/src/actions/getListingById';
-import getReservations from '@/src/actions/getReservations';
-import EmptyState from '@/src/modules/common/EmptyState';
+import getCurrentUser from '@/actions/getCurrentUser';
+import getListingById from '@/actions/getListingById';
+import getReservations from '@/actions/getReservations';
+import EmptyState from '@/modules/common/EmptyState';
 import Listing from './ListingClient';
 
 interface IParams {

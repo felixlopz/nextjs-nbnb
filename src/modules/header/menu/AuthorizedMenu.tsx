@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import useRentModal from '@/src/modules/modal/rent/useRentModal';
+import useRentModal from '@/modules/modal/rent/useRentModal';
 import { signOut } from 'next-auth/react';
-import MenuButton from '@/src/modules/header/menu/MenuButton';
-import MenuLink from '@/src/modules/header/menu/MenuLink';
+import MenuButton from '@/modules/header/menu/MenuButton';
+import MenuLink from '@/modules/header/menu/MenuLink';
 
 interface AuthorizedMenuProps {}
 

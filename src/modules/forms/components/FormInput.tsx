@@ -1,6 +1,6 @@
 'use client';
 
-import { Input, InputProps } from '@/src/modules/common/inputs/Input';
+import { Input, InputProps } from '@/modules/common/inputs/Input';
 import {
   DeepMap,
   FieldError,
@@ -11,8 +11,8 @@ import {
   FieldErrors,
 } from 'react-hook-form';
 import FormErrorMessage from './FormErrorMessage';
-import { cn } from '@/src/libs/utils';
-import { getFormErrors } from '@/src/modules/forms/utils';
+import { cn } from '@/libs/utils';
+import { getFormErrors } from '@/modules/forms/utils';
 
 export type FormInputProps<TFormValues extends FieldValues> = {
   name: Path<TFormValues>;

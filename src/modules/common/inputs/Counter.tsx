@@ -1,7 +1,8 @@
 'use client';
 
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import Button from '@/modules/common/Button';
 
 interface CounterProps {
   title: string;
@@ -28,6 +29,8 @@ const Counter: React.FC<CounterProps> = ({
     onChange(value - 1);
   }, [onChange, value]);
 
+  const isLeftDisabled = useMemo(() => value <= 1, [value]);
+
   return (
     <div className="flex flex-row items-center justify-between">
       <div className="flex flex-col">
@@ -35,24 +38,27 @@ const Counter: React.FC<CounterProps> = ({
         <div className="font-light text-gray-600">{subtitle}</div>
       </div>
       <div className="flex flex-row items-center gap-4">
-        <div
+        <Button
           onClick={onReduce}
+          disabled={isLeftDisabled}
+          variant="outline"
           className="
             flex
+            h-8
+            w-8
             cursor-pointer
             items-center
             justify-center
             rounded-full
-            border-[1px]
             border-neutral-400
-            p-1.5
+            p-0
             text-neutral-600
             transition
             hover:border-black
           "
         >
           <AiOutlineMinus />
-        </div>
+        </Button>
         <div
           className="
             text-base 
@@ -62,24 +68,26 @@ const Counter: React.FC<CounterProps> = ({
         >
           {value}
         </div>
-        <div
+        <Button
           onClick={onAdd}
+          variant="outline"
           className="
             flex
+            h-8
+            w-8
             cursor-pointer
             items-center
             justify-center
             rounded-full
-            border-[1px]
-            border-neutral-400
-            p-1.5
+            border-neutral-400  
+            p-0
             text-neutral-600
             transition
             hover:border-black
           "
         >
           <AiOutlinePlus />
-        </div>
+        </Button>
       </div>
     </div>
   );

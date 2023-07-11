@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
-import Heading from '@/src/modules/common/Heading';
-import Calendar from '@/src/modules/common/inputs/Calendar';
+import Heading from '@/modules/common/Heading';
+import Calendar from '@/modules/common/inputs/Calendar';
 import { addYears, isSameDay } from 'date-fns';
 import { DateRange } from 'react-day-picker';
 

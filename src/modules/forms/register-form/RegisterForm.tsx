@@ -1,8 +1,8 @@
 import { FC, useEffect } from 'react';
-import Heading from '@/src/modules/common/Heading';
+import Heading from '@/modules/common/Heading';
 import { useForm } from 'react-hook-form';
-import FormControl from '@/src/modules/forms/components/FormControl';
-import Button from '@/src/modules/common/Button';
+import FormControl from '@/modules/forms/components/FormControl';
+import Button from '@/modules/common/Button';
 import axios from 'axios';
 import { SubmitFormProps } from '../types';
 

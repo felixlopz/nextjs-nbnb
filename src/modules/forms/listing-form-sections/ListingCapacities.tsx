@@ -1,8 +1,8 @@
 'use client';
 
 import { FC } from 'react';
-import Heading from '@/src/modules/common/Heading';
-import Counter from '@/src/modules/common/inputs/Counter';
+import Heading from '@/modules/common/Heading';
+import Counter from '@/modules/common/inputs/Counter';
 
 interface ListingCapacitiesProps {
   title: string;

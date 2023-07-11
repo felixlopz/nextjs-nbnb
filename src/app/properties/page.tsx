@@ -1,7 +1,7 @@
-import EmptyState from '@/src/modules/common/EmptyState';
+import EmptyState from '@/modules/common/EmptyState';
 
-import getCurrentUser from '@/src/actions/getCurrentUser';
-import getListings from '@/src/actions/getListings';
+import getCurrentUser from '@/actions/getCurrentUser';
+import getListings from '@/actions/getListings';
 
 import PropertiesClient from './PropertiesClient';
 

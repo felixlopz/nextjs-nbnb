@@ -1,9 +1,9 @@
-import getCurrentUser from '@/src/actions/getCurrentUser';
-import getListings, { IListingsParams } from '@/src/actions/getListings';
-import Container from '@/src/modules/common/Container';
-import EmptyState from '@/src/modules/common/EmptyState';
-import ListingCard from '@/src/modules/listing/ListingCard';
-import { SafeListing } from '@/src/types';
+import getCurrentUser from '@/actions/getCurrentUser';
+import getListings, { IListingsParams } from '@/actions/getListings';
+import Container from '@/modules/common/Container';
+import EmptyState from '@/modules/common/EmptyState';
+import ListingCard from '@/modules/listing/ListingCard';
+import { SafeListing } from '@/types';
 
 interface HomeProps {
   searchParams: IListingsParams;
@@ -14,6 +14,16 @@ export default async function Home({ searchParams }: HomeProps) {
   const currentUser = await getCurrentUser();
 
   const isEmpty = listings.length === 0;
+  const areSearchParams = Object.keys(searchParams).length > 0;
+
+  if (isEmpty && !areSearchParams) {
+    return (
+      <EmptyState
+        title="No listings added yet"
+        subtitle="Try adding one yourself"
+      />
+    );
+  }
 
   if (isEmpty) {
     return <EmptyState showReset />;

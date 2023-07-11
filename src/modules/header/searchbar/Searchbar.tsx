@@ -5,8 +5,8 @@ import { useMemo } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import { differenceInDays } from 'date-fns';
 
-import useSearchModal from '@/src/modules/modal/search/useSearchModal';
-import useCountries from '@/src/hooks/useCountries';
+import useSearchModal from '@/modules/modal/search/useSearchModal';
+import useCountries from '@/hooks/useCountries';
 
 const Searchbar = () => {
   const searchModal = useSearchModal();
@@ -112,7 +112,7 @@ const Searchbar = () => {
           <div
             className="
               rounded-full 
-              bg-rose-500 
+              bg-gradient-to-r from-orange-700 to-orange-500
               p-2 
               text-white
             "

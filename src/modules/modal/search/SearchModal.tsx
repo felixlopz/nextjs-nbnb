@@ -1,9 +1,9 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import useSearchModal from '@/src/modules/modal/search/useSearchModal';
-import Modal from '@/src/modules/modal/Modal';
-import SearchForm from '@/src/modules/forms/search-form/SearchForm';
+import useSearchModal from '@/modules/modal/search/useSearchModal';
+import Modal from '@/modules/modal/Modal';
+import SearchForm from '@/modules/forms/search-form/SearchForm';
 
 const SearchModal = () => {
   const router = useRouter();

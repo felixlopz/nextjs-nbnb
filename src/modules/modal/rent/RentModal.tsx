@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
-import Modal from '@/src/modules/modal/Modal';
-import useRentModal from '@/src/modules/modal/rent/useRentModal';
+import Modal from '@/modules/modal/Modal';
+import useRentModal from '@/modules/modal/rent/useRentModal';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
-import RentForm from '@/src/modules/forms/rent-form/RentForm';
+import RentForm from '@/modules/forms/rent-form/RentForm';
 
 const RentModal = () => {
   const rentModal = useRentModal();

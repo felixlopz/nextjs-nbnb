@@ -1,4 +1,4 @@
-import { cn } from '@/src/libs/utils';
+import { cn } from '@/libs/utils';
 import { FC } from 'react';
 
 interface FormErrorMessageProps {

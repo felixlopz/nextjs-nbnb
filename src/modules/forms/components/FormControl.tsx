@@ -1,11 +1,11 @@
 'use client';
 
-import { cn } from '@/src/libs/utils';
+import { cn } from '@/libs/utils';
 import { FormInputProps } from './FormInput';
 import { FieldValues } from 'react-hook-form';
-import { getFormErrors } from '@/src/modules/forms/utils';
+import { getFormErrors } from '@/modules/forms/utils';
 import FormInputLabel from './FormInputLabel';
-import NewInput from '@/src/modules/common/inputs/Input';
+import NewInput from '@/modules/common/inputs/Input';
 import FormErrorMessage from './FormErrorMessage';
 
 type FormControlProps<TFormValue extends FieldValues> = Omit<
@@ -40,7 +40,7 @@ const FormControl = <TFormValues extends FieldValues>({
           {...props}
           {...(register && register(name, rules))}
         />
-        <FormInputLabel className={cn([hasError && 'text-rose-500'])}>
+        <FormInputLabel className={cn([hasError && 'text-red-500'])}>
           {label}
         </FormInputLabel>
       </div>

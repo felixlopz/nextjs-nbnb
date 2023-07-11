@@ -1,14 +1,14 @@
 'use client';
 
-import useCountries from '@/src/hooks/useCountries';
+import useCountries from '@/hooks/useCountries';
 import { Listing, Reservation, User } from '@prisma/client';
 import { useRouter } from 'next/navigation';
 import { useCallback, useMemo } from 'react';
 import { format } from 'date-fns';
-import Button from '@/src/modules/common/Button';
+import Button from '@/modules/common/Button';
 import Image from 'next/image';
-import HeartButton from '@/src/modules/common/HeartButton';
-import { SafeListing, SafeUser } from '@/src/types';
+import HeartButton from '@/modules/common/HeartButton';
+import { SafeListing, SafeUser } from '@/types';
 
 interface ListingCardProps {
   data: SafeListing;
