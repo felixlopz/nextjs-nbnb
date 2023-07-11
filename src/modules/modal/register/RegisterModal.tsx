@@ -37,18 +37,18 @@ const RegisterModal = () => {
   );
 
   const onSubmitStarted = () => {
-    loginModal.setIsLoading(true);
+    registerModal.setIsLoading(true);
   };
 
   const onSubmitSuccess = () => {
-    loginModal.setIsLoading(false);
-    toast.success('Logged In!');
+    registerModal.setIsLoading(false);
+    toast.success('Register completed, log in!');
     router.refresh();
-    loginModal.onClose();
+    registerModal.onClose();
   };
 
   const onSubmitFail = (error?: string) => {
-    loginModal.setIsLoading(false);
+    registerModal.setIsLoading(false);
     toast.error(error || 'Something went wrong!');
   };
 
