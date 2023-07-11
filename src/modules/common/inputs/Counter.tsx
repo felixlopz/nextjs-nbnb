@@ -48,7 +48,7 @@ const Counter: React.FC<CounterProps> = ({
             p-1.5
             text-neutral-600
             transition
-            hover:opacity-80
+            hover:border-black
           "
         >
           <AiOutlineMinus />
@@ -75,7 +75,7 @@ const Counter: React.FC<CounterProps> = ({
             p-1.5
             text-neutral-600
             transition
-            hover:opacity-80
+            hover:border-black
           "
         >
           <AiOutlinePlus />

@@ -1,33 +1,58 @@
 'use client';
 
-import { DateRange, Range, RangeKeyDict } from 'react-date-range';
+import * as React from 'react';
+import { DayPicker } from 'react-day-picker';
+import { cn } from '@/src/libs/utils';
+import { buttonVariants } from '@/src/modules/common/Button';
 
-import 'react-date-range/dist/styles.css';
-import 'react-date-range/dist/theme/default.css';
+export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
-interface DatePickerProps {
-  value: Range;
-  onChange: (value: RangeKeyDict) => void;
-  disabledDates?: Date[];
-}
-
-const DatePicker: React.FC<DatePickerProps> = ({
-  value,
-  onChange,
-  disabledDates,
-}) => {
+function Calendar({
+  className,
+  classNames,
+  showOutsideDays = true,
+  ...props
+}: CalendarProps) {
   return (
-    <DateRange
-      rangeColors={['#262626']}
-      ranges={[value]}
-      date={new Date()}
-      onChange={onChange}
-      direction="vertical"
-      showDateDisplay={false}
-      minDate={new Date()}
-      disabledDates={disabledDates}
+    <DayPicker
+      showOutsideDays={showOutsideDays}
+      className={cn('p-3', className)}
+      classNames={{
+        months: 'flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0',
+        month: 'space-y-4',
+        caption: 'flex items-center relative mb-4',
+        caption_label: 'text-md font-medium text-center w-full',
+        nav: '',
+        nav_button: cn(
+          'h-7 w-7 bg-transparent p-0 hover:opacity-100 border-none outline-none rounded-none'
+        ),
+        nav_button_previous: 'disabled:opacity-50 absolute left-0 top-[-4px]',
+        nav_button_next: 'disabled:opacity-50',
+        table: 'w-full border-collapse space-y-1',
+        head_row: 'flex',
+        head_cell: 'text-muted-foreground rounded-md w-8 font-normal text-base',
+        row: 'flex w-full mt-2',
+        cell: 'text-center p-0 relative [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20',
+        day: cn(
+          buttonVariants({ variant: 'ghost' }),
+          'h-11 w-11 p-0 font-normal aria-selected:opacity-100 text-base rounded-none hover:border-black hover:border-1'
+        ),
+        day_selected:
+          'bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground',
+        day_today: 'bg-red ring-black ring-1',
+        day_outside: 'text-muted-foreground opacity-50',
+        day_disabled: 'text-muted-foreground opacity-50',
+        day_hidden: 'invisible',
+        day_range_middle: 'rounded-none bg-gray-100',
+        day_range_start: 'text-white bg-black',
+        day_range_end: 'text-white bg-black',
+
+        ...classNames,
+      }}
+      {...props}
     />
   );
-};
+}
+Calendar.displayName = 'Calendar';
 
-export default DatePicker;
+export default Calendar;

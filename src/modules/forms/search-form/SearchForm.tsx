@@ -18,10 +18,12 @@ import { InferType, object, string, number, array } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import toast from 'react-hot-toast';
 import { getFormErrors } from '@/src/modules/forms/utils';
+import DatePicker from '@/src/modules/common/inputs/DatePicker';
+import Heading from '@/src/modules/common/Heading';
 
 export enum SearchModalFormSteps {
-  Location = 0,
-  Date = 1,
+  Date = 0,
+  Location = 1,
   Info = 2,
 }
 
@@ -51,7 +53,7 @@ export const RentForm: FC<RentFormProps> = ({
   onSubmitFail = (error) => {},
 }) => {
   const [currentFormStep, setCurrentFormStep] = useState<SearchModalFormSteps>(
-    SearchModalFormSteps.Location
+    SearchModalFormSteps.Date
   );
 
   const {
@@ -170,6 +172,18 @@ export const RentForm: FC<RentFormProps> = ({
           location={location}
           setCustomValue={setCustomValue}
         />
+      ) : null}
+
+      {currentFormStep === SearchModalFormSteps.Date ? (
+        <div className="flex flex-col gap-8">
+          <Heading
+            title="When do you plan to go?"
+            subtitle="Make sure everyone is free!"
+          />
+          <div className="flex min-h-[425px] justify-center">
+            <DatePicker />
+          </div>
+        </div>
       ) : null}
 
       {currentFormStep === SearchModalFormSteps.Info ? (
