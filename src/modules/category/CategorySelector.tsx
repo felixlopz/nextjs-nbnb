@@ -75,9 +75,9 @@ export const CategorySelector: React.FC<CategorySelectorProps> = (props) => {
       gap-2 
       border-b-2 
       p-3 transition 
-      hover:text-neutral-800
-      ${selected ? 'border-b-neutral-800' : 'border-transparent'}
-      ${selected ? 'text-neutral-800' : 'text-neutral-500'}
+      hover:text-black
+      ${selected ? 'border-b-black' : 'border-transparent'}
+      ${selected ? 'text-black' : 'text-neutral-500'}
       `}
     >
       <Icon size={26} />

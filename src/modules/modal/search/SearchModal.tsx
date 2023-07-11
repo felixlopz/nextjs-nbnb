@@ -15,7 +15,6 @@ const SearchModal = () => {
 
   const onSubmitSuccess = () => {
     searchModal.setIsLoading(false);
-    router.refresh();
     searchModal.onClose();
   };
 

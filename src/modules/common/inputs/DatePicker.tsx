@@ -1,23 +1,29 @@
 'use client';
 
-import { useState, FC } from 'react';
+import { useState, FC, useEffect } from 'react';
 import Calendar from '@/src/modules/common/inputs/Calendar';
 import { DateRange } from 'react-day-picker';
 import { addYears } from 'date-fns';
 
-interface DatePickerProps {}
+interface DatePickerProps {
+  updateStartDateAndEndDate: (startDate?: Date, endDate?: Date) => void;
+}
 
-const DatePicker: FC<DatePickerProps> = () => {
+const DatePicker: FC<DatePickerProps> = ({ updateStartDateAndEndDate }) => {
   const defaultMonth = new Date();
   const nextYear = addYears(defaultMonth, 1);
   const [range, setRange] = useState<DateRange | undefined>();
+
+  useEffect(() => {
+    updateStartDateAndEndDate(range?.from, range?.to);
+  }, [range]);
 
   return (
     <Calendar
       mode="range"
       today={defaultMonth}
       defaultMonth={defaultMonth}
-      fromMonth={defaultMonth}
+      fromDate={defaultMonth}
       toDate={nextYear}
       selected={range}
       onSelect={setRange}

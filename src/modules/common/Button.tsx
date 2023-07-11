@@ -7,14 +7,14 @@ import * as React from 'react';
 import { IconType } from 'react-icons';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center rounded-lg text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 rounded-lg transition hover:opacity-80 disabled:cursor-not-allowed disabled:pointer-events-none relative disabled:opacity-50',
+  'inline-flex items-center justify-center rounded-lg text-sm font-medium transition-colors focus:ring-2 focus:ring-black focus:ring-offset-[3px] rounded-lg transition disabled:cursor-not-allowed disabled:pointer-events-none relative disabled:opacity-50',
   {
     variants: {
       variant: {
         default:
-          'bg-rose-500 border-rose-500 text-white outline outline-2 outline-rose-500 focus:ring-rose-500',
+          'bg-rose-500 border-rose-500 text-white outline outline-1 outline-rose-500 focus:ring-rose-500',
         outline:
-          'bg-white border-black text-black outline outline-2 outline-black hover:bg-zinc-100 focus:ring-black',
+          'outline outline-1 outline-neutral-400 bg-transparent hover:outline-black',
         link: 'bg-transparent underline-offset-4 hover:underline text-rose-500',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
       },

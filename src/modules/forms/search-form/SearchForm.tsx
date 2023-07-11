@@ -9,21 +9,23 @@ import {
 } from 'react-hook-form';
 import ListingLocation from '@/src/modules/forms/listing-form-sections/ListingLocation';
 import ListingCapacities from '@/src/modules/forms/listing-form-sections/ListingCapacities';
-import axios from 'axios';
 import { SubmitFormProps } from '../types';
 import MultiStepForm, {
   convertEnumToNumberArray,
-} from '../components/MultiStepForm';
-import { InferType, object, string, number, array } from 'yup';
+} from '@/src/modules/forms/components/MultiStepForm';
+import { InferType, object, string, number, array, date } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import toast from 'react-hot-toast';
 import { getFormErrors } from '@/src/modules/forms/utils';
 import DatePicker from '@/src/modules/common/inputs/DatePicker';
 import Heading from '@/src/modules/common/Heading';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { formatISO } from 'date-fns';
+import qs from 'query-string';
 
 export enum SearchModalFormSteps {
-  Date = 0,
-  Location = 1,
+  Location = 0,
+  Date = 1,
   Info = 2,
 }
 
@@ -41,20 +43,26 @@ const searchFormFieldsValidationSchema = object({
   guestCount: number().positive().required(),
   roomCount: number().positive().required(),
   bathroomCount: number().positive().required(),
+  startDate: date().nullable().required('Select a start date.'),
+  endDate: date().nullable().required('Select an end date.'),
 });
 
-export type RentFormFields = InferType<typeof searchFormFieldsValidationSchema>;
+export type SearchFormFields = InferType<
+  typeof searchFormFieldsValidationSchema
+>;
 
-type RentFormProps = SubmitFormProps & {};
+type SearchFormProps = SubmitFormProps & {};
 
-export const RentForm: FC<RentFormProps> = ({
+export const SearchForm: FC<SearchFormProps> = ({
   onSubmitStarted = () => {},
   onSubmitSuccess = () => {},
   onSubmitFail = (error) => {},
 }) => {
   const [currentFormStep, setCurrentFormStep] = useState<SearchModalFormSteps>(
-    SearchModalFormSteps.Date
+    SearchModalFormSteps.Location
   );
+  const params = useSearchParams();
+  const router = useRouter();
 
   const {
     handleSubmit,
@@ -62,18 +70,19 @@ export const RentForm: FC<RentFormProps> = ({
     reset,
     setValue,
     watch,
-  } = useForm<RentFormFields>({
+  } = useForm<SearchFormFields>({
     defaultValues: {
       bathroomCount: 1,
       guestCount: 1,
       roomCount: 1,
+      endDate: undefined,
+      startDate: undefined,
     },
     resolver: yupResolver(searchFormFieldsValidationSchema),
   });
 
   useEffect(() => {
     return () => {
-      reset();
       setCurrentFormStep(SearchModalFormSteps.Location);
     };
   }, [reset]);
@@ -82,6 +91,17 @@ export const RentForm: FC<RentFormProps> = ({
   const guestCount = watch('guestCount');
   const roomCount = watch('roomCount');
   const bathroomCount = watch('bathroomCount');
+  const startDate = watch('startDate');
+  const endDate = watch('endDate');
+
+  const updateStartDateAndEndDate = (startDate?: Date, endDate?: Date) => {
+    if (startDate != null) {
+      setValue('startDate', startDate);
+    }
+    if (endDate != null) {
+      setValue('endDate', endDate);
+    }
+  };
 
   const setCustomValue = (id: any, value: any) => {
     setValue(id, value, {
@@ -91,56 +111,45 @@ export const RentForm: FC<RentFormProps> = ({
     });
   };
 
-  // const onSubmit = useCallback(async () => {
-  //   let currentQuery = {};
+  const onSubmit: SubmitHandler<SearchFormFields> = async () => {
+    onSubmitStarted();
 
-  //   if (params) {
-  //     currentQuery = qs.parse(params.toString());
-  //   }
+    let currentQuery = {};
 
-  //   const updatedQuery: any = {
-  //     ...currentQuery,
-  //     locationValue: location?.value,
-  //     guestCount,
-  //     roomCount,
-  //     bathroomCount,
-  //   };
+    if (params) {
+      currentQuery = qs.parse(params.toString());
+    }
 
-  //   if (dateRange.startDate) {
-  //     updatedQuery.startDate = formatISO(dateRange.startDate);
-  //   }
+    const updatedQuery: any = {
+      ...currentQuery,
+      locationValue: location?.value,
+      guestCount,
+      roomCount,
+      bathroomCount,
+    };
 
-  //   if (dateRange.endDate) {
-  //     updatedQuery.endDate = formatISO(dateRange.endDate);
-  //   }
+    if (startDate) {
+      updatedQuery.startDate = formatISO(startDate);
+    }
 
-  //   const url = qs.stringifyUrl(
-  //     {
-  //       url: '/',
-  //       query: updatedQuery,
-  //     },
-  //     { skipNull: true }
-  //   );
+    if (endDate) {
+      updatedQuery.endDate = formatISO(endDate);
+    }
 
-  //   setStep(STEPS.LOCATION);
-  //   searchModal.onClose();
-  //   router.push(url);
-  // }, [
-  //   step,
-  //   searchModal,
-  //   location,
-  //   router,
-  //   guestCount,
-  //   roomCount,
-  //   dateRange,
-  //   bathroomCount,
-  //   params,
-  // ]);
+    const url = qs.stringifyUrl(
+      {
+        url: '/',
+        query: updatedQuery,
+      },
+      { skipNull: true }
+    );
 
-  const onSubmit: SubmitHandler<RentFormFields> = async (data) => {};
+    router.push(url);
+    onSubmitSuccess();
+  };
 
-  const onInvalid: SubmitErrorHandler<RentFormFields> = (
-    errors: FieldErrors<RentFormFields>
+  const onInvalid: SubmitErrorHandler<SearchFormFields> = (
+    errors: FieldErrors<SearchFormFields>
   ) => {
     const firstErrorKey = Object.keys(errors)[0];
 
@@ -181,7 +190,7 @@ export const RentForm: FC<RentFormProps> = ({
             subtitle="Make sure everyone is free!"
           />
           <div className="flex min-h-[425px] justify-center">
-            <DatePicker />
+            <DatePicker updateStartDateAndEndDate={updateStartDateAndEndDate} />
           </div>
         </div>
       ) : null}
@@ -203,4 +212,4 @@ export const RentForm: FC<RentFormProps> = ({
   );
 };
 
-export default RentForm;
+export default SearchForm;
