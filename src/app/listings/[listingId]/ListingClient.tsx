@@ -3,9 +3,8 @@
 import axios from 'axios';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { Range } from 'react-date-range';
 import { useRouter } from 'next/navigation';
-import { differenceInDays, eachDayOfInterval } from 'date-fns';
+import { addDays, differenceInDays, eachDayOfInterval } from 'date-fns';
 
 import useLoginModal from '@/src/modules/modal/login/useLoginModal';
 import { SafeListing, SafeReservation, SafeUser } from '@/src/types';
@@ -15,11 +14,11 @@ import { categories } from '@/src/modules/category/categories';
 import ListingHead from '@/src/modules/listing/ListingHead';
 import ListingInfo from '@/src/modules/listing/ListingInfo';
 import ListingReservation from '@/src/modules/listing/ListingReservation';
+import { DateRange } from 'react-day-picker';
 
-const initialDateRange = {
-  startDate: new Date(),
-  endDate: new Date(),
-  key: 'selection',
+const initialDateRange: DateRange = {
+  from: undefined,
+  to: undefined,
 };
 
 interface ListingClientProps {
@@ -58,8 +57,10 @@ const ListingClient: React.FC<ListingClientProps> = ({
   }, [listing.category]);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [totalPrice, setTotalPrice] = useState(listing.price);
-  const [dateRange, setDateRange] = useState<Range>(initialDateRange);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [dateRange, setDateRange] = useState<DateRange | undefined>(
+    initialDateRange
+  );
 
   const onCreateReservation = useCallback(() => {
     if (!currentUser) {
@@ -70,8 +71,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
     axios
       .post('/api/reservations', {
         totalPrice,
-        startDate: dateRange.startDate,
-        endDate: dateRange.endDate,
+        startDate: dateRange?.from,
+        endDate: dateRange?.to,
         listingId: listing?.id,
       })
       .then(() => {
@@ -79,7 +80,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
         setDateRange(initialDateRange);
         router.push('/trips');
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log(error);
         toast.error('Something went wrong.');
       })
       .finally(() => {
@@ -88,14 +90,18 @@ const ListingClient: React.FC<ListingClientProps> = ({
   }, [totalPrice, dateRange, listing?.id, router, currentUser, loginModal]);
 
   useEffect(() => {
-    if (dateRange.startDate && dateRange.endDate) {
-      const dayCount = differenceInDays(dateRange.endDate, dateRange.startDate);
+    if (dateRange?.from && dateRange.to) {
+      const dayCount = differenceInDays(dateRange.to, dateRange.from);
 
       if (dayCount && listing.price) {
         setTotalPrice(dayCount * listing.price);
       } else {
         setTotalPrice(listing.price);
       }
+    }
+
+    if (dateRange?.from == null || dateRange.to == null) {
+      setTotalPrice(0);
     }
   }, [dateRange, listing.price]);
 
@@ -105,6 +111,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
         className="
           mx-auto 
           max-w-screen-lg
+          md:pb-40
         "
       >
         <div className="flex flex-col gap-6">
@@ -120,19 +127,21 @@ const ListingClient: React.FC<ListingClientProps> = ({
               mt-6 
               grid 
               grid-cols-1 
-              md:grid-cols-4 
+              md:grid-cols-8 
               md:gap-10
             "
           >
-            <ListingInfo
-              user={listing.user}
-              category={category}
-              description={listing.description}
-              roomCount={listing.roomCount}
-              guestCount={listing.guestCount}
-              bathroomCount={listing.bathroomCount}
-              locationValue={listing.locationValue}
-            />
+            <div className="col-span-5 flex flex-col gap-8">
+              <ListingInfo
+                user={listing.user}
+                category={category}
+                description={listing.description}
+                roomCount={listing.roomCount}
+                guestCount={listing.guestCount}
+                bathroomCount={listing.bathroomCount}
+                locationValue={listing.locationValue}
+              />
+            </div>
             <div
               className="
                 order-first 

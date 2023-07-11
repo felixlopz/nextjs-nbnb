@@ -5,11 +5,13 @@ import Calendar from '@/src/modules/common/inputs/Calendar';
 import { DateRange } from 'react-day-picker';
 import { addYears } from 'date-fns';
 
-interface DatePickerProps {
+interface DateRangePickerProps {
   updateStartDateAndEndDate: (startDate?: Date, endDate?: Date) => void;
 }
 
-const DatePicker: FC<DatePickerProps> = ({ updateStartDateAndEndDate }) => {
+const DateRangePicker: FC<DateRangePickerProps> = ({
+  updateStartDateAndEndDate,
+}) => {
   const defaultMonth = new Date();
   const nextYear = addYears(defaultMonth, 1);
   const [range, setRange] = useState<DateRange | undefined>();
@@ -33,4 +35,4 @@ const DatePicker: FC<DatePickerProps> = ({ updateStartDateAndEndDate }) => {
   );
 };
 
-export default DatePicker;
+export default DateRangePicker;

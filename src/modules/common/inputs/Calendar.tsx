@@ -35,11 +35,11 @@ function Calendar({
         cell: 'text-center p-0 relative [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20',
         day: cn(
           buttonVariants({ variant: 'ghost' }),
-          'h-11 w-11 p-0 font-normal aria-selected:opacity-100 text-base rounded-none hover:border-black hover:border-1'
+          'h-11 w-11 p-0 font-normal aria-selected:opacity-100 text-base rounded-none hover:border-black hover:border-1 focus:ring-offset-2 '
         ),
         day_selected:
           'bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground',
-        day_today: 'bg-red ring-black ring-1',
+        day_today: 'text-rose-500',
         day_outside: 'text-muted-foreground opacity-50',
         day_disabled: 'text-muted-foreground opacity-50',
         day_hidden: 'invisible',

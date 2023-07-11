@@ -17,7 +17,7 @@ import { InferType, object, string, number, array, date } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import toast from 'react-hot-toast';
 import { getFormErrors } from '@/src/modules/forms/utils';
-import DatePicker from '@/src/modules/common/inputs/DatePicker';
+import DateRangePicker from '@/src/modules/common/inputs/DateRangePicker';
 import Heading from '@/src/modules/common/Heading';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { formatISO } from 'date-fns';
@@ -190,7 +190,9 @@ export const SearchForm: FC<SearchFormProps> = ({
             subtitle="Make sure everyone is free!"
           />
           <div className="flex min-h-[425px] justify-center">
-            <DatePicker updateStartDateAndEndDate={updateStartDateAndEndDate} />
+            <DateRangePicker
+              updateStartDateAndEndDate={updateStartDateAndEndDate}
+            />
           </div>
         </div>
       ) : null}
