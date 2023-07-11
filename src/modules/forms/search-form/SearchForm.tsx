@@ -22,6 +22,7 @@ import Heading from '@/src/modules/common/Heading';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { formatISO } from 'date-fns';
 import qs from 'query-string';
+import { useListingSearchParams } from '@/src/hooks/useListingSearchParams';
 
 export enum SearchModalFormSteps {
   Location = 0,
@@ -63,6 +64,7 @@ export const SearchForm: FC<SearchFormProps> = ({
   );
   const params = useSearchParams();
   const router = useRouter();
+  const listingSearchParams = useListingSearchParams();
 
   const {
     handleSubmit,
@@ -72,11 +74,12 @@ export const SearchForm: FC<SearchFormProps> = ({
     watch,
   } = useForm<SearchFormFields>({
     defaultValues: {
-      bathroomCount: 1,
-      guestCount: 1,
-      roomCount: 1,
-      endDate: undefined,
-      startDate: undefined,
+      bathroomCount: listingSearchParams.bathroomCount,
+      guestCount: listingSearchParams.guestCount,
+      roomCount: listingSearchParams.roomCount,
+      startDate: listingSearchParams.startDate,
+      endDate: listingSearchParams.endDate,
+      location: listingSearchParams.location,
     },
     resolver: yupResolver(searchFormFieldsValidationSchema),
   });
@@ -191,6 +194,7 @@ export const SearchForm: FC<SearchFormProps> = ({
           />
           <div className="flex min-h-[425px] justify-center">
             <DateRangePicker
+              defaultRange={{ from: startDate, to: endDate }}
               updateStartDateAndEndDate={updateStartDateAndEndDate}
             />
           </div>
