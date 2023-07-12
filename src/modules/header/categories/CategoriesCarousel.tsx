@@ -16,20 +16,20 @@ const CategoriesCarousel = () => {
 
   return (
     <Container>
-      <div className="flex flex-row items-center justify-between overflow-hidden pt-4">
+      <div className="flex flex-row items-center justify-between overflow-hidden py-2">
         <Swiper
           style={{
             position: 'relative',
           }}
-          spaceBetween={20}
+          spaceBetween={40}
           slidesPerView={5}
           breakpoints={{
             640: {
               slidesPerView: 6,
             },
             768: { slidesPerView: 9 },
-            1024: { slidesPerView: 16 },
-            1280: { slidesPerView: 16 },
+            1024: { slidesPerView: 12 },
+            1536: { slidesPerView: 16 },
           }}
         >
           {categories.map((category) => (

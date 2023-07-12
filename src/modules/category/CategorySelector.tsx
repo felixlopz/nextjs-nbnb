@@ -64,7 +64,7 @@ export const CategorySelector: React.FC<CategorySelectorProps> = (props) => {
   const selected = isCurrentCategorySelectedInParams();
 
   return (
-    <div
+    <button
       onClick={handleClick}
       className={`
       flex 
@@ -82,7 +82,7 @@ export const CategorySelector: React.FC<CategorySelectorProps> = (props) => {
     >
       <Icon size={26} />
       <div className="text-sm font-medium">{label}</div>
-    </div>
+    </button>
   );
 };
 

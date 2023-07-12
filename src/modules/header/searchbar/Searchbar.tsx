@@ -7,6 +7,7 @@ import { differenceInDays } from 'date-fns';
 
 import useSearchModal from '@/modules/modal/search/useSearchModal';
 import useCountries from '@/hooks/useCountries';
+import Button from '@/modules/common/Button';
 
 const Searchbar = () => {
   const searchModal = useSearchModal();
@@ -51,17 +52,20 @@ const Searchbar = () => {
   }, [guestCount]);
 
   return (
-    <div
+    <button
       onClick={searchModal.onOpen}
       className="
+        h-fit 
         w-full 
         cursor-pointer 
         rounded-full 
         border-[1px] 
         py-2 
         shadow-sm 
-        transition 
-        hover:shadow-md 
+        outline-none
+        transition
+        hover:shadow-md
+        focus:outline
         md:w-auto
       "
     >
@@ -121,7 +125,7 @@ const Searchbar = () => {
           </div>
         </div>
       </div>
-    </div>
+    </button>
   );
 };
 

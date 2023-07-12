@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export const Logo = () => {
   return (
-    <Link href="/">
+    <Link href="/" className="rounded-full px-4 py-2">
       <Image
         src={'/images/logo.png'}
         alt="Nextbnb logo"

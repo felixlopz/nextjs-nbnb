@@ -18,7 +18,9 @@ const MenuLink: React.FC<MenuLinkProps> = ({ href, label }) => {
         py-3
         font-semibold
         transition
-      hover:bg-neutral-100"
+        hover:bg-neutral-100
+        focus:bg-neutral-100
+        focus:outline-none"
     >
       {label}
     </Link>

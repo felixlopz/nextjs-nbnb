@@ -18,7 +18,10 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ onClick, label }) => {
       text-left
       font-semibold
       transition
-    hover:bg-neutral-100"
+    hover:bg-neutral-100
+      focus:bg-neutral-100
+      focus:outline-none
+    "
     >
       {label}
     </button>

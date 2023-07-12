@@ -28,7 +28,7 @@ const Menu: FC<MenuProps> = ({ currentUser }) => {
       className="relative hidden md:block"
       ref={ref as React.RefObject<HTMLDivElement>}
     >
-      <div
+      <button
         onClick={toggleMenuOpen}
         className="
           flex
@@ -50,11 +50,11 @@ const Menu: FC<MenuProps> = ({ currentUser }) => {
         <div className="hidden md:block">
           <Avatar src={currentUser?.image} />
         </div>
-      </div>
+      </button>
       {isMenuOpen && (
         <div
           onClick={toggleMenuOpen}
-          className="absolute right-0 top-full mt-2.5 w-48 overflow-hidden rounded-xl bg-white text-sm shadow-md"
+          className="absolute right-0 top-full z-50 mt-2.5 w-48 overflow-hidden rounded-xl bg-white text-sm shadow-md"
         >
           {currentUser == null ? <UnAuthorizedMenu /> : <AuthorizedMenu />}
         </div>

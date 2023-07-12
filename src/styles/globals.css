@@ -16,6 +16,12 @@ label[for='file-upload']:hover {
   color: #f97316;
 }
 
+a,
+iframe,
+button:focus {
+  outline-color: black;
+}
+
 html,
 body,
 :root {
