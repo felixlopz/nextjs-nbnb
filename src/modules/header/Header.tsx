@@ -2,7 +2,7 @@ import Logo from '@/modules/header/Logo';
 import Searchbar from '@/modules/header/searchbar/Searchbar';
 import Container from '@/modules/common/Container';
 import Navbar from '@/modules/header/Navbar';
-import Categories from '@/modules/header/categories/Categories';
+import CategoriesCarousel from '@/modules/header/categories/CategoriesCarousel';
 
 const Header = () => {
   return (
@@ -17,7 +17,7 @@ const Header = () => {
           </div>
         </Container>
       </div>
-      <Categories />
+      <CategoriesCarousel />
     </header>
   );
 };

@@ -1,3 +1,5 @@
+import 'swiper/css';
+import 'swiper/css/navigation';
 import '@uploadthing/react/styles.css';
 import '../styles/globals.css';
 

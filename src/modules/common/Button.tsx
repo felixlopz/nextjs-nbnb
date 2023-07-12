@@ -7,7 +7,7 @@ import * as React from 'react';
 import { IconType } from 'react-icons';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center rounded-lg text-sm font-medium transition-colors focus:ring-2 focus:ring-black focus:ring-offset-[3px] rounded-lg transition disabled:cursor-not-allowed disabled:pointer-events-none relative disabled:opacity-50',
+  'inline-flex items-center justify-center rounded-lg text-sm font-medium transition-colors focus:ring-2 focus:ring-black focus:ring-offset-[3px] rounded-lg transition disabled:cursor-not-allowed disabled:pointer-events-none relative disabled:opacity-50 cursor-pointer h-10 py-2 px-4',
   {
     variants: {
       variant: {
@@ -17,9 +17,10 @@ const buttonVariants = cva(
           'outline outline-1 outline-neutral-400 bg-transparent hover:outline-black',
         link: 'bg-transparent underline-offset-4 hover:underline text-orange-500',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
+        circle:
+          'outline outline-1 outline-neutral-400 bg-transparent hover:outline-black flex h-8 w-8 items-center justify-center rounded-full border-neutral-400 py-0 px-0 text-neutral-600 hover:border-black',
       },
       size: {
-        default: 'h-10 py-2 px-4',
         sm: 'h-9 px-2 rounded-md',
         xs: 'h-8 px-1.5 rounded-sm',
         lg: 'h-12 px-8 rounded-lg text-md',
@@ -27,7 +28,6 @@ const buttonVariants = cva(
     },
     defaultVariants: {
       variant: 'default',
-      size: 'default',
     },
   }
 );

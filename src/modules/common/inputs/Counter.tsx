@@ -38,28 +38,10 @@ const Counter: React.FC<CounterProps> = ({
         <div className="font-light text-gray-600">{subtitle}</div>
       </div>
       <div className="flex flex-row items-center gap-4">
-        <Button
-          onClick={onReduce}
-          disabled={isLeftDisabled}
-          variant="outline"
-          className="
-            flex
-            h-8
-            w-8
-            cursor-pointer
-            items-center
-            justify-center
-            rounded-full
-            border-neutral-400
-            p-0
-            text-neutral-600
-            transition
-            hover:border-black
-          "
-        >
+        <Button onClick={onReduce} disabled={isLeftDisabled} variant="circle">
           <AiOutlineMinus />
         </Button>
-        <div
+        <span
           className="
             text-base 
             font-light 
@@ -67,25 +49,8 @@ const Counter: React.FC<CounterProps> = ({
           "
         >
           {value}
-        </div>
-        <Button
-          onClick={onAdd}
-          variant="outline"
-          className="
-            flex
-            h-8
-            w-8
-            cursor-pointer
-            items-center
-            justify-center
-            rounded-full
-            border-neutral-400  
-            p-0
-            text-neutral-600
-            transition
-            hover:border-black
-          "
-        >
+        </span>
+        <Button onClick={onAdd} variant="circle">
           <AiOutlinePlus />
         </Button>
       </div>
