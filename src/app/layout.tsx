@@ -1,3 +1,4 @@
+import '@uploadthing/react/styles.css';
 import '../styles/globals.css';
 
 import { Nunito } from 'next/font/google';

@@ -16,6 +16,7 @@ interface MultiStepFormProps {
   totalSteps: Array<number>;
   updateStep: (step: number) => void;
   onSubmit: () => void;
+  lockSteps?: boolean;
   actionLabel?: string;
 }
 
@@ -26,6 +27,7 @@ export const MultiStepForm: FC<MultiStepFormProps> = ({
   isSubmitting,
   onSubmit,
   updateStep,
+  lockSteps,
   actionLabel = 'Submit',
 }) => {
   const isFirstStep = useMemo(() => step === 0, [step]);
@@ -35,18 +37,18 @@ export const MultiStepForm: FC<MultiStepFormProps> = ({
   );
 
   const onNextFormStep = useCallback(() => {
-    if (isLastStep) {
+    if (isLastStep || lockSteps) {
       return;
     }
     updateStep(step + 1);
-  }, [isLastStep, step, updateStep]);
+  }, [isLastStep, step, updateStep, lockSteps]);
 
   const onPreviousFormStep = useCallback(() => {
-    if (isFirstStep) {
+    if (isFirstStep || lockSteps) {
       return;
     }
     updateStep(step - 1);
-  }, [isFirstStep, step, updateStep]);
+  }, [isFirstStep, step, updateStep, lockSteps]);
 
   const goNextOrSubmitAction = useCallback(() => {
     if (isLastStep) {
@@ -72,7 +74,7 @@ export const MultiStepForm: FC<MultiStepFormProps> = ({
       {children}
       <div className="mt-12 flex items-center gap-x-4">
         <Button
-          disabled={isFirstStep || isSubmitting}
+          disabled={isFirstStep || isSubmitting || lockSteps}
           className="w-full"
           size="lg"
           variant="outline"
@@ -81,6 +83,7 @@ export const MultiStepForm: FC<MultiStepFormProps> = ({
           Back
         </Button>
         <Button
+          disabled={lockSteps}
           className="w-full"
           size="lg"
           isLoading={isSubmitting}

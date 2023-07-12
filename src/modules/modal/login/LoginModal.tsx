@@ -38,25 +38,25 @@ const LoginModal = () => {
   );
 
   const onSubmitStarted = () => {
-    loginModal.setIsLoading(true);
+    loginModal.setDisabled(true);
   };
 
   const onSubmitSuccess = () => {
-    loginModal.setIsLoading(false);
+    loginModal.setDisabled(false);
     toast.success('Logged In!');
     router.refresh();
     loginModal.onClose();
   };
 
   const onSubmitFail = (error?: string) => {
-    loginModal.setIsLoading(false);
+    loginModal.setDisabled(false);
     toast.error(error || 'Something went wrong!');
   };
 
   return (
     <Modal
       title="Login"
-      disabled={loginModal.isLoading}
+      disabled={loginModal.disabled}
       isOpen={loginModal.isOpen}
       onClose={loginModal.onClose}
       body={

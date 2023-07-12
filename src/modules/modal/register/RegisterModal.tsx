@@ -37,25 +37,25 @@ const RegisterModal = () => {
   );
 
   const onSubmitStarted = () => {
-    registerModal.setIsLoading(true);
+    registerModal.setDisabled(true);
   };
 
   const onSubmitSuccess = () => {
-    registerModal.setIsLoading(false);
+    registerModal.setDisabled(false);
     toast.success('Register completed, log in!');
     router.refresh();
     registerModal.onClose();
   };
 
   const onSubmitFail = (error?: string) => {
-    registerModal.setIsLoading(false);
+    registerModal.setDisabled(false);
     toast.error(error || 'Something went wrong!');
   };
 
   return (
     <Modal
       title="Register"
-      disabled={registerModal.isLoading}
+      disabled={registerModal.disabled}
       isOpen={registerModal.isOpen}
       onClose={registerModal.onClose}
       body={

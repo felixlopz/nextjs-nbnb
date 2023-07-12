@@ -25,22 +25,19 @@ export const Modal: React.FC<ModalProps> = ({
 }) => {
   const [showModal, setShowModal] = useState(isOpen);
 
-  const ref = useOnClickOutside(() => {
-    handleClose();
-  });
-
   useEffect(() => {
     setShowModal(isOpen);
   }, [isOpen]);
 
   const handleClose = useCallback(() => {
     if (disabled === true) return;
-
     setShowModal(false);
     setTimeout(() => {
       onClose();
     }, 300);
-  }, [disabled, onClose]);
+  }, [disabled]);
+
+  const ref = useOnClickOutside(handleClose);
 
   if (isOpen === false) return null;
 
@@ -51,7 +48,6 @@ export const Modal: React.FC<ModalProps> = ({
           ref={ref as React.RefObject<HTMLDivElement>}
           className="relative mx-auto my-6 h-full w-full md:h-auto md:w-4/6 lg:h-auto lg:w-full lg:max-w-2xl"
         >
-          {/* Content */}
           <div
             className={cn([
               'translate h-full translate-y-full opacity-0 duration-300',
@@ -59,7 +55,6 @@ export const Modal: React.FC<ModalProps> = ({
             ])}
           >
             <div className="translate relative flex h-full w-full flex-col rounded-lg border-0 bg-white shadow-lg outline-none focus:outline-none md:h-auto lg:h-auto">
-              {/* HEADER */}
               <div className="relative flex items-center justify-center rounded-t border-b-[1px] p-6">
                 <button
                   className="absolute left-4 border-0 p-1 transition hover:opacity-70
@@ -70,9 +65,7 @@ export const Modal: React.FC<ModalProps> = ({
                 </button>
                 <div className="text-lg font-semibold">{title}</div>
               </div>
-              {/*BODY*/}
               <div className="relative flex-auto p-6">{body}</div>
-              {/*FOOTER*/}
               {footer != null ? (
                 <div className="flex flex-col gap-2 p-6">{footer}</div>
               ) : null}

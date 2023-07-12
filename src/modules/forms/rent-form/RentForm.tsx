@@ -7,21 +7,22 @@ import {
   SubmitHandler,
   useForm,
 } from 'react-hook-form';
-import ListingCategorySelector from '@/modules/forms/listing-form-sections/ListingCategorySelector';
-import ListingLocation from '@/modules/forms/listing-form-sections/ListingLocation';
-import ListingCapacities from '@/modules/forms/listing-form-sections/ListingCapacities';
-import ListingImage from '@/modules/forms/listing-form-sections/ListingImage';
-import ListingTitleAndDescription from '@/modules/forms/listing-form-sections/ListingTitleAndDescription';
-import ListingPrice from '@/modules/forms/listing-form-sections/ListingPrice';
 import axios from 'axios';
-import { SubmitFormProps } from '../types';
-import MultiStepForm, {
-  convertEnumToNumberArray,
-} from '../components/MultiStepForm';
 import { InferType, object, string, number, array } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import toast from 'react-hot-toast';
+import ListingCategorySelector from '@/modules/forms/listing-form-sections/ListingCategorySelector';
+import ListingLocation from '@/modules/forms/listing-form-sections/ListingLocation';
+import ListingCapacities from '@/modules/forms/listing-form-sections/ListingCapacities';
+import ListingImageUpload from '@/modules/forms/listing-form-sections/ListingImageUpload';
+import ListingTitleAndDescription from '@/modules/forms/listing-form-sections/ListingTitleAndDescription';
+import ListingPrice from '@/modules/forms/listing-form-sections/ListingPrice';
 import { getFormErrors } from '@/modules/forms/utils';
+import { ModalStore } from '@/modules/modal/ModalTypes';
+import MultiStepForm, {
+  convertEnumToNumberArray,
+} from '@/modules/forms/components/MultiStepForm';
+import { SubmitFormProps } from '@/modules/forms/types';
 
 export enum RentModalFormSteps {
   Category = 0,
@@ -57,9 +58,12 @@ const rentFormFieldsValidationSchema = object({
 
 export type RentFormFields = InferType<typeof rentFormFieldsValidationSchema>;
 
-type RentFormProps = SubmitFormProps & {};
+type RentFormProps = SubmitFormProps & {
+  usingModal?: ModalStore;
+};
 
 export const RentForm: FC<RentFormProps> = ({
+  usingModal,
   onSubmitStarted = () => {},
   onSubmitSuccess = () => {},
   onSubmitFail = (error) => {},
@@ -67,6 +71,7 @@ export const RentForm: FC<RentFormProps> = ({
   const [currentFormStep, setCurrentFormStep] = useState<RentModalFormSteps>(
     RentModalFormSteps.Category
   );
+  const [lockSteps, setLockSteps] = useState(false);
 
   const {
     register,
@@ -146,6 +151,7 @@ export const RentForm: FC<RentFormProps> = ({
       onSubmit={handleSubmit(onSubmit, onInvalid)}
       isSubmitting={isSubmitting}
       actionLabel="Create"
+      lockSteps={lockSteps}
     >
       {currentFormStep === RentModalFormSteps.Category ? (
         <ListingCategorySelector
@@ -178,7 +184,20 @@ export const RentForm: FC<RentFormProps> = ({
       ) : null}
 
       {currentFormStep === RentModalFormSteps.Images ? (
-        <ListingImage imageSrc={imageSrc} setCustomValue={setCustomValue} />
+        <ListingImageUpload
+          imageSrc={imageSrc}
+          onUploadSuccess={(url) => {
+            setValue('imageSrc', url);
+          }}
+          onUploadStart={() => {
+            usingModal?.setDisabled(true);
+            setLockSteps(true);
+          }}
+          onUploadEnd={() => {
+            usingModal?.setDisabled(false);
+            setLockSteps(false);
+          }}
+        />
       ) : null}
 
       {currentFormStep === RentModalFormSteps.Description ? (

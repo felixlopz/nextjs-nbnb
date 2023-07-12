@@ -1,25 +1,24 @@
 import { useEffect, useRef } from 'react';
 
-export function useOnClickOutside(handler: (evt: Event) => void) {
+export function useOnClickOutside(onClickOutside: (evt: Event) => void) {
   const ref = useRef<HTMLElement>(null);
-  const handleReference = useRef(handler);
 
   useEffect(() => {
-    const handler = (e: Event) => {
+    const eventHandler = (e: Event) => {
       const element = ref.current;
       if (element != null && element.contains(e.target as Node) === false) {
-        handleReference.current(e);
+        onClickOutside(e);
       }
     };
 
-    document.addEventListener('mousedown', handler);
-    document.addEventListener('touchstart', handler);
+    document.addEventListener('mousedown', eventHandler);
+    document.addEventListener('touchstart', eventHandler);
 
     return () => {
-      document.removeEventListener('mousedown', handler);
-      document.removeEventListener('touchstart', handler);
+      document.removeEventListener('mousedown', eventHandler);
+      document.removeEventListener('touchstart', eventHandler);
     };
-  }, []);
+  }, [onClickOutside]);
 
   return ref;
 }

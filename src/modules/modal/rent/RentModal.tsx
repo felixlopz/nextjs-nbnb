@@ -12,24 +12,25 @@ const RentModal = () => {
   const router = useRouter();
 
   const onSubmitStarted = () => {
-    rentModal.setIsLoading(true);
+    rentModal.setDisabled(true);
   };
 
   const onSubmitSuccess = () => {
-    rentModal.setIsLoading(false);
+    rentModal.setDisabled(false);
     toast.success('Listing created');
     router.refresh();
     rentModal.onClose();
   };
 
   const onSubmitFail = (error?: string) => {
-    rentModal.setIsLoading(false);
+    rentModal.setDisabled(false);
     toast.error(error || 'Something went wrong!');
   };
 
   return (
     <Modal
       title="Nextbnb your home!"
+      disabled={rentModal.disabled}
       isOpen={rentModal.isOpen}
       onClose={rentModal.onClose}
       body={
@@ -39,6 +40,7 @@ const RentModal = () => {
           onSubmitFail={(error) => {
             onSubmitFail(error);
           }}
+          usingModal={rentModal}
         />
       }
     />

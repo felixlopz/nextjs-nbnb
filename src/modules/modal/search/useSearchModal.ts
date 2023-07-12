@@ -5,8 +5,8 @@ type SearchModalStore = ModalStore & {};
 
 const useSearchModal = create<SearchModalStore>((set) => ({
   isOpen: false,
-  isLoading: false,
-  setIsLoading: (isLoading) => set({ isLoading }),
+  disabled: false,
+  setDisabled: (disabled) => set({ disabled }),
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),
 }));
