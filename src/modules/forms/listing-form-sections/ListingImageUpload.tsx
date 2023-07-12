@@ -41,32 +41,6 @@ export const ListingImageUpload: FC<ListingImageUploadProps> = ({
     [preview, imageSrc]
   );
 
-  const onDrop = useCallback(
-    (acceptedFiles: FileWithPath[], fileRejections: FileRejection[]) => {
-      if (fileRejections.length > 0) {
-        toast.error('Too many files!');
-        return;
-      }
-
-      if (acceptedFiles.length > 0) {
-        const file = acceptedFiles[0];
-        const image = Object.assign(file, {
-          preview: URL.createObjectURL(file),
-        });
-        setPreview(image.preview);
-        startUpload(acceptedFiles);
-        onUploadStart!();
-      }
-    },
-    []
-  );
-
-  const { getRootProps, getInputProps } = useDropzone({
-    maxFiles: 1,
-    onDrop,
-    accept: fileTypes,
-  });
-
   const { startUpload, isUploading } = useUploadThing('imageUploader', {
     onClientUploadComplete: (res) => {
       onUploadEnd!();
@@ -85,6 +59,32 @@ export const ListingImageUpload: FC<ListingImageUploadProps> = ({
     onUploadProgress: (progress) => {
       setProgress(progress);
     },
+  });
+
+  const onDrop = useCallback(
+    (acceptedFiles: FileWithPath[], fileRejections: FileRejection[]) => {
+      if (fileRejections.length > 0) {
+        toast.error('Too many files!');
+        return;
+      }
+
+      if (acceptedFiles.length > 0) {
+        const file = acceptedFiles[0];
+        const image = Object.assign(file, {
+          preview: URL.createObjectURL(file),
+        });
+        setPreview(image.preview);
+        startUpload(acceptedFiles);
+        onUploadStart!();
+      }
+    },
+    [onUploadStart, startUpload]
+  );
+
+  const { getRootProps, getInputProps } = useDropzone({
+    maxFiles: 1,
+    onDrop,
+    accept: fileTypes,
   });
 
   return (

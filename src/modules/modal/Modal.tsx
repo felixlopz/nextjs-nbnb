@@ -35,7 +35,7 @@ export const Modal: React.FC<ModalProps> = ({
     setTimeout(() => {
       onClose();
     }, 300);
-  }, [disabled]);
+  }, [onClose, disabled]);
 
   const ref = useOnClickOutside(handleClose);
 
