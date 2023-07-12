@@ -74,13 +74,13 @@ export const ListingImageUpload: FC<ListingImageUploadProps> = ({
 
       if (res != null) {
         const file = res[0];
-
         onUploadSuccess(file.fileUrl);
       }
     },
-    onUploadError: (e: Error) => {
+    onUploadError: () => {
       onUploadEnd!();
-      toast.error(e.message);
+      setPreview(undefined);
+      toast.error('Upload error. (1MB Max)');
     },
     onUploadProgress: (progress) => {
       setProgress(progress);

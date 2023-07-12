@@ -1,13 +1,16 @@
+import getCurrentUser from '@/actions/getCurrentUser';
 import { createUploadthing, type FileRouter } from 'uploadthing/next';
 
 const f = createUploadthing();
 
-const auth = (req: Request) => ({ id: 'fakeId' }); // Fake auth function
+const auth = async (req: Request) => {
+  return await getCurrentUser();
+};
 
 // FileRouter for your app, can contain multiple FileRoutes
 export const ourFileRouter = {
   // Define as many FileRoutes as you like, each with a unique routeSlug
-  imageUploader: f({ image: { maxFileSize: '8MB' } })
+  imageUploader: f({ image: { maxFileSize: '1MB' } })
     // Set permissions and file types for this FileRoute
     .middleware(async ({ req }) => {
       // This code runs on your server before upload
