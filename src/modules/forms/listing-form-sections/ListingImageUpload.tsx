@@ -16,10 +16,6 @@ const fileTypes = {
   'image/webp': [],
 };
 
-type ImagePreview = FileWithPath & {
-  preview: string;
-};
-
 interface ListingImageUploadProps {
   imageSrc?: string;
   onUploadSuccess: (imageUrl: string) => void;
@@ -51,10 +47,14 @@ export const ListingImageUpload: FC<ListingImageUploadProps> = ({
         onUploadSuccess(file.fileUrl);
       }
     },
-    onUploadError: () => {
+    onUploadError: (error: Error) => {
       onUploadEnd!();
       setPreview(undefined);
-      toast.error('Upload error. (1MB Max)');
+      if (error.message == null) {
+        toast.error('Upload failed');
+      } else {
+        toast.error(error.message);
+      }
     },
     onUploadProgress: (progress) => {
       setProgress(progress);
@@ -124,7 +124,7 @@ export const ListingImageUpload: FC<ListingImageUploadProps> = ({
               <div className="flex flex-col items-center">
                 <BiImageAdd className="mb-4 text-black" size={48} />
                 <p className="font-semibold text-orange-400">
-                  Drag an image or click to select one
+                  Drag an image or click to select one. (1MB Max)
                 </p>
               </div>
             )}
