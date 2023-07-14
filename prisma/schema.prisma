@@ -46,10 +46,23 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
+type Location {
+  type String @default("Point")
+  coordinates String[]
+  isExactLocation Boolean?
+}
+
 type Address {
-  street  String
-  suburb String
-  
+  placeName  String
+  countryCode String
+  country String
+  region String?
+  place String?
+  postcode String?
+  locality String?
+  neighborhood String?
+  location Location
+  mapboxId String
 }
 
 model Listing {
@@ -64,6 +77,7 @@ model Listing {
   guestCount Int
   userId String @db.ObjectId
   price Int
+  address Address
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   reservations Reservation[]
@@ -83,25 +97,3 @@ model Reservation {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
 }
-
-
-//  "address": {
-//     "street": "Porto, Porto, Portugal",
-//     "suburb": "",
-//     "government_area": "Cedofeita, Ildefonso, Sé, Miragaia, Nicolau, Vitória",
-//     "market": "Porto",
-//     "country": "Portugal",
-//     "country_code": "PT",
-//     "location": {
-//       "type": "Point",
-//       "coordinates": [
-//         {
-//           "$numberDouble": "-8.61308"
-//         },
-//         {
-//           "$numberDouble": "41.1413"
-//         }
-//       ],
-//       "is_location_exact": false
-//     }
-//   },

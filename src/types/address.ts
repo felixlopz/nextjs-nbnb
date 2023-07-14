@@ -13,6 +13,7 @@ export interface Address {
 }
 
 export interface Location {
+  type: 'Point';
   coordinates: number[];
   isExactLocation?: boolean;
 }

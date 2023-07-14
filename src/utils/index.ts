@@ -5,33 +5,13 @@ import {
   GeocoderFeature,
 } from '@/types/geocoder';
 
-//  "address": {
-//     "street": "Porto, Porto, Portugal",
-//     "suburb": "",
-//     "government_area": "Cedofeita, Ildefonso, Sé, Miragaia, Nicolau, Vitória",
-//     "market": "Porto",
-//     "country": "Portugal",
-//     "country_code": "PT",
-//     "location": {
-//       "type": "Point",
-//       "coordinates": [
-//         {
-//           "$numberDouble": "-8.61308"
-//         },
-//         {
-//           "$numberDouble": "41.1413"
-//         }
-//       ],
-//       "is_location_exact": false
-//     }
-//   },
-
 export const getLocationFromGoecoderFeatureCenter = (
   center: number[]
 ): Location => {
   const [lng, lat] = center;
   return {
-    coordinates: [lat, lng],
+    type: 'Point',
+    coordinates: [lng, lat],
     isExactLocation: false,
   };
 };
@@ -43,6 +23,7 @@ export const getAddressFromGeocoderFeature = (
     country: '',
     countryCode: '',
     location: {
+      type: 'Point',
       coordinates: [0, 0],
       isExactLocation: false,
     },

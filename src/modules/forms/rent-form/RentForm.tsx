@@ -103,15 +103,12 @@ export const RentForm: FC<RentFormProps> = ({
 
   const onSubmit: SubmitHandler<RentFormFields> = async (data) => {
     onSubmitStarted();
-
-    console.log(data);
-
-    // try {
-    //   await axios.post('/api/listings', data);
-    //   onSubmitSuccess();
-    // } catch (error: any) {
-    //   onSubmitFail(error.message);
-    // }
+    try {
+      await axios.post('/api/listings', data);
+      onSubmitSuccess();
+    } catch (error: any) {
+      onSubmitFail(error.message);
+    }
   };
 
   const onInvalid: SubmitErrorHandler<RentFormFields> = (

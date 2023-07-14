@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 
 import prisma from '@/libs/prismadb';
 import getCurrentUser from '@/actions/getCurrentUser';
+import { Address } from '@prisma/client';
 
 export async function POST(request: Request) {
   const currentUser = await getCurrentUser();
@@ -19,9 +20,11 @@ export async function POST(request: Request) {
     roomCount,
     bathroomCount,
     guestCount,
-    location,
     price,
   } = body;
+
+  const address = body.address as Address;
+  const location = address.location;
 
   const listing = await prisma.listing.create({
     data: {
@@ -32,7 +35,13 @@ export async function POST(request: Request) {
       roomCount,
       bathroomCount,
       guestCount,
-      locationValue: location.value,
+      address: {
+        ...address,
+        location: {
+          ...location,
+          coordinates: location.coordinates.map((coord) => coord + ''),
+        },
+      },
       price: parseInt(price, 10),
       userId: currentUser.id,
     },
