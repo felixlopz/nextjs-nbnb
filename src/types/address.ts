@@ -14,5 +14,5 @@ export interface Address {
 
 export interface Location {
   coordinates: number[];
-  isExactLocation: boolean;
+  isExactLocation?: boolean;
 }

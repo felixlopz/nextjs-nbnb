@@ -12,7 +12,7 @@ import { Address } from '@/types/address';
 interface AddressInputProps {
   placeName?: string;
   placeholder?: string;
-  onPlaceChange: (address: Address) => void;
+  onPlaceChange: (address: Address | null) => void;
 }
 
 export const AddressInput: FC<AddressInputProps> = ({
@@ -21,7 +21,7 @@ export const AddressInput: FC<AddressInputProps> = ({
   onPlaceChange,
 }) => {
   const [selectedPlace, setSelectedPlace] = useState<Address | null>(null);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState(placeName);
   const [query] = useDebounce(inputValue, 1000);
   const [places, setPlaces] = useState<GeocoderFeature[]>([]);
 
@@ -37,6 +37,11 @@ export const AddressInput: FC<AddressInputProps> = ({
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value === '') {
+      setSelectedPlace(null);
+      onPlaceChange(null);
+    }
+
     setInputValue(e.target.value);
     setPlaces([]);
   };
@@ -50,7 +55,7 @@ export const AddressInput: FC<AddressInputProps> = ({
   };
 
   const { geocoderRef, onUpdateQuery } = useGeocoder({
-    accessToken: process.env.MAPBOX_TOKEN as string,
+    accessToken: process.env.NEXT_PUBLIC_MAPBOX_TOKEN as string,
     onResults: handleResults,
   });
 
@@ -65,7 +70,7 @@ export const AddressInput: FC<AddressInputProps> = ({
       <div ref={geocoderRef} />
       <Input
         value={inputValue}
-        placeholder="Search a destination"
+        placeholder={placeholder}
         autoComplete="off"
         id="id"
         label="my label"

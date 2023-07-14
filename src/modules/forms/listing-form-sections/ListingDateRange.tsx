@@ -9,7 +9,7 @@ interface ListingDateRangeProps {
   onChangeDate: (range?: DateRange) => void;
 }
 
-const ListingDateRange: FC<ListingDateRangeProps> = ({
+export const ListingDateRange: FC<ListingDateRangeProps> = ({
   range,
   onChangeDate,
 }) => {

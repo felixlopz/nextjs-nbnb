@@ -8,15 +8,10 @@ import {
   useForm,
 } from 'react-hook-form';
 import axios from 'axios';
-import { InferType, object, string, number, array } from 'yup';
+import { InferType } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import toast from 'react-hot-toast';
-import ListingCategorySelector from '@/modules/forms/listing-form-sections/ListingCategorySelector';
-import ListingLocation from '@/modules/forms/listing-form-sections/ListingLocation';
-import ListingCapacities from '@/modules/forms/listing-form-sections/ListingCapacities';
-import ListingImageUpload from '@/modules/forms/listing-form-sections/ListingImageUpload';
-import ListingTitleAndDescription from '@/modules/forms/listing-form-sections/ListingTitleAndDescription';
-import ListingPrice from '@/modules/forms/listing-form-sections/ListingPrice';
+
 import { getFormErrors } from '@/modules/forms/utils';
 import { ModalStore } from '@/modules/modal/ModalTypes';
 import MultiStepForm, {
@@ -25,6 +20,14 @@ import MultiStepForm, {
 import { SubmitFormProps } from '@/modules/forms/types';
 import Heading from '@/modules/common/Heading';
 import AddressInput from '@/modules/common/inputs/adress-input/AddressInput';
+import { rentFormFieldsValidationSchema } from '../validations';
+import {
+  ListingCapacities,
+  ListingCategorySelector,
+  ListingImageUpload,
+  ListingPrice,
+  ListingTitleAndDescription,
+} from '@/modules/forms/listing-form-sections';
 
 export enum RentModalFormSteps {
   Category = 0,
@@ -34,29 +37,6 @@ export enum RentModalFormSteps {
   Description = 4,
   Price = 5,
 }
-
-const rentFormFieldsValidationSchema = object({
-  category: string().required('Select a category.'),
-  location: object()
-    .shape({
-      flag: string().required('Select a location'),
-      label: string().required('Select a location'),
-      latlng: array().of(number().required()).required('select a location'),
-      region: string().required('Select a location'),
-      value: string().required('Select a location'),
-    })
-    .nullable()
-    .required('Select a location.'),
-  guestCount: number().positive().required(),
-  roomCount: number().positive().required(),
-  bathroomCount: number().positive().required(),
-  imageSrc: string().url('Image url not valid').required('Upload an image'),
-  title: string().required('Add a title to property'),
-  description: string().required('Add a descrption to property.'),
-  price: number()
-    .min(5, 'Minimum of 5$ per night.')
-    .required('Put a price to your listing.'),
-});
 
 export type RentFormFields = InferType<typeof rentFormFieldsValidationSchema>;
 
@@ -92,6 +72,9 @@ export const RentForm: FC<RentFormProps> = ({
       price: 5,
       title: '',
       description: '',
+      address: {
+        placeName: '',
+      },
     },
     resolver: yupResolver(rentFormFieldsValidationSchema),
   });
@@ -104,7 +87,7 @@ export const RentForm: FC<RentFormProps> = ({
   }, [reset]);
 
   const category = watch('category');
-  const location = watch('location');
+  const address = watch('address');
   const guestCount = watch('guestCount');
   const roomCount = watch('roomCount');
   const bathroomCount = watch('bathroomCount');
@@ -120,12 +103,15 @@ export const RentForm: FC<RentFormProps> = ({
 
   const onSubmit: SubmitHandler<RentFormFields> = async (data) => {
     onSubmitStarted();
-    try {
-      await axios.post('/api/listings', data);
-      onSubmitSuccess();
-    } catch (error: any) {
-      onSubmitFail(error.message);
-    }
+
+    console.log(data);
+
+    // try {
+    //   await axios.post('/api/listings', data);
+    //   onSubmitSuccess();
+    // } catch (error: any) {
+    //   onSubmitFail(error.message);
+    // }
   };
 
   const onInvalid: SubmitErrorHandler<RentFormFields> = (
@@ -134,8 +120,8 @@ export const RentForm: FC<RentFormProps> = ({
     const firstErrorKey = Object.keys(errors)[0];
 
     if (firstErrorKey != null) {
-      if (firstErrorKey === 'location') {
-        toast.error('Select a location');
+      if (firstErrorKey === 'address') {
+        toast.error('Select an address');
       } else {
         const { errorMessage } = getFormErrors(firstErrorKey, errors);
         toast.error(errorMessage);
@@ -168,7 +154,14 @@ export const RentForm: FC<RentFormProps> = ({
             title="Where is your place located?"
             subtitle="Help guests find you!"
           />
-          <AddressInput onPlaceChange={() => {}} />
+          <AddressInput
+            placeholder="Select an address"
+            placeName={address.placeName}
+            onPlaceChange={(address) => {
+              // @ts-expect-error
+              setValue('address', address);
+            }}
+          />
         </div>
       ) : null}
 

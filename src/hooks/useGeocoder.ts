@@ -1,6 +1,5 @@
 import { useEffect, useRef, RefObject } from 'react';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
-import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
 type GeocoderRef = RefObject<HTMLDivElement>;
 
