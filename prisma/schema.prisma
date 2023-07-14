@@ -46,6 +46,12 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
+type Address {
+  street  String
+  suburb String
+  
+}
+
 model Listing {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   title String
@@ -56,13 +62,14 @@ model Listing {
   roomCount Int
   bathroomCount Int
   guestCount Int
-  locationValue String
   userId String @db.ObjectId
   price Int
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   reservations Reservation[]
 }
+
+
 
 model Reservation {
   id String @id @default(auto()) @map("_id") @db.ObjectId
@@ -76,3 +83,25 @@ model Reservation {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
 }
+
+
+//  "address": {
+//     "street": "Porto, Porto, Portugal",
+//     "suburb": "",
+//     "government_area": "Cedofeita, Ildefonso, Sé, Miragaia, Nicolau, Vitória",
+//     "market": "Porto",
+//     "country": "Portugal",
+//     "country_code": "PT",
+//     "location": {
+//       "type": "Point",
+//       "coordinates": [
+//         {
+//           "$numberDouble": "-8.61308"
+//         },
+//         {
+//           "$numberDouble": "41.1413"
+//         }
+//       ],
+//       "is_location_exact": false
+//     }
+//   },

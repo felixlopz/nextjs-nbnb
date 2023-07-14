@@ -26,5 +26,3 @@ export const useListingSearchParams = () => {
 
   return { startDate, endDate, guestCount, bathroomCount, roomCount, location };
 };
-
-// http://localhost:3000/?bathroomCount=2&endDate=2023-07-20T00%3A00%3A00-04%3A00&guestCount=2&locationValue=AO&roomCount=2&startDate=2023-07-11T00%3A00%3A00-04%3A00

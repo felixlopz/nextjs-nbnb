@@ -1,6 +1,7 @@
-import 'swiper/css';
-import 'swiper/css/navigation';
 import '@uploadthing/react/styles.css';
+import 'swiper/css';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import '../styles/globals.css';
 
 import { Nunito } from 'next/font/google';

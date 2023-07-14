@@ -5,6 +5,9 @@ import Heading from '@/modules/common/Heading';
 import CountrySelect, { Location } from '@/modules/common/inputs/CountrySelect';
 import dynamic from 'next/dynamic';
 
+import Map, { MapProvider } from 'react-map-gl';
+import AddressInput from '@/modules/common/inputs/adress-input/AddressInput';
+
 interface ListingLocationProps {
   title: string;
   subtitle?: string;
@@ -18,18 +21,15 @@ export const ListingLocation: FC<ListingLocationProps> = ({
   location,
   setCustomValue,
 }) => {
-  const Map = useMemo(
-    () => dynamic(() => import('@/modules/common/Map'), { ssr: false }),
-    [location]
-  );
+  // const Map = useMemo(
+  //   () => dynamic(() => import('@/modules/common/Map'), { ssr: false }),
+  //   [location]
+  // );
+
   return (
     <div className="flex flex-col gap-8">
       <Heading title={title} subtitle={subtitle} />
-      <CountrySelect
-        value={location}
-        onChange={(value) => setCustomValue('location', value)}
-      />
-      <Map center={location?.latlng} />
+      <AddressInput onPlaceChange={() => {}} />
     </div>
   );
 };

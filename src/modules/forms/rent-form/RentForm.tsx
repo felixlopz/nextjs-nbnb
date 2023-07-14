@@ -23,6 +23,8 @@ import MultiStepForm, {
   convertEnumToNumberArray,
 } from '@/modules/forms/components/MultiStepForm';
 import { SubmitFormProps } from '@/modules/forms/types';
+import Heading from '@/modules/common/Heading';
+import AddressInput from '@/modules/common/inputs/adress-input/AddressInput';
 
 export enum RentModalFormSteps {
   Category = 0,
@@ -161,12 +163,13 @@ export const RentForm: FC<RentFormProps> = ({
       ) : null}
 
       {currentFormStep === RentModalFormSteps.Location ? (
-        <ListingLocation
-          title="Where is your place located?"
-          subtitle="Help guests find you!"
-          location={location}
-          setCustomValue={setCustomValue}
-        />
+        <div className="flex flex-col gap-8">
+          <Heading
+            title="Where is your place located?"
+            subtitle="Help guests find you!"
+          />
+          <AddressInput onPlaceChange={() => {}} />
+        </div>
       ) : null}
 
       {currentFormStep === RentModalFormSteps.Info ? (
