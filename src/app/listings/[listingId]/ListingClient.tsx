@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
-import { addDays, differenceInDays, eachDayOfInterval } from 'date-fns';
+import { differenceInDays, eachDayOfInterval } from 'date-fns';
 
 import useLoginModal from '@/modules/modal/login/useLoginModal';
 import { SafeListing, SafeReservation, SafeUser } from '@/types';
@@ -106,21 +106,20 @@ const ListingClient: React.FC<ListingClientProps> = ({
   }, [dateRange, listing.price]);
 
   return (
-    <Container>
+    <Container className="py-12">
       <div
         className="
           mx-auto 
           max-w-screen-lg
-          md:pb-40
         "
       >
         <div className="flex flex-col gap-6">
           <ListingHead
             title={listing.title}
             imageSrc={listing.imageSrc}
-            locationValue={listing.locationValue}
             id={listing.id}
             currentUser={currentUser}
+            address={listing.address}
           />
           <div
             className="
@@ -139,13 +138,11 @@ const ListingClient: React.FC<ListingClientProps> = ({
                 roomCount={listing.roomCount}
                 guestCount={listing.guestCount}
                 bathroomCount={listing.bathroomCount}
-                locationValue={listing.locationValue}
               />
             </div>
             <div
               className="
                 order-first 
-                mb-10 
                 md:order-last 
                 md:col-span-3
               "

@@ -114,16 +114,16 @@ export const ListingImageUpload: FC<ListingImageUploadProps> = ({
             <input {...getInputProps({ multiple: false })} />
             {isUploading ? (
               <div className="flex items-center">
-                <Loader2 className="h-4 w-4 animate-spin text-orange-400" />
-                <p className="ml-2 mr-1 font-semibold text-orange-400">
+                <Loader2 className="h-4 w-4 animate-spin text-primary" />
+                <p className="ml-2 mr-1 font-semibold text-primary">
                   Uploading image:
                 </p>
-                <p className="text-orange-400">{progress}%</p>
+                <p className="text-primary">{progress}%</p>
               </div>
             ) : (
               <div className="flex flex-col items-center">
                 <BiImageAdd className="mb-4 text-black" size={48} />
-                <p className="font-semibold text-orange-400">
+                <p className="font-semibold text-primary">
                   Drag an image or click to select one. (1MB Max)
                 </p>
               </div>

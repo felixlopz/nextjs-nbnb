@@ -6,26 +6,24 @@ import { BiSearch } from 'react-icons/bi';
 import { differenceInDays } from 'date-fns';
 
 import useSearchModal from '@/modules/modal/search/useSearchModal';
-import useCountries from '@/hooks/useCountries';
-import Button from '@/modules/common/Button';
+import { getListingShortLocationName } from '@/libs/listing';
 
 const Searchbar = () => {
   const searchModal = useSearchModal();
   const params = useSearchParams();
-  const { getByValue } = useCountries();
 
-  const locationValue = params?.get('locationValue');
+  const placeName = params?.get('placeName');
   const startDate = params?.get('startDate');
   const endDate = params?.get('endDate');
   const guestCount = params?.get('guestCount');
 
   const locationLabel = useMemo(() => {
-    if (locationValue) {
-      return getByValue(locationValue as string)?.label;
+    if (placeName != null) {
+      return getListingShortLocationName(placeName);
     }
 
     return 'Anywhere';
-  }, [locationValue, getByValue]);
+  }, [placeName]);
 
   const durationLabel = useMemo(() => {
     if (startDate && endDate) {
@@ -116,7 +114,7 @@ const Searchbar = () => {
           <div
             className="
               rounded-full 
-              bg-gradient-to-r from-orange-700 to-orange-500
+              bg-primary
               p-2 
               text-white
             "

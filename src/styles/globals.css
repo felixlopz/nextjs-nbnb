@@ -8,17 +8,8 @@ input[type='number']::-webkit-outer-spin-button {
   margin: 0;
 }
 
-label[for='file-upload'] {
-  color: #f97316;
-}
-label[for='file-upload']:hover {
-  opacity: 0.5;
-  color: #f97316;
-}
-
 a,
-iframe,
-button:focus {
+iframe {
   outline-color: black;
 }
 
@@ -28,13 +19,7 @@ body,
   height: 100%;
 }
 
-.leaflet-bottom,
-.leaflet-control,
-.leaflet-pane,
-.leaflet-top {
-  z-index: 0 !important;
-}
-
+/* Shadcn Calendar */
 .rdrMonth {
   width: 100% !important;
 }
@@ -42,4 +27,20 @@ body,
 .rdrCalendarWrapper {
   font-size: 16px !important;
   width: 100% !important;
+}
+
+/* Uploadthing */
+label[for='file-upload'] {
+  color: #7e00df;
+}
+label[for='file-upload']:hover {
+  opacity: 0.5;
+  color: #7e00df;
+}
+
+/* Mapbox geocoder input */
+.mapboxgl-ctrl-geocoder {
+  position: absolute;
+  pointer-events: none;
+  visibility: hidden;
 }

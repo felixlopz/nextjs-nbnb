@@ -44,7 +44,7 @@ const TripsClient: React.FC<TripsClientProps> = ({
   );
 
   return (
-    <Container>
+    <Container className="py-12">
       <Heading
         title="Trips"
         subtitle="Where you've been and where you're going"

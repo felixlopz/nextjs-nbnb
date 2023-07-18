@@ -43,7 +43,7 @@ const ReservationsClient: React.FC<ReservationsClientProps> = ({
   );
 
   return (
-    <Container>
+    <Container className="py-12">
       <Heading title="Reservations" subtitle="Bookings on your properties" />
       <div
         className="

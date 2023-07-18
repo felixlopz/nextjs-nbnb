@@ -22,7 +22,6 @@ const SearchModal = () => {
 
   return (
     <Modal
-      title="Nextbnb your home!"
       isOpen={searchModal.isOpen}
       onClose={searchModal.onClose}
       body={

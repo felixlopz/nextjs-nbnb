@@ -10,7 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   email String? @unique
@@ -46,6 +45,26 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
+type Location {
+  type String @default("Point")
+  coordinates Float[]
+  isExactLocation Boolean?
+}
+
+type Address {
+  placeName  String
+  countryCode String
+  country String
+  region String?
+  place String?
+  postcode String?
+  locality String?
+  district String?
+  neighborhood String?
+  location Location
+  mapboxId String
+}
+
 model Listing {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   title String
@@ -56,9 +75,9 @@ model Listing {
   roomCount Int
   bathroomCount Int
   guestCount Int
-  locationValue String
   userId String @db.ObjectId
   price Int
+  address Address
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   reservations Reservation[]

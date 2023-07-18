@@ -44,7 +44,7 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
   );
 
   return (
-    <Container>
+    <Container className="py-12">
       <Heading title="Properties" subtitle="List of your properties" />
       <div
         className="

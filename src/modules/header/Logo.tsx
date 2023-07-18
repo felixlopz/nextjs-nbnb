@@ -8,7 +8,7 @@ export const Logo = () => {
         src={'/images/logo.png'}
         alt="Nextbnb logo"
         className="hidden cursor-pointer md:block"
-        width={100}
+        width={150}
         height={100}
       />
     </Link>

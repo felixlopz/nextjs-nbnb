@@ -9,7 +9,7 @@ interface ListingDateRangeProps {
   onChangeDate: (range?: DateRange) => void;
 }
 
-const ListingDateRange: FC<ListingDateRangeProps> = ({
+export const ListingDateRange: FC<ListingDateRangeProps> = ({
   range,
   onChangeDate,
 }) => {
@@ -37,6 +37,7 @@ const ListingDateRange: FC<ListingDateRangeProps> = ({
       />
       <div className="flex min-h-[425px] justify-center">
         <Calendar
+          showOutsideDays={false}
           mode="range"
           today={defaultMonth}
           defaultMonth={defaultMonth}
