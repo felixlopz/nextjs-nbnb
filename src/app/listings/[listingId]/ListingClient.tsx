@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
-import { addDays, differenceInDays, eachDayOfInterval } from 'date-fns';
+import { differenceInDays, eachDayOfInterval } from 'date-fns';
 
 import useLoginModal from '@/modules/modal/login/useLoginModal';
 import { SafeListing, SafeReservation, SafeUser } from '@/types';
@@ -118,9 +118,9 @@ const ListingClient: React.FC<ListingClientProps> = ({
           <ListingHead
             title={listing.title}
             imageSrc={listing.imageSrc}
-            locationValue={listing.locationValue}
             id={listing.id}
             currentUser={currentUser}
+            address={listing.address}
           />
           <div
             className="
@@ -139,7 +139,6 @@ const ListingClient: React.FC<ListingClientProps> = ({
                 roomCount={listing.roomCount}
                 guestCount={listing.guestCount}
                 bathroomCount={listing.bathroomCount}
-                locationValue={listing.locationValue}
               />
             </div>
             <div

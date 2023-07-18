@@ -6,8 +6,8 @@ import Input from '../Input';
 import { GeocoderFeature } from '@/types/geocoder';
 import AdressInputResults from './AdressInputResults';
 import { useDebounce } from 'use-debounce';
-import { getAddressFromGeocoderFeature } from '@/utils';
-import { Address } from '@/types/address';
+import { getAddressFromGeocoderFeature } from '@/libs/geocoder';
+import { Address } from '@prisma/client';
 
 interface AddressInputProps {
   placeName?: string;

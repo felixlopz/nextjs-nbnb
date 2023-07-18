@@ -2,14 +2,14 @@
 
 import Image from 'next/image';
 
-import useCountries from '@/hooks/useCountries';
 import Heading from '@/modules/common/Heading';
 import HeartButton from '@/modules/common/HeartButton';
 import { SafeUser } from '@/types';
+import { Address } from '@prisma/client';
 
 interface ListingHeadProps {
   title: string;
-  locationValue: string;
+  address: Address;
   imageSrc: string;
   id: string;
   currentUser?: SafeUser | null;
@@ -17,21 +17,14 @@ interface ListingHeadProps {
 
 const ListingHead: React.FC<ListingHeadProps> = ({
   title,
-  locationValue,
+  address,
   imageSrc,
   id,
   currentUser,
 }) => {
-  const { getByValue } = useCountries();
-
-  const location = getByValue(locationValue);
-
   return (
     <>
-      <Heading
-        title={title}
-        subtitle={`${location?.region}, ${location?.label}`}
-      />
+      <Heading title={title} subtitle={address.placeName} />
       <div
         className="
           relative

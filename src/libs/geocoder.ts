@@ -1,4 +1,4 @@
-import { Address, Location } from '@/types/address';
+import { Address, Location } from '@prisma/client';
 import {
   ContextEntity,
   GeocoderDataTypes,
@@ -22,13 +22,19 @@ export const getAddressFromGeocoderFeature = (
   const baseAddress: Address = {
     country: '',
     countryCode: '',
+    district: '',
+    locality: '',
     location: {
       type: 'Point',
-      coordinates: [0, 0],
+      coordinates: [],
       isExactLocation: false,
     },
     mapboxId: '',
+    neighborhood: '',
+    place: '',
     placeName: '',
+    postcode: '',
+    region: '',
   };
 
   const location = getLocationFromGoecoderFeatureCenter(feature.center);

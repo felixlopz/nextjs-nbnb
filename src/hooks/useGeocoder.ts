@@ -45,7 +45,7 @@ const useGeocoder = ({
     return () => {
       geocoder.onRemove();
     };
-  }, [accessToken, onResult]);
+  }, [accessToken, onResult, onResults, onLoading, onClear, onError]);
 
   const onUpdateQuery = (query: string) => {
     geocoder.query(query);

@@ -7,7 +7,6 @@ import {
   SubmitHandler,
   useForm,
 } from 'react-hook-form';
-import ListingLocation from '@/modules/forms/listing-form-sections/ListingLocation';
 import ListingCapacities from '@/modules/forms/listing-form-sections/ListingCapacities';
 import { SubmitFormProps } from '../types';
 import MultiStepForm, {
@@ -49,7 +48,6 @@ export const SearchForm: FC<SearchFormProps> = ({
   );
   const params = useSearchParams();
   const router = useRouter();
-  const listingSearchParams = useListingSearchParams();
 
   const {
     handleSubmit,
