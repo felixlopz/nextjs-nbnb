@@ -106,12 +106,11 @@ const ListingClient: React.FC<ListingClientProps> = ({
   }, [dateRange, listing.price]);
 
   return (
-    <Container>
+    <Container className="py-12">
       <div
         className="
           mx-auto 
           max-w-screen-lg
-          md:pb-40
         "
       >
         <div className="flex flex-col gap-6">
@@ -144,7 +143,6 @@ const ListingClient: React.FC<ListingClientProps> = ({
             <div
               className="
                 order-first 
-                mb-10 
                 md:order-last 
                 md:col-span-3
               "

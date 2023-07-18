@@ -33,10 +33,9 @@ function Calendar({
         head_cell: 'text-muted-foreground rounded-md w-8 font-normal text-base',
         row: 'flex w-full mt-2',
         cell: 'text-center p-0 relative [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20',
-        day: 'h-11 w-11 p-0 font-normal aria-selected:opacity-100 text-base rounded-none hover:border-black hover:border-1 focus:ring-offset-2 transition focus:ring-black focus:ring-2',
-        day_selected:
-          'bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground',
-        day_today: 'text-orange-500',
+        day: 'h-11 w-11 p-0 font-normal aria-selected:opacity-100 text-base hover:border-black hover:border-1 focus:ring-offset-2 transition focus:ring-black focus:ring-2 rounded-full',
+        day_selected: 'bg-black text-primary-foreground rounded-full',
+        day_today: 'text-primary',
         day_outside: 'text-muted-foreground opacity-50',
         day_disabled: 'text-muted-foreground opacity-50',
         day_hidden: 'invisible',

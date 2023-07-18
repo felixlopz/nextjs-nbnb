@@ -1,12 +1,12 @@
 import getCurrentUser from '@/actions/getCurrentUser';
-import getListings, { ListingsParams } from '@/actions/getListings';
+import getListings from '@/actions/getListings';
 import Container from '@/modules/common/Container';
 import EmptyState from '@/modules/common/EmptyState';
 import ListingCard from '@/modules/listing/ListingCard';
-import { SafeListing } from '@/types';
+import { ListingSearchParams, SafeListing } from '@/types';
 
 interface HomeProps {
-  searchParams: ListingsParams;
+  searchParams: ListingSearchParams;
 }
 
 export default async function Home({ searchParams }: HomeProps) {
@@ -35,8 +35,8 @@ export default async function Home({ searchParams }: HomeProps) {
         className="
           grid
           grid-cols-1 
-          gap-8 
-          pt-24 
+          gap-8
+          py-12
           sm:grid-cols-2 
           md:grid-cols-3
           lg:grid-cols-4
@@ -49,6 +49,7 @@ export default async function Home({ searchParams }: HomeProps) {
             key={listing.id}
             data={listing}
             currentUser={currentUser}
+            areSearchParams={areSearchParams}
           />
         ))}
       </div>

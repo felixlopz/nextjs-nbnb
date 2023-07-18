@@ -8,6 +8,7 @@ import Button from '@/modules/common/Button';
 import Image from 'next/image';
 import HeartButton from '@/modules/common/HeartButton';
 import { SafeListing, SafeUser } from '@/types';
+import { getListingShortLocationName } from '@/libs/listing';
 
 interface ListingCardProps {
   data: SafeListing;
@@ -17,6 +18,7 @@ interface ListingCardProps {
   actionLabel?: string;
   actionId?: string;
   currentUser?: SafeUser | null;
+  areSearchParams?: boolean;
 }
 
 const ListingCard: React.FC<ListingCardProps> = ({
@@ -27,6 +29,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
   actionLabel,
   actionId = '',
   currentUser,
+  areSearchParams,
 }) => {
   const router = useRouter();
 
@@ -63,6 +66,16 @@ const ListingCard: React.FC<ListingCardProps> = ({
     return `${format(start, 'PP')} - ${format(end, 'PP')}`;
   }, [reservation]);
 
+  const listingLabel = useMemo(() => {
+    return areSearchParams
+      ? data.title
+      : getListingShortLocationName(data.address.placeName);
+  }, [areSearchParams, getListingShortLocationName]);
+
+  const listingBebs = useMemo(() => {
+    return data.roomCount > 1 ? `${data.roomCount} beds` : `1 bed`;
+  }, [data.roomCount]);
+
   return (
     <div
       onClick={() => router.push(`/listings/${data.id}`)}
@@ -79,7 +92,8 @@ const ListingCard: React.FC<ListingCardProps> = ({
           "
         >
           <Image
-            fill
+            width={900}
+            height={600}
             className="
               h-full 
               w-full 
@@ -100,16 +114,27 @@ const ListingCard: React.FC<ListingCardProps> = ({
             <HeartButton listingId={data.id} currentUser={currentUser} />
           </div>
         </div>
-        <div className="text-lg font-semibold">{data.address.placeName}</div>
-        <div className="font-light text-neutral-500">
-          {reservationDate || data.category}
+        <div className="line-clamp-1 text-base font-semibold leading-none">
+          {listingLabel}
+        </div>
+        <div className="line-clamp-1 text-base font-light leading-none text-neutral-500">
+          {data.description}
+        </div>
+        <div className="text-base font-light leading-none text-neutral-500">
+          {reservationDate || `${data.category}, ${listingBebs}`}
         </div>
         <div className="flex flex-row items-center gap-1">
-          <div className="font-semibold">$ {price}</div>
-          {!reservation && <div className="font-light">night</div>}
+          <div className="font-semibold leading-none">${price}</div>
+          {!reservation && <div className="font-light leading-none">night</div>}
         </div>
         {onAction && actionLabel && (
-          <Button disabled={disabled} size="sm" onClick={handleCancel}>
+          <Button
+            className="mt-4"
+            variant="outline"
+            disabled={disabled}
+            size="sm"
+            onClick={handleCancel}
+          >
             {actionLabel}
           </Button>
         )}

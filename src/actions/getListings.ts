@@ -1,23 +1,10 @@
 import prisma from '@/libs/prismadb';
-import { SafeListing } from '@/types';
+import { SafeListing, ListingSearchParams } from '@/types';
 import { Listing } from '@prisma/client';
-
-export interface ListingsParams {
-  lat?: string;
-  lng?: string;
-  radius?: string;
-  category?: string;
-  userId?: string;
-  startDate?: string;
-  endDate?: string;
-  guestCount?: number;
-  roomCount?: number;
-  bathroomCount?: number;
-}
 
 const LISTING_INDEX_SEARCH_NAME = 'listingsLocationSearch';
 
-export default async function getListings(params: ListingsParams) {
+export default async function getListings(params: ListingSearchParams) {
   try {
     const {
       lat,

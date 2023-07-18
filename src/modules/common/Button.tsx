@@ -11,11 +11,10 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default:
-          'bg-gradient-to-r from-orange-700 to-orange-500 text-white focus:outline-none',
+        default: 'bg-primary text-white focus:outline-none',
         outline:
           'outline outline-1 outline-neutral-400 bg-transparent hover:outline-black',
-        link: 'bg-transparent underline-offset-4 hover:underline text-orange-500',
+        link: 'bg-transparent underline-offset-4 hover:underline text-primary',
         ghost:
           'focus:ring-offset-0 focus:outline-none focus:outline-transparent focus:ring-0 focus:  ring-transparent bg-transparent hover:bg-neutral-100 focus:bg-neutral-100',
         circle:

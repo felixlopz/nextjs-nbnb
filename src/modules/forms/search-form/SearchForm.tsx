@@ -17,9 +17,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import toast from 'react-hot-toast';
 import { getFormErrors } from '@/modules/forms/utils';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { formatISO } from 'date-fns';
 import qs from 'query-string';
-import { useListingSearchParams } from '@/hooks/useListingSearchParams';
+
 import ListingDateRange from '@/modules/forms/listing-form-sections/ListingDateRange';
 import { DateRange } from 'react-day-picker';
 import { searchFormFieldsValidationSchema } from '../validations';
@@ -49,6 +48,13 @@ export const SearchForm: FC<SearchFormProps> = ({
   const params = useSearchParams();
   const router = useRouter();
 
+  const guestCountParam = params.get('guestCount');
+  const roomCountParam = params.get('roomCount');
+  const bathroomCountParam = params.get('bathroomCount');
+  const placeNameParam = params.get('placeName');
+  const startDateParam = params.get('startDate');
+  const endDateParam = params.get('endDate');
+
   const {
     handleSubmit,
     formState: { isSubmitting },
@@ -57,17 +63,13 @@ export const SearchForm: FC<SearchFormProps> = ({
     watch,
   } = useForm<SearchFormFields>({
     defaultValues: {
-      // bathroomCount: listingSearchParams.bathroomCount,
-      // guestCount: listingSearchParams.guestCount,
-      // roomCount: listingSearchParams.roomCount,
-      // startDate: listingSearchParams.startDate,
-      // endDate: listingSearchParams.endDate,
-      // location: listingSearchParams.location,
-      bathroomCount: 1,
-      guestCount: 1,
-      roomCount: 1,
+      startDate: startDateParam ? new Date(startDateParam) : undefined,
+      endDate: endDateParam ? new Date(endDateParam) : undefined,
+      guestCount: Number(guestCountParam) || 1,
+      roomCount: Number(roomCountParam) || 1,
+      bathroomCount: Number(bathroomCountParam) || 1,
       address: {
-        placeName: '',
+        placeName: placeNameParam || '',
       },
     },
 
@@ -127,6 +129,7 @@ export const SearchForm: FC<SearchFormProps> = ({
       lat,
       lng,
       radius: 50000,
+      placeName: address.placeName,
       guestCount,
       roomCount,
       bathroomCount,
