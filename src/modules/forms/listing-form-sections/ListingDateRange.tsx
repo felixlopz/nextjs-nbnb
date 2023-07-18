@@ -37,6 +37,7 @@ export const ListingDateRange: FC<ListingDateRangeProps> = ({
       />
       <div className="flex min-h-[425px] justify-center">
         <Calendar
+          showOutsideDays={false}
           mode="range"
           today={defaultMonth}
           defaultMonth={defaultMonth}

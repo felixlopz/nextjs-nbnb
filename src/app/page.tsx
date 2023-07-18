@@ -1,12 +1,12 @@
 import getCurrentUser from '@/actions/getCurrentUser';
-import getListings, { IListingsParams } from '@/actions/getListings';
+import getListings, { ListingsParams } from '@/actions/getListings';
 import Container from '@/modules/common/Container';
 import EmptyState from '@/modules/common/EmptyState';
 import ListingCard from '@/modules/listing/ListingCard';
 import { SafeListing } from '@/types';
 
 interface HomeProps {
-  searchParams: IListingsParams;
+  searchParams: ListingsParams;
 }
 
 export default async function Home({ searchParams }: HomeProps) {

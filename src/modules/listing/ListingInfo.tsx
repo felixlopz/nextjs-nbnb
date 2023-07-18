@@ -56,7 +56,9 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           "
         >
           <div>Hosted by {user?.name}</div>
-          <Avatar src={user?.image} />
+          <div className="relative h-[40px] w-[40px]">
+            <Avatar src={user?.image} />
+          </div>
         </div>
         <div
           className="
@@ -89,7 +91,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         {description}
       </div>
       <hr />
-      <Map center={coordinates} />
+      {/* <Map center={coordinates} /> */}
     </>
   );
 };

@@ -155,8 +155,12 @@ export const RentForm: FC<RentFormProps> = ({
             placeholder="Select an address"
             placeName={address.placeName}
             onPlaceChange={(address) => {
-              // @ts-expect-error
-              setValue('address', address);
+              if (address == null) {
+                // @ts-expect-error
+                setValue('address', { placeName: '' });
+              } else {
+                setValue('address', address);
+              }
             }}
           />
         </div>

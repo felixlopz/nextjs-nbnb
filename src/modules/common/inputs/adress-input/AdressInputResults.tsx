@@ -25,7 +25,7 @@ export const AdressInputResults: FC<AdressInputResultsProps> = ({
           }}
           key={place.id}
           variant={'ghost'}
-          className="h-fit w-full  justify-start rounded-none px-4 py-3 text-base font-light 
+          className="h-fit w-full justify-start rounded-none px-4 py-3 text-left text-base font-light 
           "
         >
           <span className="mr-4 flex rounded-md bg-neutral-200 p-2">

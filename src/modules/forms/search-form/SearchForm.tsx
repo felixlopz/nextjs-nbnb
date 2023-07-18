@@ -128,7 +128,7 @@ export const SearchForm: FC<SearchFormProps> = ({
       ...currentQuery,
       lat,
       lng,
-      radius: 20000,
+      radius: 50000,
       guestCount,
       roomCount,
       bathroomCount,
@@ -190,8 +190,12 @@ export const SearchForm: FC<SearchFormProps> = ({
             placeholder="Search for a place"
             placeName={address.placeName}
             onPlaceChange={(address) => {
-              // @ts-expect-error
-              setValue('address', address);
+              if (address == null) {
+                // @ts-expect-error
+                setValue('address', { placeName: '' });
+              } else {
+                setValue('address', address);
+              }
             }}
           />
         </div>
