@@ -1,4 +1,5 @@
 import prisma from '@/libs/prismadb';
+import { DEFAULT_LISTING_LIMIT } from '@/modules/listing/constans';
 import { SafeListing, ListingSearchParams } from '@/types';
 import { Listing } from '@prisma/client';
 
@@ -17,7 +18,13 @@ export default async function getListings(params: ListingSearchParams) {
       bathroomCount,
       startDate,
       endDate,
+      limit,
+      page,
     } = params;
+
+    const numberOfDocsEachPage =
+      limit != null ? Number(limit) : DEFAULT_LISTING_LIMIT;
+    const currentPage = page != null ? Number(page) : 0;
 
     const aggregations = [
       buildLocationAggregation({
@@ -44,6 +51,8 @@ export default async function getListings(params: ListingSearchParams) {
       {
         $unset: ['reservations', 'userId'],
       },
+      { $skip: numberOfDocsEachPage * currentPage },
+      { $limit: numberOfDocsEachPage },
     ].filter((agg) => agg != null);
 
     const result = await prisma.listing.aggregateRaw({
@@ -121,7 +130,7 @@ type BuildLocationAggregationProps = {
 export const buildLocationAggregation = ({
   lat,
   lng,
-  radius = 10000,
+  radius = 50000,
 }: BuildLocationAggregationProps) => {
   if (lat != null && lng != null && !Number.isNaN(lat) && !Number.isNaN(lng)) {
     return {

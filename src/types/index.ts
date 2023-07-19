@@ -35,4 +35,6 @@ export interface ListingSearchParams {
   guestCount?: string;
   roomCount?: string;
   bathroomCount?: string;
+  limit?: string;
+  page?: string;
 }

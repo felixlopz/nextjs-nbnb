@@ -35,7 +35,7 @@ const NavbarButton: React.FC<NavbarButtonProps> = ({ currentUser }) => {
           font-semibold 
           transition 
           hover:bg-neutral-100 
-          md:block
+          lg:block
         `}
     >
       Nextbnb your home

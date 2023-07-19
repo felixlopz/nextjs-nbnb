@@ -19,6 +19,7 @@ interface ListingCardProps {
   actionId?: string;
   currentUser?: SafeUser | null;
   areSearchParams?: boolean;
+  ref?: boolean;
 }
 
 const ListingCard: React.FC<ListingCardProps> = ({
@@ -70,7 +71,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
     return areSearchParams
       ? data.title
       : getListingShortLocationName(data.address.placeName);
-  }, [areSearchParams, getListingShortLocationName]);
+  }, [areSearchParams, getListingShortLocationName, data.address.placeName]);
 
   const listingBebs = useMemo(() => {
     return data.roomCount > 1 ? `${data.roomCount} beds` : `1 bed`;

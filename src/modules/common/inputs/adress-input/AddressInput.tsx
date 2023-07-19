@@ -63,7 +63,7 @@ export const AddressInput: FC<AddressInputProps> = ({
     if (shouldUpdateGeocoderQuery()) {
       onUpdateQuery(inputValue);
     }
-  }, [query]);
+  }, [query, onUpdateQuery, inputValue, shouldUpdateGeocoderQuery]);
 
   return (
     <div className="flex flex-col">

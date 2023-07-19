@@ -2,7 +2,7 @@ import getCurrentUser from '@/actions/getCurrentUser';
 import getListings from '@/actions/getListings';
 import Container from '@/modules/common/Container';
 import EmptyState from '@/modules/common/EmptyState';
-import ListingCard from '@/modules/listing/ListingCard';
+import ListingList from '@/modules/listing/ListingList';
 import { ListingSearchParams, SafeListing } from '@/types';
 
 interface HomeProps {
@@ -44,14 +44,12 @@ export default async function Home({ searchParams }: HomeProps) {
           2xl:grid-cols-6
         "
       >
-        {listings.map((listing: SafeListing) => (
-          <ListingCard
-            key={listing.id}
-            data={listing}
-            currentUser={currentUser}
-            areSearchParams={areSearchParams}
-          />
-        ))}
+        <ListingList
+          areSearchParams={areSearchParams}
+          searchParams={searchParams}
+          currentUser={currentUser}
+          initialListings={listings}
+        />
       </div>
     </Container>
   );

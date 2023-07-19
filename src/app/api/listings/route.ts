@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/libs/prismadb';
 import getCurrentUser from '@/actions/getCurrentUser';
 import { Address } from '@prisma/client';
-import {
+import getListings, {
   buildCapacitiesAggregation,
   buildCategoryAggregation,
   buildExcludeDocumentsWithReservationsAggregation,
@@ -11,6 +11,7 @@ import {
   buildReservationAggregation,
   buildUserIdAggregation,
 } from '@/actions/getListings';
+import { ListingSearchParams } from '@/types';
 
 export async function POST(request: Request) {
   const currentUser = await getCurrentUser();
@@ -52,41 +53,24 @@ export async function POST(request: Request) {
 }
 
 export async function GET(req: NextRequest) {
-  const usesReservationAggregation = false;
+  const { searchParams } = req.nextUrl;
 
-  const aggregations = [
-    buildLocationAggregation({
-      lng: -80.132812,
-      lat: 25.813489,
-      radius: 50000,
-    }),
-    buildCategoryAggregation(),
-    buildUserIdAggregation(),
-    buildCapacitiesAggregation({}),
-    buildReservationAggregation(),
-    buildExcludeDocumentsWithReservationsAggregation(
-      usesReservationAggregation
-    ),
-    {
-      $sort: {
-        createdAt: -1,
-      },
-    },
-    {
-      $unset: ['reservations', 'userId'],
-    },
-  ].filter((agg) => agg != null);
+  const listingSearchParams = {
+    lat: searchParams.get('lat') || undefined,
+    lng: searchParams.get('lng') || undefined,
+    radius: searchParams.get('radius') || undefined,
+    userId: searchParams.get('userId'),
+    category: searchParams.get('category'),
+    guestCount: searchParams.get('guestCount') || undefined,
+    roomCount: searchParams.get('roomCount') || undefined,
+    bathroomCount: searchParams.get('bathroomCount') || undefined,
+    startDate: searchParams.get('startDate'),
+    endDate: searchParams.get('endDate'),
+    limit: searchParams.get('limit'),
+    page: searchParams.get('page'),
+  } as ListingSearchParams;
 
-  console.log(
-    aggregations.forEach((agg) => {
-      console.log(JSON.stringify(agg, null, 2));
-    })
-  );
+  const listings = await getListings(listingSearchParams);
 
-  const result = await prisma.listing.aggregateRaw({
-    // @ts-expect-error
-    pipeline: aggregations,
-  });
-
-  return NextResponse.json(result);
+  return NextResponse.json(listings);
 }

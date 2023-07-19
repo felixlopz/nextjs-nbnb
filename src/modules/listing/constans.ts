@@ -1,0 +1,1 @@
+export const DEFAULT_LISTING_LIMIT = 10;
