@@ -8,6 +8,7 @@ import AdressInputResults from './AdressInputResults';
 import { useDebounce } from 'use-debounce';
 import { getAddressFromGeocoderFeature } from '@/libs/geocoder';
 import { Address } from '@prisma/client';
+import { Loader2 } from 'lucide-react';
 
 interface AddressInputProps {
   placeName?: string;
@@ -24,12 +25,14 @@ export const AddressInput: FC<AddressInputProps> = ({
   const [inputValue, setInputValue] = useState(placeName);
   const [query] = useDebounce(inputValue, 1000);
   const [places, setPlaces] = useState<GeocoderFeature[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const shouldUpdateGeocoderQuery = () => {
     return inputValue != '' && selectedPlace == null;
   };
 
   const handleResults = (results: any) => {
+    setIsLoading(false);
     const places: GeocoderFeature[] | undefined = results.features;
     if (places != null && places.length > 0) {
       setPlaces(places);
@@ -40,10 +43,12 @@ export const AddressInput: FC<AddressInputProps> = ({
     if (e.target.value === '') {
       setSelectedPlace(null);
       onPlaceChange(null);
+      setIsLoading(false);
     }
 
     setInputValue(e.target.value);
     setPlaces([]);
+    setIsLoading(true);
   };
 
   const handleSelectedPlace = (feature: GeocoderFeature) => {
@@ -63,10 +68,13 @@ export const AddressInput: FC<AddressInputProps> = ({
     if (shouldUpdateGeocoderQuery()) {
       onUpdateQuery(inputValue);
     }
-  }, [query, onUpdateQuery, inputValue, shouldUpdateGeocoderQuery]);
+  }, [query]);
 
   return (
-    <div className="flex flex-col">
+    <div className="relative flex flex-col">
+      {isLoading && (
+        <Loader2 className="absolute right-4 top-[1rem] h-6 w-6 animate-spin text-primary " />
+      )}
       <div ref={geocoderRef} />
       <Input
         value={inputValue}
