@@ -105,6 +105,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
     }
   }, [dateRange, listing.price]);
 
+  const [lng, lat] = listing.address.location.coordinates;
+
   return (
     <Container className="py-12">
       <div
@@ -138,6 +140,11 @@ const ListingClient: React.FC<ListingClientProps> = ({
                 roomCount={listing.roomCount}
                 guestCount={listing.guestCount}
                 bathroomCount={listing.bathroomCount}
+                lat={lat}
+                lng={lng}
+                isExactLocation={
+                  listing.address.location.isExactLocation ?? false
+                }
               />
             </div>
             <div

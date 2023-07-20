@@ -73,7 +73,7 @@ export const AddressInput: FC<AddressInputProps> = ({
   return (
     <div className="relative flex flex-col">
       {isLoading && (
-        <Loader2 className="absolute right-4 top-[1rem] h-6 w-6 animate-spin text-primary " />
+        <Loader2 className="absolute right-4 top-[1rem] h-6 w-6 animate-spin bg-gray-100 text-primary" />
       )}
       <div ref={geocoderRef} />
       <Input
