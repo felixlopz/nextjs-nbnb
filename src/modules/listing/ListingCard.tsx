@@ -82,7 +82,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
       onClick={() => router.push(`/listings/${data.id}`)}
       className="group col-span-1 cursor-pointer"
     >
-      <div className="flex w-full flex-col gap-2">
+      <div className="flex w-full flex-col gap-1">
         <div
           className="
             relative 
@@ -93,17 +93,13 @@ const ListingCard: React.FC<ListingCardProps> = ({
           "
         >
           <Image
-            width={900}
-            height={600}
-            className="
-              h-full 
-              w-full 
-              object-cover 
-              transition 
-              group-hover:scale-110
-            "
+            // width={480}
+            // height={480}
+            fill
+            className="h-full w-full object-cover"
+            sizes="(max-width: 550px) 480px, 360px"
             src={data.imageSrc}
-            alt="Listing"
+            alt={`nextbnb listing: ${data.title.toLowerCase()}`}
           />
           <div
             className="
@@ -115,7 +111,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
             <HeartButton listingId={data.id} currentUser={currentUser} />
           </div>
         </div>
-        <div className="line-clamp-1 text-base font-semibold capitalize leading-none">
+        <div className="mt-2 line-clamp-1 text-base font-semibold capitalize leading-none">
           {listingLabel}
         </div>
         <div className="line-clamp-1 text-base font-light leading-none text-neutral-500">
@@ -124,9 +120,9 @@ const ListingCard: React.FC<ListingCardProps> = ({
         <div className="text-base font-light leading-none text-neutral-500">
           {reservationDate || `${data.category}, ${listingBebs}`}
         </div>
-        <div className="flex flex-row items-center gap-1">
-          <div className="font-semibold leading-none">${price}</div>
-          {!reservation && <div className="font-light leading-none">night</div>}
+        <div className="mt-1 flex flex-row items-center gap-1">
+          <div className="font-semibold">${price}</div>
+          {!reservation && <div className="font-light">night</div>}
         </div>
         {onAction && actionLabel && (
           <Button

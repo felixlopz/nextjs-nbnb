@@ -3,11 +3,13 @@ import Link from 'next/link';
 
 export const Logo = () => {
   return (
-    <Link href="/" className="rounded-full px-4 py-2">
+    <Link
+      href="/"
+      className="hidden cursor-pointer rounded-full px-4 py-2 md:block"
+    >
       <Image
         src={'/images/logo.png'}
         alt="Nextbnb logo"
-        className="hidden cursor-pointer md:block"
         width={125}
         height={100}
       />

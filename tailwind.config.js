@@ -10,6 +10,13 @@ module.exports = {
       colors: {
         primary: '#7E00DF',
       },
+      screens: {
+        sm: '550px',
+        md: '750px',
+        lg: '1130px',
+        xl: '1640px',
+        '2xl': '1880px',
+      },
     },
   },
   plugins: [],

@@ -6,7 +6,7 @@ export default async function Navbar({}) {
   const currentUser = await getCurrentUser();
 
   return (
-    <nav className="flex items-center justify-between gap-3">
+    <nav className="hidden items-center justify-between gap-3 md:flex">
       <NavbarButton currentUser={currentUser} />
       <Menu currentUser={currentUser} />
     </nav>

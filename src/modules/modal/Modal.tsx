@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
-import Button from '@/modules/common/Button';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import { cn } from '@/libs/utils';
 
@@ -26,6 +25,11 @@ export const Modal: React.FC<ModalProps> = ({
   const [showModal, setShowModal] = useState(isOpen);
 
   useEffect(() => {
+    if (showModal === false) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'visible';
+    }
     setShowModal(isOpen);
   }, [isOpen]);
 
@@ -43,15 +47,15 @@ export const Modal: React.FC<ModalProps> = ({
 
   return (
     <>
-      <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden bg-neutral-800/70 outline-none focus:outline-none">
+      <div className="fixed left-0 top-0 z-50 flex h-full w-full justify-center overflow-x-hidden overflow-y-hidden bg-neutral-800/70 outline-none focus:outline-none md:items-center">
         <div
           ref={ref as React.RefObject<HTMLDivElement>}
-          className="relative mx-auto my-6 h-full w-full md:h-auto md:w-4/6 lg:h-auto lg:w-full lg:max-w-2xl"
+          className="relative mx-auto h-full w-full md:h-auto md:w-4/5 lg:h-auto lg:w-full lg:max-w-2xl"
         >
           <div
             className={cn([
               'translate h-full translate-y-full opacity-0 duration-300',
-              showModal && 'translate-y-0 opacity-100',
+              showModal && 'translate-y-7 opacity-100 md:translate-y-0',
             ])}
           >
             <div className="translate relative flex h-full w-full flex-col rounded-lg border-0 bg-white shadow-lg outline-none focus:outline-none md:h-auto lg:h-auto">

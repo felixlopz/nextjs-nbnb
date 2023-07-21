@@ -86,14 +86,14 @@ const Searchbar = () => {
         </div>
         <div
           className="
-            hidden 
-            flex-1 
+          hidden
+          flex-1
             border-x-[1px] 
             px-6 
             text-center 
             text-sm 
             font-semibold 
-            sm:block
+            sm:block 
           "
         >
           {durationLabel}
@@ -107,7 +107,7 @@ const Searchbar = () => {
             pl-6 
             pr-2 
             text-sm 
-            text-gray-600
+            text-gray-600 
           "
         >
           <div className="hidden sm:block">{guestLabel}</div>
