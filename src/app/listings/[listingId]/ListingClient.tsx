@@ -132,7 +132,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
               md:gap-10
             "
           >
-            <div className="col-span-5 flex flex-col gap-8">
+            <div className="col-span-4 mt-6 flex flex-col gap-8 md:mt-0 lg:col-span-5">
               <ListingInfo
                 user={listing.user}
                 category={category}
@@ -151,7 +151,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
               className="
                 order-first 
                 md:order-last 
-                md:col-span-3
+                md:col-span-4
+                lg:col-span-3
               "
             >
               <ListingReservation

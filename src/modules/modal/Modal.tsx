@@ -25,7 +25,7 @@ export const Modal: React.FC<ModalProps> = ({
   const [showModal, setShowModal] = useState(isOpen);
 
   useEffect(() => {
-    if (showModal === false) {
+    if (showModal === false && isOpen === true) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'visible';
@@ -34,7 +34,6 @@ export const Modal: React.FC<ModalProps> = ({
   }, [isOpen]);
 
   const handleClose = useCallback(() => {
-    if (disabled === true) return;
     setShowModal(false);
     setTimeout(() => {
       onClose();

@@ -1,5 +1,6 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import Heading from '@/modules/common/Heading';
+import { useMediaQuery } from '@mantine/hooks';
 import Calendar from '@/modules/common/inputs/Calendar';
 import { addYears, isSameDay } from 'date-fns';
 import { DateRange } from 'react-day-picker';
@@ -15,6 +16,7 @@ export const ListingDateRange: FC<ListingDateRangeProps> = ({
 }) => {
   const defaultMonth = new Date();
   const nextYear = addYears(defaultMonth, 1);
+  const matches = useMediaQuery('(min-width: 880px) ');
 
   const handleSelect = (selectedDay: Date, range?: DateRange) => {
     if (
@@ -36,20 +38,36 @@ export const ListingDateRange: FC<ListingDateRangeProps> = ({
         subtitle="Make sure everyone is free!"
       />
       <div className="flex min-h-[425px] justify-center">
-        <Calendar
-          showOutsideDays={false}
-          mode="range"
-          today={defaultMonth}
-          defaultMonth={defaultMonth}
-          fromDate={defaultMonth}
-          toDate={nextYear}
-          selected={range}
-          onSelect={(range, selectedDay) => {
-            handleSelect(selectedDay, range);
-          }}
-          max={30}
-          numberOfMonths={2}
-        />
+        {matches == false ? (
+          <Calendar
+            showOutsideDays={false}
+            mode="range"
+            today={defaultMonth}
+            defaultMonth={defaultMonth}
+            fromDate={defaultMonth}
+            toDate={nextYear}
+            selected={range}
+            onSelect={(range, selectedDay) => {
+              handleSelect(selectedDay, range);
+            }}
+            max={30}
+          />
+        ) : (
+          <Calendar
+            showOutsideDays={false}
+            mode="range"
+            today={defaultMonth}
+            defaultMonth={defaultMonth}
+            fromDate={defaultMonth}
+            toDate={nextYear}
+            selected={range}
+            onSelect={(range, selectedDay) => {
+              handleSelect(selectedDay, range);
+            }}
+            max={30}
+            numberOfMonths={2}
+          />
+        )}
       </div>
     </div>
   );
