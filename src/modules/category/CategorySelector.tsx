@@ -67,21 +67,22 @@ export const CategorySelector: React.FC<CategorySelectorProps> = (props) => {
     <button
       onClick={handleClick}
       className={`
-      flex 
+      flex
       cursor-pointer 
       flex-col 
       items-center 
       justify-center 
       gap-2 
-      border-b-2 
-      p-3 transition 
-      hover:text-black
+      border-b-2
+      py-2 
+      transition
+      hover:text-black md:py-4
       ${selected ? 'border-b-black' : 'border-transparent'}
       ${selected ? 'text-black' : 'text-neutral-500'}
       `}
     >
-      <Icon size={26} />
-      <div className="text-sm font-medium">{label}</div>
+      <Icon size={28} />
+      <div className="text-xs font-medium">{label}</div>
     </button>
   );
 };

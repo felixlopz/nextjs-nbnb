@@ -93,12 +93,9 @@ const ListingCard: React.FC<ListingCardProps> = ({
           "
         >
           <Image
-            // width={480}
-            // height={480}
             fill
             className="h-full w-full object-cover"
-            // sizes="(max-width: 550px) 480px, 360px" // 75% performance
-            sizes="(max-width: 550px) 350px, (max-width: 750px) 230px, (max-width: 750px) 200px, 260px"
+            sizes="(max-width: 550px) 370px, (max-width: 750px) 260px, (max-width: 1130px) 280px, 300px"
             src={data.imageSrc}
             alt={`nextbnb listing: ${data.title.toLowerCase()}`}
           />
