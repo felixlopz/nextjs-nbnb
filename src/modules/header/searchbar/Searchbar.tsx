@@ -51,7 +51,9 @@ const Searchbar = () => {
 
   return (
     <button
-      onClick={searchModal.onOpen}
+      onClick={() => {
+        searchModal.onOpen();
+      }}
       className="
         h-fit 
         w-full 

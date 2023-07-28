@@ -3,14 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/libs/prismadb';
 import getCurrentUser from '@/actions/getCurrentUser';
 import { Address } from '@prisma/client';
-import getListings, {
-  buildCapacitiesAggregation,
-  buildCategoryAggregation,
-  buildExcludeDocumentsWithReservationsAggregation,
-  buildLocationAggregation,
-  buildReservationAggregation,
-  buildUserIdAggregation,
-} from '@/actions/getListings';
+import getListings from '@/actions/getListings';
 import { ListingSearchParams } from '@/types';
 
 export async function POST(request: Request) {

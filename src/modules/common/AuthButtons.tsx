@@ -4,7 +4,7 @@ import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import { signIn } from 'next-auth/react';
 
-export const AuthProviders = () => {
+export const AuthButtons = () => {
   return (
     <>
       <Button
@@ -31,4 +31,4 @@ export const AuthProviders = () => {
   );
 };
 
-export default AuthProviders;
+export default AuthButtons;

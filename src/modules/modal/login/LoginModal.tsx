@@ -2,7 +2,7 @@
 
 import useLoginModal from '@/modules/modal/login/useLoginModal';
 import Modal from '@/modules/modal/Modal';
-import AuthProviders from '@/modules/common/AuthProviders';
+import AuthButtons from '@/modules/common/AuthButtons';
 import useRegisterModal from '@/modules/modal/register/useRegisterModal';
 
 import LoginForm from '@/modules/forms/login-form/LoginForm';
@@ -22,7 +22,7 @@ const LoginModal = () => {
   const footerContent = (
     <div className="mt-3 flex flex-col gap-4">
       <hr />
-      <AuthProviders />
+      <AuthButtons />
       <div className="mt-4 text-center font-light text-neutral-500">
         <div className="flex flex-row items-center justify-center gap-2">
           <div>Don&apos;t have an account?</div>

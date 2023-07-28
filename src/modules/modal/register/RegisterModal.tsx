@@ -2,7 +2,7 @@
 
 import useRegisterModal from '@/modules/modal/register/useRegisterModal';
 import Modal from '@/modules/modal/Modal';
-import AuthProviders from '@/modules/common/AuthProviders';
+import AuthButtons from '@/modules/common/AuthButtons';
 import useLoginModal from '@/modules/modal/login/useLoginModal';
 import RegisterForm from '@/modules/forms/register-form/RegisterForm';
 import toast from 'react-hot-toast';
@@ -21,7 +21,7 @@ const RegisterModal = () => {
   const footerContent = (
     <div className="mt-3 flex flex-col gap-4">
       <hr />
-      <AuthProviders />
+      <AuthButtons />
       <div className="mt-4 text-center font-light text-neutral-500">
         <div className="flex flex-row items-center justify-center gap-2">
           <div>Already have an account?</div>
