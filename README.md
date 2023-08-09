@@ -5,7 +5,7 @@ Built with the Next.js App Router, TypeScript, MongoDB & Tailwind
 ## Features
 
 - Infinite scrolling for dynamically loading listings
-- Authentication using NextAuth & Google
+- Authentication using NextAuth, Github & Google
 - Image uploads with UploadThing
 - Location search with MapBox API and MongoDB Geospatial Queries
 
