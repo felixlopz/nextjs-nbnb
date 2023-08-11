@@ -21,7 +21,7 @@ export const AdressInputResults: FC<AdressInputResultsProps> = ({
   }
 
   return (
-    <ul className="relative z-50 mt-2 flex flex-col overflow-hidden rounded-lg bg-white pt-2 shadow-md">
+    <ul className="relative z-50 mt-2 flex flex-col overflow-hidden rounded-lg bg-white shadow-md">
       {results.map((place) => {
         const selected = place.id === selectedPlace?.mapboxId;
 
@@ -35,14 +35,14 @@ export const AdressInputResults: FC<AdressInputResultsProps> = ({
             className={cn([
               'h-fit w-full justify-start rounded-none px-4 py-3 text-left text-base font-light',
               selected
-                ? 'bg-violet-200 hover:bg-violet-200 focus:bg-violet-200'
+                ? 'hover:bg-violet-black focus:bg-violet-black bg-black text-white'
                 : '',
             ])}
           >
             <span
               className={cn([
                 'mr-4 flex rounded-md bg-neutral-200 p-2',
-                selected ? 'bg-primary text-white' : '',
+                selected ? 'bg-white text-black' : '',
               ])}
             >
               <FiMapPin size={18} />

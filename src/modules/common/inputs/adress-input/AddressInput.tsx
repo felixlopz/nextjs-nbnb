@@ -47,8 +47,8 @@ export const AddressInput: FC<AddressInputProps> = ({
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
     handlePlaceUpdate(null);
+    setResults([]);
     if (e.target.value === '') {
-      setResults([]);
       setIsLoading(false);
     } else {
       setIsLoading(true);
