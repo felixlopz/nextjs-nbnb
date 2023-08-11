@@ -2,38 +2,55 @@ import { GeocoderFeature } from '@/types/geocoder';
 import { FC } from 'react';
 import Button from '../../Button';
 import { FiMapPin } from 'react-icons/fi';
+import { Address } from '@prisma/client';
+import { cn } from '@/libs/utils';
 
 interface AdressInputResultsProps {
-  places: GeocoderFeature[];
+  results: GeocoderFeature[];
+  selectedPlace: Address | null;
   onSelectPlace: (place: GeocoderFeature) => void;
 }
 
 export const AdressInputResults: FC<AdressInputResultsProps> = ({
-  places,
+  results,
+  selectedPlace,
   onSelectPlace,
 }) => {
-  if (places.length <= 0) {
+  if (results.length <= 0) {
     return null;
   }
 
   return (
-    <ul className="relative z-50 mt-2 flex flex-col rounded-lg bg-white py-2 shadow-md">
-      {places.map((place) => (
-        <Button
-          onClick={() => {
-            onSelectPlace(place);
-          }}
-          key={place.id}
-          variant={'ghost'}
-          className="h-fit w-full justify-start rounded-none px-4 py-3 text-left text-base font-light 
-          "
-        >
-          <span className="mr-4 flex rounded-md bg-neutral-200 p-2">
-            <FiMapPin size={18} />
-          </span>
-          {place.place_name}
-        </Button>
-      ))}
+    <ul className="relative z-50 mt-2 flex flex-col overflow-hidden rounded-lg bg-white pt-2 shadow-md">
+      {results.map((place) => {
+        const selected = place.id === selectedPlace?.mapboxId;
+
+        return (
+          <Button
+            onClick={() => {
+              onSelectPlace(place);
+            }}
+            key={place.id}
+            variant={'ghost'}
+            className={cn([
+              'h-fit w-full justify-start rounded-none px-4 py-3 text-left text-base font-light',
+              selected
+                ? 'bg-violet-200 hover:bg-violet-200 focus:bg-violet-200'
+                : '',
+            ])}
+          >
+            <span
+              className={cn([
+                'mr-4 flex rounded-md bg-neutral-200 p-2',
+                selected ? 'bg-primary text-white' : '',
+              ])}
+            >
+              <FiMapPin size={18} />
+            </span>
+            {place.place_name}
+          </Button>
+        );
+      })}
     </ul>
   );
 };

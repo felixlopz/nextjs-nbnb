@@ -19,6 +19,8 @@ export const getLocationFromGoecoderFeatureCenter = (
 export const getAddressFromGeocoderFeature = (
   feature: GeocoderFeature
 ): Address => {
+  console.log(feature);
+
   const baseAddress: Address = {
     country: '',
     countryCode: '',
@@ -42,13 +44,13 @@ export const getAddressFromGeocoderFeature = (
   const [type] = feature.id.split('.');
   if (type !== GeocoderDataTypes.country) {
     Object.assign(baseAddress, {
-      [type]: feature['text_en-US'],
+      [type]: feature.text,
     });
   }
 
   if (feature.context == null) {
     const countryCode = feature.properties.short_code || '_';
-    const country = feature['place_name_en-US'];
+    const country = feature.place_name;
     Object.assign(baseAddress, { country, countryCode });
   } else {
     feature.context.forEach((ctx: ContextEntity) => {
@@ -60,14 +62,14 @@ export const getAddressFromGeocoderFeature = (
         });
       }
       Object.assign(baseAddress, {
-        [type]: ctx['text_en-US'],
+        [type]: ctx.text,
       });
     });
   }
 
   return {
     ...baseAddress,
-    placeName: feature['place_name_en-US'],
+    placeName: feature.place_name,
     location,
     mapboxId: feature.id,
   };
