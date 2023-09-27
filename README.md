@@ -9,6 +9,11 @@ Built with the Next.js App Router, TypeScript, MongoDB & Tailwind
 - Image uploads with UploadThing
 - Location search with MapBox API and MongoDB Geospatial Queries
 
+## Web Performance
+
+![image](https://github.com/felixlopz/nextjs-nbnb/assets/54049457/dff134c8-2e25-4443-b137-75f931cb5d04)
+
+
 ## Getting started
 
 To get started with this project, run
