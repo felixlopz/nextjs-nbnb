@@ -14,7 +14,7 @@ const nunito = Nunito({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Nextbnb',
-  description: 'Really cool next project',
+  description: 'Airbnb clone made with the latest features of nextjs 13.',
 };
 
 export default async function RootLayout({
